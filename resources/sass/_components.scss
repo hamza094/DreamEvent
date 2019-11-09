@@ -1,0 +1,123 @@
+.main-bg{
+      height: 100%;
+    background: linear-gradient(180deg, $color-primary 50%, $body-bg 50%); 
+    padding-top:2.5rem;
+}
+
+//panel 
+
+.panel{
+    margin-top: 1.5rem;
+    &-heading{
+        text-align: center;
+        color:$color-primary;
+        font-size: 2rem;
+        font-weight: 700;
+    }
+    &-list{
+        margin-top: 3rem;
+        &_item{
+            font-size: 1rem;
+            i{
+               
+                margin-right:1.6rem;
+            }  
+            span{
+                color:#C0C0C0;
+                font-weight: bold;
+                &:hover{
+                    color:$color-primary;
+                }
+            }
+            
+            
+        }
+    }
+    
+}
+ .router-link-active,
+ .router-link-exact-active span{
+ color:$color-primary !important;  
+    text-decoration: none !important; 
+}
+
+ .desktop{
+                color:$color-primary;    
+                }
+                .cog{
+                     color:#F5365C;
+                }
+                .globe{
+                      color:#6B6AE4;
+                }
+.shake{
+    color:crimson;
+}
+.other{
+    color:darkviolet;
+}
+
+a:hover{
+                text-decoration: none !important;
+            }
+
+.Dashboard-heading{
+        color:#ffffff;
+        text-transform: uppercase;
+        font-size: 1.2rem;
+        letter-spacing: .3rem;
+}
+
+.info{
+    margin-top: 4rem;
+    &-row{
+        background-color: $body-bg;
+        margin: 0 0 .5rem 1em !important;
+        padding: 1rem 1.9rem 0rem 1rem;
+        border-radius: .5rem;
+    }
+    &-right{
+        &_name{
+            color:#A9A9A9;
+                font-weight: bold;
+            font-size: .9rem;
+        } 
+        &_count{
+           font-size: 1.5rem; 
+            font-weight: 700;
+            margin-top: -1rem;
+        }
+        
+    }
+    &-left{
+        &_icon{
+            font-size: 2.2rem;
+            padding-right: 1rem !important;
+        }   
+        &_origin{
+            font-size: .9rem;
+            text-transform:capitalize;
+            font-style: italic;
+        }
+    }
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
