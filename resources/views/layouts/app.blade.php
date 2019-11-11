@@ -29,6 +29,7 @@
     <div id="app">
         <main class="">
            <div class="container-fluid">
+           {{ Auth::user()->name }}
            <div class="row">
            <div class="col-md-3">
                <div class="panel">
