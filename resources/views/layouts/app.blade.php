@@ -29,13 +29,13 @@
     <div id="app">
         <main class="">
            <div class="container-fluid">
-           {{ Auth::user()->name }}
            <div class="row">
            <div class="col-md-3">
                <div class="panel">
                     <p class="panel-heading">
                         <i class="fab fa-the-red-yeti"></i> DreamEvent</p> 
                 <ul class="panel-list">
+                  @if(Auth::user())
                    <router-link to="/dashboard" class="panel-list_item">
                        <p><i class="fas fa-desktop desktop"></i><span> Dashboard</span></p>
                 </router-link>
@@ -45,15 +45,18 @@
                  <router-link to="/topics" class="panel-list_item">
                   <p><i class="fas fa-globe-europe globe"></i><span> Topics</span></p>
                 </router-link>
-                
+                @endif
                 </ul>
                </div>
               </div>
            <div class="col-md-9 main-bg">
+           @if(Auth::user())
            <router-view>
                
            </router-view>
-
+            @else
+            @yield('content')
+            @endif
            </div>    
            </div>
            </div>

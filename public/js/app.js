@@ -2116,9 +2116,71 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  data: function data() {
+    return {
+      users: {}
+    };
+  },
+  methods: {
+    loadUsers: function loadUsers() {
+      var _this = this;
+
+      axios.get('/api/users').then(function (_ref) {
+        var data = _ref.data;
+        return _this.users = data;
+      });
+    },
+    deleteUser: function deleteUser(id) {
+      var _this2 = this;
+
+      swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.value) {
+          axios["delete"]('/api/users/' + id).then(function () {
+            swal.fire('Deleted!', 'Topic has been deleted.', 'success');
+          })["catch"](function () {
+            swal.fire("Failed!", "There was something wrong.", "warning");
+          });
+        }
+
+        _this2.loadUsers();
+      });
+    }
+  },
+  created: function created() {
+    this.loadUsers();
   }
 });
 
@@ -41877,9 +41939,69 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    hy this is Users component\n")])
+  return _c("div", [
+    _c("p", { staticClass: "Dashboard-heading" }, [_vm._v("Users")]),
+    _vm._v(" "),
+    _c("table", { staticClass: "table table-hover" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.users.data, function(user) {
+          return _c("tr", { key: user.id }, [
+            _c("td", [_c("b", [_vm._v(_vm._s(user.id))])]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(user.name))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(user.created_at))]),
+            _vm._v(" "),
+            _c("td", [_vm._v("admin")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("2")]),
+            _vm._v(" "),
+            _c("td", [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-sm btn-danger",
+                  on: {
+                    click: function($event) {
+                      return _vm.deleteUser(user.id)
+                    }
+                  }
+                },
+                [_vm._v("Delete")]
+              )
+            ])
+          ])
+        }),
+        0
+      )
+    ])
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("SrNo")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Created At")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Created By")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Associated Events")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Option")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
