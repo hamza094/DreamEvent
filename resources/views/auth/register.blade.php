@@ -70,6 +70,20 @@
                         </div>
                     </form>
                 </div>
+                <div class="card-footer">
+                  <div class="text-center">
+                    <a href="{{ url('login/facebook') }}" class="btn btn-primary">
+                      <i class="fa fa-facebook"></i>
+                      Sign Up with Facebook
+                    </a>
+                  </div>
+                   <div class="text-center">
+                    <a href="{{ url('login/google') }}" class="btn">
+                      <i class="fa fa-google"></i>
+                      Login with Google
+                    </a>
+                  </div>
+                </div>
             </div>
         </div>
     </div>
