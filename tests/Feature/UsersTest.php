@@ -33,4 +33,17 @@ class UsersTest extends TestCase
         $response->assertStatus(200);
         $this->assertDatabaseMissing('users',['id'=>$user->id]);
     }
+    
+    /** @test */
+    public function an_admin_can_search_users()
+    {
+        create('App\User', [], 10);
+        create('App\User', ['name' => 'thanos'], 2);
+        $results = $this->getJson('api/findUsers/?q=thanos')->json()['data'];
+        $this->assertCount(2, $results);
+        $this->assertTrue(true);
+        
+    }
+    
+    
 }

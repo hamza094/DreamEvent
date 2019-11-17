@@ -110,6 +110,83 @@ a:hover {
   font-style: italic;
 }
 
+.vue-dropdown {
+  position: relative;
+  top: -1.2rem;
+  cursor: pointer;
+}
+
+.vue-dropdown_item {
+  position: absolute;
+  background-color: #FFFFFF;
+  border-radius: 0.8rem;
+  margin-top: 0.3rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 2000 !important;
+  width: 100%;
+}
+
+.vue-dropdown_item::before {
+  background: #fff;
+  box-shadow: none;
+  content: "";
+  display: block;
+  height: 12px;
+  width: 12px;
+  right: 26px;
+  position: absolute;
+  bottom: 100%;
+  -webkit-transform: rotate(-45deg) translateY(12px);
+          transform: rotate(-45deg) translateY(12px);
+  z-index: -5;
+  border-radius: 2px;
+}
+
+.vue-dropdown_item_list {
+  display: block;
+  color: black;
+  padding: 0.5rem 0.5rem 0.5rem 1.1rem;
+}
+
+.vue-dropdown_item_list:hover {
+  text-decoration: none;
+  background: rgba(0, 0, 0, 0.1);
+  color: black;
+  cursor: pointer;
+}
+
+.vue-dropdown_item_list i {
+  padding-right: 0.5rem;
+}
+
+.dropdown-img {
+  border-radius: 50%;
+  width: 2.6rem;
+}
+
+.vue-dropdown-menu_name {
+  color: #ffffff;
+  font-size: 0.9rem;
+  padding-left: 0.3rem;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.vue-dropdown_up {
+  margin: 0.3rem 0rem 0.3rem 0rem;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors

@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::apiResources(['topics'=>'TopicsController']);
 Route::get('/users',"UsersController@index");
 Route::delete('/users/{id}',"UsersController@destroy");
+Route::get('/findUsers',"UsersController@search");
 
 
 

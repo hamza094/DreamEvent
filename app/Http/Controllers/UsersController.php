@@ -20,4 +20,17 @@ class UsersController extends Controller
           $users = User::findOrFail($id);
            $users->delete();
     }
+    
+    public function search(){
+             if ($search = \Request::get('q')) {
+            $users = User::where(function($query) use ($search){
+                $query->where('name','LIKE',"%$search%")
+                        ->orWhere('email','LIKE',"%$search%");
+            })->paginate(30);
+        }else{
+            $users = User::latest()->paginate(30);
+        }
+        return $users;
+    }
+    
 }

@@ -8,6 +8,10 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+window._= require("lodash");
+
+window.Fire = new Vue();
+
 import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
@@ -32,6 +36,7 @@ const toast = swal.mixin({
 
 window.toast=toast;
 
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -42,6 +47,9 @@ window.toast=toast;
 
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
+
+Vue.component('dropdown', require('./components/Dropdown.vue').default);
+
 
 const routes = [
   { path: '/dashboard', component: require('./components/Dashboard.vue').default },

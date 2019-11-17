@@ -1,6 +1,6 @@
 <template>
    <div>
-       <p class="Dashboard-heading">Topics<button class="btn btn-primary btn-sm float-right" @click="newModal">Add Topic</button></p>
+       <p class="Dashboard-heading">Topics<button class="btn btn-light ml-2 btn-sm" @click="newModal"> +</button></p>
        <table class="table table-hover">
   <thead>
     <tr>

@@ -108,6 +108,72 @@ a:hover {
             font-style: italic;
         }
     }
+}
 
+//dropdown
+.vue-dropdown{
+    position: relative;
+    top:-1.2rem;
+    cursor: pointer;
+ &_item{
+    position: absolute;
+    background-color:$body-bg;
+    border-radius: .8rem;
+    margin-top: .3rem;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
+    z-index:2000 !important;
+  width:100%;
+     &::before{
+         background: #fff;
+    box-shadow: none;
+    content: "";
+    display: block;
+    height: 12px;
+    width: 12px;
+    right: 26px;
+    position: absolute;
+    bottom: 100%;
+    transform: rotate(-45deg) translateY(12px);
+    z-index: -5;
+    border-radius: 2px;
+     }
+    &_list{
+         display: block;
+    color: black;
+        
+            padding: .5rem .5rem .5rem 1.1rem;
+    &:hover{
+        text-decoration: none;
+        background: rgba(0,0,0,0.1);
+        color:black;
+        cursor: pointer;
+    }
+        i{
+            padding-right: .5rem;
+        }
+    }
+}
+}
+.dropdown-img{
+    border-radius: 50%;
+    width:2.6rem;
+}
+.vue-dropdown-menu{
+    &_name{
+        color:#ffffff;
+        font-size:.9rem;
+        padding-left: .3rem;
+        font-weight: 700;
+        font-style: italic;
+    }
+}
+.vue-dropdown_up{
+    margin: .3rem 0rem .3rem 0rem;
+}
 
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }

@@ -1,6 +1,12 @@
 <template>
    <div>
        <p class="Dashboard-heading">Users</p>
+  <div class="form-group row">
+    <div class="col-sm-4">
+      <input type="text" class="form-control" id="user" v-model="search" placeholder="Search User" @keyup="searchIt">
+    </div>
+  </div>
+       
        <table class="table table-hover">
   <thead>
     <tr>
@@ -32,7 +38,8 @@
     export default {
       data(){
           return{
-              users:{}
+              users:{},
+              search:''
         }
       },
         methods:{
@@ -63,13 +70,27 @@
                      swal.fire("Failed!","There was something wrong.","warning");
                  });
              }
-                this.loadUsers();
+                this.$emit('AfterUser');
                })
-        }
+        },
+        searchIt:_.debounce(()=>{
+          Fire.$emit('searching');  
+        },325)
             
         },
         created(){
-          this.loadUsers();
+            this.loadUsers(); 
+                Fire.$on('searching',()=>{
+            let query=this.search;
+           axios.get('/api/findUsers?q='+query).
+           then((data)=>{
+               this.users=data.data
+           })
+                    
+        });
+              this.$on('AfterUser',()=>{
+           this.loadUsers(); 
+        });
         },
     }
 </script>
