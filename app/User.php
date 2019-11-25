@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','avatar_path'
     ];
 
     /**
@@ -37,9 +37,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     
+    public function me($user){
+        return $this->id === $user->id;
+    }
     
     public function accounts(){
         return $this->hasMany('App\SocialAccount');
     }
+    
+    
+    public function getAvatarPathAttribute($avatar)
+    {
+        return asset('/storage/'.($avatar ?: 'avatars/default.jpg'));
+    }
+            
+
     
 }

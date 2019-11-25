@@ -12,8 +12,16 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     
+         <script>
+    window.App={!! json_encode([
+                'csrfToken'=>csrf_token(),
+                'user'=>Auth::user(),
+                'signedIn'=>Auth::check()
+                ]) !!};
+    </script>
+       
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-        
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -54,15 +62,15 @@
            @if(Auth::user())
            <dropdown class="float-right">
                       <template v-slot:trigger>
-                               <a class="vue-dropdown-menu"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSPAouyEwHdnMabUP14SJ6aNlTpPgANrn2QeRd5pjC_oldKHHkV" alt="{{Auth::user()->name}}'s avatar" class="dropdown-img">
+                               <a class="vue-dropdown-menu"><img src="{{Auth::user()->avatar_path}}" alt="{{Auth::user()->name}}'s avatar" class="dropdown-img">
                                
                                 <span class="vue-dropdown-menu_name" href="#" role="button"  aria-haspopup="true" aria-expanded="false">
                                     {{ Auth::user()->name }}
                                    </span></a>
                               </template>
                             <div class="vue-dropdown_up">
-                            <a class="vue-dropdown_item_list"><i class="fab fa-dashcube"></i> Dashboard</a>
-                            <a class="vue-dropdown_item_list"><i class="fas fa-user"></i> My Profile</a>
+                            <a class="vue-dropdown_item_list" href="/dashboard"><i class="fab fa-dashcube"></i> Dashboard</a>
+                            <a class="vue-dropdown_item_list" href="profile/{{ Auth::user()->id }}"><i class="fas fa-user"></i> My Profile</a>
                             <a class="vue-dropdown_item_list"><i class="fas fa-cogs"></i> Settings</a>
                               <a class="vue-dropdown_item_list" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

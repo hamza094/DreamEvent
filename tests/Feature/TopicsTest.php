@@ -27,6 +27,7 @@ class TopicsTest extends TestCase
     /** @test */
     public function topic_must_required_a_name()
     {
+        $this->signIn();
         $topic=make('App\Topics',[
             'name'=>null
         ]);
@@ -56,6 +57,7 @@ class TopicsTest extends TestCase
     /** @test */
     public function an_admin_can_update_a_topic()
     {
+        $this->signIn();
         $topic=create('App\Topics');
         $Updatedname='Assemble';
         $Updatedcreated='Cap';

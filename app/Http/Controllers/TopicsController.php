@@ -8,6 +8,7 @@ use Auth;
 
 class TopicsController extends Controller
 {
+   
     /**
      * Display a listing of the resource.
      *

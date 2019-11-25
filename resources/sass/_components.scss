@@ -79,7 +79,7 @@ a:hover {
 .info {
     margin-top: 4rem;
     &-row {
-        background-color: $body-bg;
+        background-color: #ffffff;
         margin: 0 0 .5rem 1em !important;
         padding: 1rem 1.9rem 0rem 1rem;
         border-radius: .5rem;
@@ -177,3 +177,126 @@ a:hover {
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
+
+.text-user{
+    color:black;
+    &:hover{
+         color:black;
+    }
+}
+
+//welcome navabr
+.main-navbar{
+    background-color: #2D395D;
+    height: 4rem;
+    width:100%;
+    
+    .vue-dropdown{
+    top:-.4rem ;
+    }
+}
+
+
+
+.header {
+        width: 100%;
+  height: 85vh;
+  overflow: hidden;
+    &_text-box{
+        color: #ffffff;
+    position: absolute;
+    top: 53%;
+    left: 21%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width:30rem;
+    }
+    &-para{
+        font-size:1.3rem;
+    }
+    &-btn{
+        color:#2D395D !important;
+        border-color: #ffffff !important;
+        background-color: #ffffff !important;
+        font-weight: 700 !important;
+        transition: all .2s;
+        &:hover,&:active{
+            color:#ffffff !important;
+        border-color: #5CDB95 !important;
+        background-color: #5CDB95 !important;
+        }
+    }
+}
+
+.heading-primary_main {
+  display: block;
+  line-height: 5rem;
+  letter-spacing: .1rem;
+    font-weight:bold;
+    text-transform: capitalize;
+}
+
+.heading-primary_sub {
+  display: block;
+  font-size: 2.5rem;
+  letter-spacing: .1rem;
+    font-weight:bold;
+    
+}
+
+.user-profile
+{
+background-color: #ffffff;
+ -webkit-box-shadow: 0 1rem 2rem rgba(black,.2);
+    box-shadow: 0 1rem 2rem rgba(black,.2) !important;
+    padding: 2rem;
+    position: relative;
+    border-radius: .5rem;
+    text-align: center;
+    margin-bottom: 5rem;
+    img{
+        width: 10rem;
+        border-radius: 50%;
+    transform: translate(-50%,-70%);
+    position: absolute;
+    left: 50%;
+    -webkit-box-shadow: 0 1rem 2rem rgba(black,.1);
+    box-shadow: 0 1rem 2rem rgba(black,.4) !important;
+    transition: all .30s ease;
+        &:hover{
+            transform: translate(-50%,-73%);
+            opacity: .7;
+        }
+       
+    }
+    &_img{
+        margin-bottom: 4rem;
+        
+        
+    }
+    &_info{
+        margin-bottom: 1.5rem;
+    }
+}
+
+input[type="file"]
+{
+  display: none;
+}
+.fileUpload input.upload 
+{
+    display: inline-block;
+}
+
+.btn-avatar{
+    margin-top: 5rem;
+    color:red;
+    cursor: pointer;
+    font-weight: 700;
+    input{
+        cursor: pointer;
+        color:red;
+    }
+}
+
+

@@ -21,7 +21,7 @@
   <tbody>
     <tr  v-for="user in users.data" :key="user.id">
       <td><b>{{user.id}}</b></td>
-      <td>{{user.name}}</td>
+        <td><a v-bind:href="'profile/'+user.id" class="text-user">{{user.name}}</a></td>
       <td>{{user.created_at}}</td>
       <td>admin</td>
       <td>2</td>

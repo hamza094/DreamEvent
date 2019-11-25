@@ -16,7 +16,13 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
+import Chart from 'chart.js';
+
 import { Form, HasError, AlertError } from 'vform'
+
+import VModal from 'vue-js-modal';
+
+Vue.use(VModal)
  
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
@@ -49,6 +55,9 @@ window.toast=toast;
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('dropdown', require('./components/Dropdown.vue').default);
+Vue.component('edit-profile', require('./components/EditProfile.vue').default);
+Vue.component('avatar-form', require('./components/AvatarForm.vue').default);
+
 
 
 const routes = [
