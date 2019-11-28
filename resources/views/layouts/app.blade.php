@@ -62,7 +62,7 @@
            @if(Auth::user())
            <dropdown class="float-right">
                       <template v-slot:trigger>
-                               <a class="vue-dropdown-menu"><img src="{{Auth::user()->avatar_path}}" alt="{{Auth::user()->name}}'s avatar" class="dropdown-img">
+                               <a class="vue-dropdown-menu"><img src="{{Auth::user()->profile}}" alt="{{Auth::user()->name}}'s avatar" class="dropdown-img">
                                
                                 <span class="vue-dropdown-menu_name" href="#" role="button"  aria-haspopup="true" aria-expanded="false">
                                     {{ Auth::user()->name }}

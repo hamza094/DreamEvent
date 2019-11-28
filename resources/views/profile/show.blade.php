@@ -12,9 +12,9 @@
               </h1>
               <p class="header-para">This is your profile page. You can see the progress you've made 
               with your work and manage your projects or assigned tasks</p>
-              
+              @can('update', $user)
          <button class="btn btn-info header-btn" @click="$modal.show('EditProfile')">Edit Profile</button>  
-         
+         @endcan
     </div>
         </div>
           

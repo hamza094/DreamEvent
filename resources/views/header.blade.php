@@ -89,13 +89,14 @@
     </head>
     <body>
        <div id="app">
+          <vue-progress-bar></vue-progress-bar>
            <div class="main-navbar">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
                             <dropdown class="float-right">
                       <template v-slot:trigger>
-                               <a class="vue-dropdown-menu"><img src="{{$user->avatar_path}}" alt="{{Auth::user()->name}}'s avatar" class="dropdown-img">
+                               <a class="vue-dropdown-menu"><img src="{{Auth::user()->profile}}" alt="{{Auth::user()->name}}'s avatar" class="dropdown-img">
                                
                                 <span class="vue-dropdown-menu_name" href="#" role="button"  aria-haspopup="true" aria-expanded="false">
                                     {{ Auth::user()->name }}

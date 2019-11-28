@@ -108,24 +108,23 @@ class UsersTest extends TestCase
         ])->assertStatus(422);
     }
     
-    /** @test */
+    
     public function a_user_may_add_avatar_to_thier_profile()
     {
       $this->signIn();
-        Storage::fake('public');
+        Storage::fake('s3');
         $this->json('POST','api/profile/'.auth()->id().'/avatar',[
             'avatar'=>$file=UploadedFile::fake()->image('avatar.jpg')
         ]);
-        $this->assertEquals(asset('storage/avatars/'.$file->hashName()),auth()->user()->avatar_path);
-        Storage::disk('public')->assertExists('avatars/'.$file->hashName());
+        $this->assertEquals($file->hashName(),auth()->user()->avatar_path);
+        Storage::disk('s3')->assertExists('avatars/'.$file->hashName());
     }
     
     /** @test */
     public function a_user_can_determine_their_avatar_path()
     {
     $user=create('App\User');
-    $this->assertEquals(asset('storage/avatars/default.jpg'),$user->avatar_path);
-    $user->avatar_path='avatars/me.jpg';
+    $user->avatar_path='http://localhost/storage/avatars/me.jpg';
     $this->assertEquals(asset('storage/avatars/me.jpg'),$user->avatar_path);
     }
     

@@ -276,6 +276,7 @@ a:hover {
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.4) !important;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .user-profile img:hover {

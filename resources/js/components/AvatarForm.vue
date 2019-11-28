@@ -1,6 +1,6 @@
 <template>
       <div class="user-profile_img">
-                   <img :src="avatar" alt="">
+                   <img :src="avatar" alt="" @click="image">
                    <form v-if="canUpdate" method="POST" enctype="multipart/form-data" >
                      <div class="fileUpload btn btn-avatar file">
                      <label class="upload" >
@@ -16,7 +16,8 @@ export default{
     props:['user'],
     data(){
         return{
-        avatar:this.user.avatar_path
+        avatar:this.user.profile,
+        avatar_path:this.user.avatar_path    
     };
     },
     computed:{
@@ -25,6 +26,9 @@ export default{
         }
     },
     methods:{
+        image(){
+          window.open(this.user.avatar_path);   
+        },
         onChange(e){
              if(! e.target.files.length) return;
                 let file=e.target.files[0];
@@ -39,7 +43,22 @@ export default{
         presist(file){
             let data=new FormData();
                 data.append('avatar',file);
-                axios.post('/api/profile/$(this.user.id)/avatar',data);
+            this.$Progress.start();
+                axios.post('/api/profile/$(this.user.id)/avatar',data)
+                .catch(error=>{
+                  this.$Progress.fail();     
+                toast.fire({
+                icon: 'error',
+                 title: 'Error! Try Again'
+            }) 
+            }).then(()=>{ 
+                toast.fire({
+                icon: 'success',
+                title: 'Avatar Uploaded Successfully'
+            }) 
+                    this.$Progress.finish(); 
+            }
+            );
                 
         }
     }

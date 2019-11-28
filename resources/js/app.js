@@ -16,6 +16,14 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
+import VueProgressBar from 'vue-progressbar';
+
+Vue.use(VueProgressBar, {
+  color: 'rgb(143, 255, 199)',
+  failedColor: 'red',
+  height: '3px'
+})
+
 import Chart from 'chart.js';
 
 import { Form, HasError, AlertError } from 'vform'

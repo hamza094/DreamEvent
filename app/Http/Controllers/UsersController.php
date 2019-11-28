@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Auth;
-use Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 use Validator;
+use Storage;
+use File;
+use Image;
 
 class UsersController extends Controller
 {
@@ -81,14 +84,25 @@ class UsersController extends Controller
         
     }
     
-    public function avatar()
+    public function avatar(Request $request)
     {
-         $this->validate(request(), [
-            'avatar'=>'required|image'
+        $this->validate(request(), [
+            'avatar'=>['required', 'image']
         ]);
-         auth()->user()->update([
-            'avatar_path'=>request()->file('avatar')->store('avatars', 'public')
-        ]);
+        
+    $user = Auth::user();
+    $file = $request->file('avatar');
+    $filename=uniqid($user->id."_").".".$file->getClientOriginalExtension();  
+    Storage::disk('s3')->put($filename,File::get($file),'public');
+    $user_path=Storage::disk('s3')->url($filename);
+    $user->update(['avatar_path'=>$user_path]);
+    
+    $thumb=Image::make($file);
+    $thumb->fit(500);
+    $jpg=(string) $thumb->encode('jpg');
+        
+    $thumbName=pathinfo($filename,PATHINFO_FILENAME).'-thumb.jpg';
+    Storage::disk('s3')->put($thumbName,$jpg,'public');    
         
          return response([], 204);
     }

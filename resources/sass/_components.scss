@@ -263,6 +263,7 @@ background-color: #ffffff;
     -webkit-box-shadow: 0 1rem 2rem rgba(black,.1);
     box-shadow: 0 1rem 2rem rgba(black,.4) !important;
     transition: all .30s ease;
+        cursor: pointer;
         &:hover{
             transform: translate(-50%,-73%);
             opacity: .7;
