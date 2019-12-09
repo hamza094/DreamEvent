@@ -45,6 +45,9 @@ class User extends Authenticatable
     public function accounts(){
         return $this->hasMany('App\SocialAccount');
     }
+    public function events(){
+        return $this->hasMany('App\Event');
+    }
     
     
    public function getProfileAttribute()

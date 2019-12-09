@@ -26,9 +26,16 @@ Route::get('login/{provider}/callback', 'Auth\SocialAccountController@handleProv
 //profile routes
 Route::get('/profile/{user}', 'UsersController@show');
 
+Route::get('/create-event','EventsController@create');
+
+Route::post('/event-create','EventsController@store');
+
 Route::patch('/profile/{user}', 'UsersController@update');
 
 Route::post("/api/profile/{user}/avatar","UsersController@avatar")->name('avatar');
+
+Route::get('events/search', 'EventsController@index');
+
 
 Route::get('{path}',"HomeController@index")->where( '/path', '([A-z\d-\/_.]+)?' );
 

@@ -7,4 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Topics extends Model
 {
   protected $guarded = [];
+    
+     public function events(){
+        return $this->hasMany('App\Event');
+    }
 }

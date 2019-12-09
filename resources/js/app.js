@@ -65,6 +65,8 @@ window.toast=toast;
 Vue.component('dropdown', require('./components/Dropdown.vue').default);
 Vue.component('edit-profile', require('./components/EditProfile.vue').default);
 Vue.component('avatar-form', require('./components/AvatarForm.vue').default);
+Vue.component('recaptcha', require('./components/Recaptcha.vue').default);
+Vue.component('searchform', require('./components/SearchForm.vue').default);
 
 
 
@@ -90,3 +92,33 @@ const app = new Vue({
     el: '#app',
      router
 });
+
+ document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.strtdate');
+    var instances = M.Datepicker.init(elems, {});
+  });
+
+ document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.strttime');
+    var instances = M.Timepicker.init(elems, {});
+  });
+
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.enddate');
+    var instances = M.Datepicker.init(elems, {});
+  });
+ document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.endtime');
+    var instances = M.Timepicker.init(elems, {});
+  });
+document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems);
+        });
+
+google.maps.event.addDomListener(window, 'load', function () {
+        var places = new google.maps.places.Autocomplete(document.getElementById('location'));
+        google.maps.event.addListener(places, 'place_changed', function () {
+
+        });
+    });

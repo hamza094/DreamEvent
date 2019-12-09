@@ -35,3 +35,29 @@ $factory->define(App\Topics::class, function (Faker $faker) {
         'created_by'=>'admin',
     ];
 });
+
+$factory->define(App\Event::class, function (Faker $faker) {
+return [
+      'name'=>$faker->sentence,
+         'desc'=> 'Nunc magna metus, laoreet sed ex nec, consequat finibus risus. Aenean massa est, venenatis id dignissim id, maximus vitae sem.',
+         'strtdt'=>'4 july 2000',
+          'strttm'=>'19:45',
+    'enddt'=>'4 july 2001',
+          'endtm'=>'19:55',
+    'price'=>45,
+    'location'=>'lahore,Pakistan',
+        'created_by'=>1,
+    'venue'=>'Lahore',
+    'topic_id'=>1,
+    'qty'=>2,
+    'image_path'=>'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTHZInbmRX8Mtrdptido88vfG9e8tmTPNcYMuYdOTPFjwRE0bAG'
+    
+    ];
+});
+
+
+
+
+
+
+

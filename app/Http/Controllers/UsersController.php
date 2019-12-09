@@ -52,7 +52,8 @@ class UsersController extends Controller
         return $users;
     }
     
-    public function update(Request $request,$user){
+    public function update(Request $request,$user)
+    {
         
         
         $user=User::findOrFail($user);
