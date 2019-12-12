@@ -27,13 +27,22 @@ class EventsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     public function __construct()
+    public function __construct()
     {
-        $this->middleware('auth');
+      $this->middleware('auth',[
+            'except'=>[
+                'index','search','show'
+            ]
+        ]);   
     }
    
     
-    public function index(Request $request)
+    public function index()
+    {
+
+    }
+    
+      public function search(Request $request)
     {
         $results = (new Search())
     ->registerModel(Event::class, ['name'])
@@ -49,8 +58,9 @@ class EventsController extends Controller
      */
     public function create()
     {
+        $events=Event::orderBy('created_at','desc')->paginate(8);
          $topics = Topics::all();
-        return view('event.create',compact('topics'))->with('status', 'Profile updated!');
+        return view('event.create',compact('topics','events'))->with('status', 'Profile updated!');
     }
 
     /**
@@ -115,9 +125,9 @@ class EventsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Event $event)
     {
-        //
+        return view('event.show',compact('event'));
     }
 
     /**

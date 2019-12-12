@@ -11,6 +11,7 @@ use Validator;
 use Storage;
 use File;
 use Image;
+use App\Event;
 
 class UsersController extends Controller
 {
@@ -30,8 +31,10 @@ class UsersController extends Controller
     }
     
     public function show($user){
+                $events=Event::orderBy('created_at','desc')->paginate(8);
+
         $user=User::findOrFail($user);
-        return view('profile.show',compact('user'));
+        return view('profile.show',compact('user','events'));
     }
     
     public function destroy($id)

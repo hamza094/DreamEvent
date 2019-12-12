@@ -63,7 +63,7 @@ class UsersTest extends TestCase
     {
         $this->signIn();
         $user=create('App\User');
-        $this->get("/profile/{$user->id}")
+        $this->withoutExceptionHandling()->get("/profile/{$user->id}")
             ->assertSee($user->name);
     }
     

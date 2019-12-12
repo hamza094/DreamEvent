@@ -10,6 +10,16 @@ class Event extends Model implements Searchable
 {
     protected $guarded=[];
     
+     public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    
+    public function path()
+    {
+        return "/events/{$this->slug}";
+    }
+    
      public static function boot()
     {
         parent::boot();

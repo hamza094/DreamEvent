@@ -1,16 +1,10 @@
 @include('header')
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-
-<!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-
-
-<div class="container">
+<div class="container create-event">
 <h1 class="mt-4">Strat Your Own Event</h1>
     <h5>Organize your whole event detail here</h5>
    <div class="row">
-<form action="/event-create" method="post" class="col s12" enctype="multipart/form-data">
+<form action="/events" method="post" class="col s12" enctype="multipart/form-data">
 {{csrf_field()}}
 <div class="row">
         <div class="input-field col s12">
