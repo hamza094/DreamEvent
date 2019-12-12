@@ -67,6 +67,9 @@ Vue.component('edit-profile', require('./components/EditProfile.vue').default);
 Vue.component('avatar-form', require('./components/AvatarForm.vue').default);
 Vue.component('recaptcha', require('./components/Recaptcha.vue').default);
 Vue.component('searchform', require('./components/SearchForm.vue').default);
+Vue.component('events', require('./components/Events.vue').default);
+Vue.component('pagination', require('laravel-vue-pagination'));
+
 
 
 

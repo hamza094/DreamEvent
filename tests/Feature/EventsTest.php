@@ -57,16 +57,36 @@ class EventsTest extends TestCase
         unset(app()[Recaptcha::class]);
         $this->post('/events',['g-recaptcha-response'=>'test'])
         ->assertSessionHasErrors('g-recaptcha-response');
-        
+    }
+    
+    /** @test */
+    public function a_guest_can_visit_welcome_page()
+    {
+        $this->get('/')->assertStatus(200);
     }
     
     /** @test */
     public function guest_can_visit_single_events_page(){
         $event=create('App\Event');
-        $this->withOutExceptionHandling()->get($event->path())
+        $this->get($event->path())
         ->assertSee($event->name);
     }
     
+    /** @test */
+    public function guest_can_view_all_events(){
+        $event=create('App\Event');
+        $this->get('/api/events')->assertSee($event->name);
+    }
+    
+     /** @test */
+    public function guest_can_search_users()
+    {
+        create('App\Event', [], 10);
+        create('App\Event', ['name' => 'thanos'], 2);
+        $results = $this->getJson('api/findEvents/?q=thanos')->json()['data'];
+        $this->assertCount(2, $results);
+        $this->assertTrue(true);
+    }
      
     public function a_user_can_search_events()
     {

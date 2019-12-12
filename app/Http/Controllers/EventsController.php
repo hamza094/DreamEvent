@@ -27,19 +27,34 @@ class EventsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
+   public function __construct()
     {
       $this->middleware('auth',[
-            'except'=>[
-                'index','search','show'
+            'only'=>[
+                'create','store'
             ]
         ]);   
     }
-   
+   public function index(){
+       $events=Event::orderBy('created_at','desc')->paginate(8);
+       return view('event.all',compact('events'));
+   }
     
-    public function index()
+    public function events()
     {
-
+         return Event::latest()->paginate(16); 
+    } 
+    
+      public function eventsearch(){
+             if ($search = \Request::get('q')) {
+            $events = Event::where(function($query) use ($search){
+                $query->where('name','LIKE',"%$search%")
+                        ->orWhere('location','LIKE',"%$search%");
+            })->paginate(16);
+        }else{
+            $events = Event::latest()->paginate(16);
+        }
+        return $events;
     }
     
       public function search(Request $request)

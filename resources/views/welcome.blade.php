@@ -116,7 +116,7 @@
             @endforeach
          </div>
     <div class="text-center">
-        <a href="/all-events" class="btn event-btn">Show All Events >>></a>
+        <a href="/events" class="btn event-btn">Show All Events >></a>
     </div>
                    
         <p class="event-heading"><b>Topics</b></p>
