@@ -42,6 +42,8 @@ Route::get('events/search', 'EventsController@search');
 
 Route::get('/','FrontEndController@index');
 
+Route::get('topic/{topic}','TopicsController@topic');
+
 Route::get('{path}',"HomeController@index")->where( '/path', '([A-z\d-\/_.]+)?' );
 
 

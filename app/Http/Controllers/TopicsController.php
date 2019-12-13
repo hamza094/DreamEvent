@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Topics;
+use App\Topic;
 use Auth;
-
+use App\Event;
 class TopicsController extends Controller
 {
    
@@ -16,7 +16,7 @@ class TopicsController extends Controller
      */
     public function index()
     {
-         return Topics::latest()->paginate(10); 
+         return Topic::latest()->paginate(10); 
         
     }
     
@@ -40,11 +40,13 @@ class TopicsController extends Controller
     {
         $this->validate($request,[
             'name'=>'required|string|max:255',
+            'image'=>'required'
             ]);
         
-        $topic=Topics::create([
+        $topic=Topic::create([
             'name'=>request('name'),
-            'created_by'=>'admin'
+            'image'=>request('image'),
+            'created_by'=>auth()->id()
             
         ]);
     }
@@ -58,6 +60,12 @@ class TopicsController extends Controller
     public function show($id)
     {
         //
+    }
+    
+    public function topic(Topic $topic)
+    {
+        $events=Event::orderBy('created_at','desc')->paginate(8);
+        return view('event.topic',compact('topic','events'));
     }
 
     /**
@@ -80,7 +88,7 @@ class TopicsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $topic=Topics::findOrFail($id);
+        $topic=Topic::findOrFail($id);
         $topic->update(request(['name']));
     }
 
@@ -92,7 +100,7 @@ class TopicsController extends Controller
      */
     public function destroy($id)
     {
-        $topic = Topics::findOrFail($id);
+        $topic = Topic::findOrFail($id);
         $topic->delete();
     }
 }

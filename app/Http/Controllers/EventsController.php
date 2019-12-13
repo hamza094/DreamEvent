@@ -12,7 +12,7 @@ use Illuminate\Validation\Rule;
 use Auth;
 use Spatie\Searchable\Search;
 use Session;
-use App\Topics;
+use App\Topic;
 use Validator;
 use Storage;
 use File;
@@ -74,7 +74,7 @@ class EventsController extends Controller
     public function create()
     {
         $events=Event::orderBy('created_at','desc')->paginate(8);
-         $topics = Topics::all();
+         $topics = Topic::all();
         return view('event.create',compact('topics','events'))->with('status', 'Profile updated!');
     }
 

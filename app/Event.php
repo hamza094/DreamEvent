@@ -41,7 +41,7 @@ class Event extends Model implements Searchable
         $this->belongsTo('App\User');
     }
     public function topic(){
-        $this->belongsTo('App\Topics');
+        $this->belongsTo(Topic::class,'topic_id');
     }
     
       public function getSearchResult(): SearchResult

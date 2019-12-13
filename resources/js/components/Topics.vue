@@ -45,6 +45,14 @@
              :class="{ 'is-invalid': form.errors.has('name') }">
       <has-error :form="form" field="name"></has-error>
         </div>
+        
+          <div class="form-group">
+           <label for="image">Image:</label>
+            <input type="text" v-model="form.image" name="image" class="form-control"
+             :class="{ 'is-invalid': form.errors.has('image') }">
+      <has-error :form="form" field="image"></has-error>
+        </div>
+        
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary" v-show=!editing>Create</button>
@@ -66,7 +74,8 @@
               topics:{},
               form:new Form({
                   id:'',
-                  name:''
+                  name:'',
+                  'image':''
               }) 
               
           }

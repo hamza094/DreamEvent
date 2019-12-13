@@ -122,64 +122,17 @@
         <p class="event-heading"><b>Topics</b></p>
         <p class="">Browse groups by topics you're interested in.</p>
         <div class="row">
+        @foreach($topics as $topic)
       <div class="col-md-3">
               <div class="mb-5">
-               <a href="">
-                <div class="topic" style= 'background-image: url("https://secure.meetupstatic.com/photos/event/2/e/a/7/600_450131943.jpeg"); background-position: center center;'>
+               <a href="topic/{{$topic->id}}">
+                <div class="topic" style= "background-image: url('{{$topic->image}}'); background-position: center center;">
                    </div>
-                   <div class="topic-name">Art And Draw</div>
+                   <div class="topic-name">{{$topic->name}}</div>
                 </a>
           </div>
             </div>
-              <div class="col-md-3">
-               <a href="">
-                <div class="topic" style= 'background-image: url("https://secure.meetupstatic.com/photos/event/2/e/a/7/600_450131943.jpeg"); background-position: center center;'>
-                   </div>
-                    <div class="topic-name">Art And Draw</div>
-                </a>
-            </div>
-          <div class="col-md-3">
-               <a href="">
-                <div class="topic" style= 'background-image: url("https://secure.meetupstatic.com/photos/event/2/e/a/7/600_450131943.jpeg"); background-position: center center;'>
-                   </div>
-                    <div class="topic-name">Art And Draw</div>
-                </a>
-            </div>
-         <div class="col-md-3">
-               <a href="">
-                <div class="topic" style= 'background-image: url("https://secure.meetupstatic.com/photos/event/2/e/a/7/600_450131943.jpeg"); background-position: center center;'>
-                   </div>
-                    <div class="topic-name">Art And Draw</div>
-                </a>
-            </div>
-              <div class="col-md-3">
-               <a href="">
-                <div class="topic" style= 'background-image: url("https://secure.meetupstatic.com/photos/event/2/e/a/7/600_450131943.jpeg"); background-position: center center;'>
-                   </div>
-                    <div class="topic-name">Art And Draw</div>
-                </a>
-            </div>
-             <div class="col-md-3">
-               <a href="">
-                <div class="topic" style= 'background-image: url("https://secure.meetupstatic.com/photos/event/2/e/a/7/600_450131943.jpeg"); background-position: center center;'>
-                   </div>
-                    <div class="topic-name">Art And Draw</div>
-                </a>
-            </div>
-                <div class="col-md-3">
-               <a href="">
-                <div class="topic" style= 'background-image: url("https://secure.meetupstatic.com/photos/event/2/e/a/7/600_450131943.jpeg"); background-position: center center;'>
-                   </div>
-                    <div class="topic-name">Art And Draw</div>
-                </a>
-            </div>
-               <div class="col-md-3">
-               <a href="">
-                <div class="topic" style= 'background-image: url("https://secure.meetupstatic.com/photos/event/2/e/a/7/600_450131943.jpeg"); background-position: center center;'>
-                   </div>
-                    <div class="topic-name">Art And Draw</div>
-                </a>
-            </div>
+            @endforeach
         </div>
     </div>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati molestias, id magni iste praesentium perferendis quos saepe assumenda facilis quas architecto, quidem amet dolores animi eligendi, nostrum eveniet tenetur veritatis beatae voluptatem incidunt. Nesciunt fuga exercitationem enim itaque officiis maiores aut minima voluptatibus eaque, molestias dolorum nostrum obcaecati labore ipsam.</p>

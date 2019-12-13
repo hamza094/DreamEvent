@@ -27,12 +27,13 @@ $factory->define(User::class, function (Faker $faker) {
     ];
 });
 
-$factory->define(App\Topics::class, function (Faker $faker) {
+$factory->define(App\Topic::class, function (Faker $faker) {
     $name = $faker->word;
 
     return [
         'name' => $name,
         'created_by'=>'admin',
+        'image'=>'https://secure.meetupstatic.com/photos/event/2/e/a/7/600_450131943.jpeg'
     ];
 });
 
