@@ -9,7 +9,9 @@ use App\Event;
 use App\Rules\Recaptcha;
 
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Redis;
 use Auth;
+use App\Trending;
 use Spatie\Searchable\Search;
 use Session;
 use App\Topic;
@@ -140,8 +142,11 @@ class EventsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event)
+    public function show(Event $event,Trending $trending)
     {
+       
+        $trending->push($event);
+        
         return view('event.show',compact('event'));
     }
 

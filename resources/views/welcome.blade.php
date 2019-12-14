@@ -14,81 +14,29 @@
         </div>
           
     </header>
-    <div class="container mt-5">           
+    <div class="container mt-5">                     
         <p class="event-heading"><b>Trending Events</b></p>
         <div class="row">
+           @foreach($trending as $event)
             <div class="col-md-3">
              <div class="tranding-event">
               <div class="event">
-               <a href="/event/thomas-martha-save-city">
+               <a href="{{$event->path}}">
                 <div class="event-img">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRHgpBZ4vy6nqlNxC1wMvs3Lxra86FM5K7Vgf0WtXu9v9JYzLGn" alt="">
+                        <img src="{{$event->img}}" alt="">
                     </div>
                     <div class="event-text">
                     <div class="event-time">
-                        <p><i class="far fa-clock"></i><span> 4 jun,</span><span> 1:00 am</span></p>
+                        <p><i class="far fa-clock"></i><span>{{$event->strtdt}} ,</span><span>{{$event->strttm}} </span></p>
                     </div>
-                    <p class="event-name">Thomas Martha Save City</p>
-                    <p class="event-location">Gothan Wyne Tower,Us</p>
+                    <p class="event-name">{{$event->name}}</p>
+                    <p class="event-location">{{$event->loc}}</p>
                     </div>
                 </a>
                 </div>
                 </div>
             </div>
-                  <div class="col-md-3">
-             <div class="tranding-event">
-              <div class="event">
-               <a href="/event/thomas-martha-save-city">
-                <div class="event-img">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRHgpBZ4vy6nqlNxC1wMvs3Lxra86FM5K7Vgf0WtXu9v9JYzLGn" alt="">
-                    </div>
-                    <div class="event-text">
-                    <div class="event-time">
-                        <p><i class="far fa-clock"></i><span> 4 jun,</span><span> 1:00 am</span></p>
-                    </div>
-                    <p class="event-name">Thomas Martha Save City</p>
-                    <p class="event-location">Gothan Wyne Tower,Us</p>
-                    </div>
-                </a>
-                </div>
-                </div>
-            </div>
-                  <div class="col-md-3">
-             <div class="tranding-event">
-              <div class="event">
-               <a href="/event/thomas-martha-save-city">
-                <div class="event-img">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRHgpBZ4vy6nqlNxC1wMvs3Lxra86FM5K7Vgf0WtXu9v9JYzLGn" alt="">
-                    </div>
-                    <div class="event-text">
-                    <div class="event-time">
-                        <p><i class="far fa-clock"></i><span> 4 jun,</span><span> 1:00 am</span></p>
-                    </div>
-                    <p class="event-name">Thomas Martha Save City</p>
-                    <p class="event-location">Gothan Wyne Tower,Us</p>
-                    </div>
-                </a>
-                </div>
-                </div>
-            </div>
-                  <div class="col-md-3">
-             <div class="tranding-event">
-              <div class="event">
-               <a href="/event/thomas-martha-save-city">
-                <div class="event-img">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRHgpBZ4vy6nqlNxC1wMvs3Lxra86FM5K7Vgf0WtXu9v9JYzLGn" alt="">
-                    </div>
-                    <div class="event-text">
-                    <div class="event-time">
-                        <p><i class="far fa-clock"></i><span> 4 jun,</span><span> 1:00 am</span></p>
-                    </div>
-                    <p class="event-name">Thomas Martha Save City</p>
-                    <p class="event-location">Gothan Wyne Tower,Us</p>
-                    </div>
-                </a>
-                </div>
-                </div>
-            </div>
+             @endforeach
          </div>
                  
                  
