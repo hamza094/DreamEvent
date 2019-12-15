@@ -19,6 +19,8 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
           
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <script type="text/javascript" src="https://addevent.com/libs/atc/1.6.1/atc.min.js" async defer></script>
+
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAorsjtV7VJRlduybX8UoWYrD9SaRKWX7A&libraries=places"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">

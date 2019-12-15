@@ -108,7 +108,7 @@ class EventsController extends Controller
         
        $event=Event::create([
            'name'=>request('name'),
-           'created_by'=>auth()->id(),
+           'user_id'=>auth()->id(),
            'desc'=>request('desc'),
            'strtdt'=>request('strtdt'),
            'enddt'=>request('enddt'),
@@ -146,8 +146,9 @@ class EventsController extends Controller
     {
        
         $trending->push($event);
+        $events=Event::orderBy('created_at','desc')->paginate(8);
         
-        return view('event.show',compact('event'));
+        return view('event.show',compact('event','events'));
     }
 
     /**

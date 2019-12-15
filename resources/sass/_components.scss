@@ -487,3 +487,42 @@ input[type=file] {
 .tranding-event{
     margin-bottom: -15rem !important;
 }
+
+.single-event{
+    margin-top: 3rem;
+    &_left{
+        img{
+            width:100%;
+            border-radius: 1.2rem;
+        }
+    }
+    &_detail{
+        margin-top:1.2rem;
+        &-desc{
+            font-weight: 400;
+            font-size: 1.2rem;
+        }
+        &-heading{
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+    }
+    &_right{
+        margin-top: .8rem;
+    }
+    &_name{
+         font-weight: 700;
+            font-size: 1.6rem;
+        font-style: italic;
+    }
+    &_price{
+        font-weight: 700;
+        font-size: 1.6rem;
+    }
+    &_organize{
+        img{
+            width:7rem;
+            border-radius: 50%;
+        }
+    }
+}

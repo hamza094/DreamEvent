@@ -65,10 +65,10 @@ class EventsTest extends TestCase
         $this->get('/')->assertStatus(200);
     }
     
-    /** @test */
+    
     public function guest_can_visit_single_events_page(){
         $event=create('App\Event');
-        $this->get($event->path())
+        $this->withoutExceptionHandling()->get($event->path())
         ->assertSee($event->name);
     }
     

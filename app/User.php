@@ -46,7 +46,7 @@ class User extends Authenticatable
         return $this->hasMany('App\SocialAccount');
     }
     public function events(){
-        return $this->hasMany('App\Event');
+        return $this->hasMany(Event::class);
     }
     
     

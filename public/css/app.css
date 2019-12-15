@@ -511,6 +511,49 @@ input[type=file] {
   margin-bottom: -15rem !important;
 }
 
+.single-event {
+  margin-top: 3rem;
+}
+
+.single-event_left img {
+  width: 100%;
+  border-radius: 1.2rem;
+}
+
+.single-event_detail {
+  margin-top: 1.2rem;
+}
+
+.single-event_detail-desc {
+  font-weight: 400;
+  font-size: 1.2rem;
+}
+
+.single-event_detail-heading {
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+
+.single-event_right {
+  margin-top: 0.8rem;
+}
+
+.single-event_name {
+  font-weight: 700;
+  font-size: 1.6rem;
+  font-style: italic;
+}
+
+.single-event_price {
+  font-weight: 700;
+  font-size: 1.6rem;
+}
+
+.single-event_organize img {
+  width: 7rem;
+  border-radius: 50%;
+}
+
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors

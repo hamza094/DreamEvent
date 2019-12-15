@@ -47,7 +47,7 @@ return [
           'endtm'=>'19:55',
     'price'=>45,
     'location'=>'lahore,Pakistan',
-        'created_by'=>1,
+    'user_id'=>1,
     'venue'=>'Lahore',
     'topic_id'=>1,
     'qty'=>2,

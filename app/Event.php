@@ -38,10 +38,10 @@ class Event extends Model implements Searchable
         $this->attributes['slug'] = $slug;
     }
     public function user(){
-        $this->belongsTo('App\User');
+        return $this->belongsTo(User::class,'user_id');
     }
     public function topic(){
-        $this->belongsTo(Topic::class,'topic_id');
+        return $this->belongsTo(Topic::class,'topic_id');
     }
     
       public function getSearchResult(): SearchResult
