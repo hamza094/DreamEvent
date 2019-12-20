@@ -1,4 +1,6 @@
 @include('header')
+
+ 
    <div class="container">
                 <div class="single-event">
        <div class="row">
@@ -10,9 +12,22 @@
                  <p class="single-event_detail-heading">About this event <span><a href="" class="btn header-btn float-right">Follow Event</a></span> </p>
                   <p class="single-event_detail-desc">{{$event->desc}}</p>
               </div>
-              <div class="mt-5">
+              <div class="" id="app">
                   <h5>Discussion</h5>
+                  @if(Auth::user())
+                  <reply-form :event="{{$event}}"></reply-form>
+                  @endif
               </div>
+                      @foreach ($replies as $reply)
+      
+        <div class="single-event_replies">
+            <p><a href="/profile/{{$reply->user->id}}">
+            <img src="{{$reply->user->avatar_path}}" alt="">
+                {{$reply->user->name}}</a> Replied</p> 
+            <p class="mt-2"><b>{{$reply->body}}</b></p>
+              <p class="float-right">Replied at:<b>{{$reply->created_at->diffForHumans()}}</b></p>
+              </div>
+@endforeach
               </div>
            </div>
            <div class="col-md-5">
@@ -27,6 +42,7 @@
                           <p><i class="far fa-calendar-alt"></i> <b>{{$event->strtdt}} to {{$event->enddt}}</b></p>
                           <p><i class="far fa-clock"></i> <b>{{$event->strttm}} - {{$event->endtm}} PKM</b></p>
                           <p><i class="fas fa-map-marker-alt"></i><span> <b> {{$event->location}}</span><span> {{$event->venue}}</span></span></p>
+                          <!--<div id="map"></div>-->
                         <p>           <div title="Add to Calendar" class="addeventatc">
     Add to Calendar
     <span class="start">{{$event->strtdt}} {{$event->strttm}}</span>
@@ -36,8 +52,9 @@
     <span class="description">{{$event->desc}}</span>
     <span class="location">{{$event->location}}</span>
 </div></p>
+                  
                    </div>
-                   <div>
+                   <div class="mt-3">
                         <p><a href="" class="btn event-btn">Attend Event</a></p>
                     </div>
                    <div class="mt-4 single-event_organize">
@@ -47,7 +64,9 @@
                  </div>
            </div>   
           </div>
-           
+          {!! $replies->render() !!}
+
        </div>
    </div>
+   
     @include('footer')

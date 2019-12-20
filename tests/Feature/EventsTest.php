@@ -65,7 +65,7 @@ class EventsTest extends TestCase
         $this->get('/')->assertStatus(200);
     }
     
-    
+    /** @test */
     public function guest_can_visit_single_events_page(){
         $event=create('App\Event');
         $this->withoutExceptionHandling()->get($event->path())
@@ -79,7 +79,7 @@ class EventsTest extends TestCase
     }
     
      /** @test */
-    public function guest_can_search_users()
+    public function guest_can_search_events()
     {
         create('App\Event', [], 10);
         create('App\Event', ['name' => 'thanos'], 2);
@@ -87,15 +87,6 @@ class EventsTest extends TestCase
         $this->assertCount(2, $results);
         $this->assertTrue(true);
     }
-     
-    public function a_user_can_search_events()
-    {
-        $this->signIn();
-        create('App\Event', [], 10);
-        create('App\Event', ['name' => 'thanos'], 2);
-        $results = $this->getJson('api/events/search/?query=thanos')->json()['data'];
-        $this->assertCount(2, $results);
-        $this->assertTrue(true);
-    }
+
 }
 

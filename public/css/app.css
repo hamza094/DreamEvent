@@ -554,6 +554,69 @@ input[type=file] {
   border-radius: 50%;
 }
 
+.single-event_replies {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  width: 80%;
+  padding-bottom: 2rem !important;
+  padding: 0.5rem;
+  background-color: #ffffff;
+}
+
+.single-event_replies img {
+  width: 5rem;
+  border-radius: 50%;
+}
+
+.addeventatc {
+  z-index: 0 !important;
+}
+
+.model-design {
+  background: transparent !important;
+}
+
+.reply-form {
+  padding: 3rem;
+}
+
+.reply-form img {
+  width: 1.6rem;
+}
+
+.reply-form_heading {
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-left: 0.2rem;
+  margin-top: 0.2rem;
+}
+
+.reply-form_heading_Event {
+  color: #2D395D;
+}
+
+.reply-textarea {
+  border-left: none !important;
+  border-right: none !important;
+  overflow: auto !important;
+  outline: none !important;
+  box-shadow: none !important;
+  padding-top: 1rem !important;
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+  resize: none !important;
+  /*remove the resize handle on the bottom right*/
+}
+
+.swal2-content input[type=file] {
+  display: none !important;
+}
+
+.v--modal {
+  border-top-left-radius: 0.7rem !important;
+  border-top-right-radius: 0.7rem !important;
+}
+
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors

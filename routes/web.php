@@ -38,11 +38,15 @@ Route::post("/api/profile/{user}/avatar","UsersController@avatar")->name('avatar
 Route::get("/api/events",'EventsController@events');
 Route::get('/api/findEvents',"EventsController@eventsearch");
 
-Route::get('events/search', 'EventsController@search');
+//Route::get('events/search', 'EventsController@search');
 
 Route::get('/','FrontEndController@index');
 
 Route::get('topic/{topic}','TopicsController@topic');
+
+Route::get('/events/{event}/replies', 'ReplyController@index');
+
+Route::post('/events/{event}/replies', 'ReplyController@store');
 
 Route::get('{path}',"HomeController@index")->where( '/path', '([A-z\d-\/_.]+)?' );
 

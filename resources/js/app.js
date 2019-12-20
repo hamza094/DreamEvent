@@ -12,6 +12,19 @@ window._= require("lodash");
 
 window.Fire = new Vue();
 
+import swal from 'sweetalert2'
+
+window.swal=swal;
+
+const toast = swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  //timer: 3000
+});
+
+swal.disableInput();
+
 import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
@@ -24,7 +37,7 @@ Vue.use(VueProgressBar, {
   height: '3px'
 })
 
-import Chart from 'chart.js';
+
 
 import { Form, HasError, AlertError } from 'vform'
 
@@ -37,18 +50,9 @@ Vue.component(AlertError.name, AlertError)
 
 window.Form=Form;
 
-import swal from 'sweetalert2'
 
-window.swal=swal;
 
-const toast = swal.mixin({
-  toast: true,
-  position: 'top-end',
-  showConfirmButton: false,
-  timer: 3000
-});
-
-window.toast=toast;
+//window.toast=toast;
 
 
 /**
@@ -68,6 +72,7 @@ Vue.component('avatar-form', require('./components/AvatarForm.vue').default);
 Vue.component('recaptcha', require('./components/Recaptcha.vue').default);
 Vue.component('searchform', require('./components/SearchForm.vue').default);
 Vue.component('events', require('./components/Events.vue').default);
+Vue.component('reply-form', require('./components/Reply-Form.vue').default);
 Vue.component('pagination', require('laravel-vue-pagination'));
 
 

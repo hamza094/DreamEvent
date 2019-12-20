@@ -18,15 +18,12 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
           
-        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <script type="text/javascript" src="https://addevent.com/libs/atc/1.6.1/atc.min.js" async defer></script>
 
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAorsjtV7VJRlduybX8UoWYrD9SaRKWX7A&libraries=places"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+
 
 <!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
           @yield('javascript')
            <script>
     window.App={!! json_encode([
@@ -38,7 +35,6 @@
  
              <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js" type="text/javascript"></script>
           <script src="https://cdn.tiny.cloud/1/dvtavx74nw7o1b3z7q3d5hi9thrc3feptxfydctl1shlggz5/tinymce/5/tinymce.min.js" ></script>
-            <script src="{{asset('js/script.js')}}"></script>
                                             <script>
     @if (session('success'))
             iziToast.success({
@@ -48,7 +44,7 @@
     </script>
                          
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-        
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <!-- Styles -->
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -56,7 +52,7 @@
     <link rel="shortcut icon" type="image/png" href="https://cdn1.medicalnewstoday.com/content/images/hero/284/284378/284378_1100.jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
 
-         
+       
         <!-- Styles -->
         <style>
             html, body {
@@ -130,8 +126,8 @@
  @endforeach
     </head>
     <body>
-       <div id="app">
-          <vue-progress-bar></vue-progress-bar>
+       <div id="">
+          
            <div class="main-navbar">
             @if (Route::has('login'))
                 <div class="top-right links">

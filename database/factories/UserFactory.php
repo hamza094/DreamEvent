@@ -47,7 +47,9 @@ return [
           'endtm'=>'19:55',
     'price'=>45,
     'location'=>'lahore,Pakistan',
-    'user_id'=>1,
+     'user_id'=>function () {
+            return factory('App\User')->create()->id;
+        },
     'venue'=>'Lahore',
     'topic_id'=>1,
     'qty'=>2,
@@ -57,7 +59,17 @@ return [
 });
 
 
-
+$factory->define(App\Reply::class, function (Faker $faker) {
+    return [
+        'user_id'=>function () {
+            return factory('App\User')->create()->id;
+        },
+        'event_id'=>function () {
+            return factory('App\Event')->create()->id;
+        },
+        'body' => 'abra ka dabra',
+    ];
+});
 
 
 

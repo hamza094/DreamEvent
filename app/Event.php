@@ -43,6 +43,16 @@ class Event extends Model implements Searchable
     public function topic(){
         return $this->belongsTo(Topic::class,'topic_id');
     }
+    public function replies(){
+        return $this->hasMany(Reply::class);
+    }
+       
+    public function addReply($reply)
+    {
+        $reply = $this->replies()->create($reply);
+
+        return $reply;
+    }
     
       public function getSearchResult(): SearchResult
     {

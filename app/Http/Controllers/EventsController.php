@@ -19,6 +19,7 @@ use Validator;
 use Storage;
 use File;
 use Image;
+//use GuzzleHttp\Client as GuzzleClient;
 
 
 class EventsController extends Controller
@@ -61,11 +62,11 @@ class EventsController extends Controller
     
       public function search(Request $request)
     {
-        $results = (new Search())
+       /* $results = (new Search())
     ->registerModel(Event::class, ['name'])
     ->search($request->input('query'));
     
-    return response()->json($results);
+    return response()->json($results);*/
     }
 
     /**
@@ -144,11 +145,28 @@ class EventsController extends Controller
      */
     public function show(Event $event,Trending $trending)
     {
-       
+
         $trending->push($event);
         $events=Event::orderBy('created_at','desc')->paginate(8);
-        
-        return view('event.show',compact('event','events'));
+        $replies=$event->replies()->paginate(5);
+         /*   $googleClient=new GuzzleClient();
+            $response = $googleClient->get('https://maps.googleapis.com/maps/api/geocode/json',[
+        'query'=>[
+            'address'=>$event->location,
+            'key'=>'AIzaSyAorsjtV7VJRlduybX8UoWYrD9SaRKWX7A'
+            
+        ]
+    ]);
+        $googleBody=json_decode($response->getBody());
+        $coords=$googleBody->results[0]->geometry->location;*/
+       
+        return view('event.show',[
+            'events'=>$events,
+            'event'=>$event,
+            'replies'=>$replies,
+            //'lng'=>$coords->lng,
+            //'lat'=>$coords->lat 
+        ]);
     }
 
     /**

@@ -48,7 +48,14 @@ class User extends Authenticatable
     public function events(){
         return $this->hasMany(Event::class);
     }
+    public function replies(){
+        return $this->hasMany(Reply::class);
+    }
     
+     public function lastReply()
+    {
+        return $this->hasOne(Reply::class)->latest();
+    }
     
    public function getProfileAttribute()
    {

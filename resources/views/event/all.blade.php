@@ -14,7 +14,7 @@
         </div>
           
     </header>
-    <div class="container mt-5">           
+    <div class="container mt-5" id="app">           
         <p class="event-heading"><b>All Events</b></p>
        <events></events>
 

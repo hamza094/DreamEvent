@@ -14,7 +14,7 @@
         </div>
           
     </header>
-    <div class="container mt-5">                     
+    <div class="container mt-5" id="app">                     
         <p class="event-heading"><b>Trending Events</b></p>
         <div class="row">
            @foreach($trending as $event)
@@ -40,7 +40,7 @@
          </div>
                  
                  
-                  <p class="event-heading"><b>Events</b></p>
+                  <p class="event-heading mt-5"><b>Events</b></p>
         <div class="row">
            @foreach($events as $event)
             <div class="col-md-3">
@@ -83,5 +83,6 @@
             @endforeach
         </div>
     </div>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati molestias, id magni iste praesentium perferendis quos saepe assumenda facilis quas architecto, quidem amet dolores animi eligendi, nostrum eveniet tenetur veritatis beatae voluptatem incidunt. Nesciunt fuga exercitationem enim itaque officiis maiores aut minima voluptatibus eaque, molestias dolorum nostrum obcaecati labore ipsam.</p>
+    
+
 @include('footer')

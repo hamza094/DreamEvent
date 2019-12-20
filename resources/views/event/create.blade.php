@@ -1,6 +1,15 @@
 @include('header')
+   <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-<div class="container create-event">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAorsjtV7VJRlduybX8UoWYrD9SaRKWX7A&libraries=places"></script>
+                   <script src="{{asset('js/script.js')}}"></script>
+        
+<div class="container create-event" id="app">
 <h1 class="mt-4">Strat Your Own Event</h1>
     <h5>Organize your whole event detail here</h5>
    <div class="row">
