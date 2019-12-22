@@ -73,6 +73,7 @@ Vue.component('recaptcha', require('./components/Recaptcha.vue').default);
 Vue.component('searchform', require('./components/SearchForm.vue').default);
 Vue.component('events', require('./components/Events.vue').default);
 Vue.component('reply-form', require('./components/Reply-Form.vue').default);
+Vue.component('reply', require('./components/Reply.vue').default);
 Vue.component('pagination', require('laravel-vue-pagination'));
 
 

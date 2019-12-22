@@ -62,7 +62,7 @@ class ReplyTest extends TestCase
 
       $this->signIn();
         
-        $reply=factory('App\Reply')->create();
+        $reply=create('App\Reply');
         
       $this->post($this->event->path().'/replies',$reply->toArray());
         
@@ -71,4 +71,27 @@ class ReplyTest extends TestCase
         
     }
     
+        /** @test */
+    public function authorized_user_can_update_reply()
+    {
+        $user=create('App\User');
+        $user2=create('App\User');
+        $this->signIn($user);
+        $reply=create('App\Reply',['user_id'=>$user->id]);
+        $Updatedbody='Avengers Assemble';
+        $this->patch("/replies/$reply->id",['body'=>$Updatedbody,'user_id'=>$user->id]);
+        $this->assertDatabaseHas('replies',['id'=>$reply->id,'body'=>$Updatedbody]);
+    }
+    
+    /** @test */   
+    public function authorized_user_can_delete_a_reply()
+    {
+        $user=create('App\User');
+        $this->signIn($user);
+        $reply=create('App\Reply',['user_id'=>$user->id]);
+        $response=$this->json('DELETE',"/replies/{$reply->id}");
+        $response->assertStatus(200);
+        $this->assertDatabaseMissing('replies',['id'=>$reply->id]);
+    }
+  
 }

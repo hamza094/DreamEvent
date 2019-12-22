@@ -568,6 +568,10 @@ input[type=file] {
   border-radius: 50%;
 }
 
+.single-event_replies-body {
+  width: auto;
+}
+
 .addeventatc {
   z-index: 0 !important;
 }
@@ -615,6 +619,10 @@ input[type=file] {
 .v--modal {
   border-top-left-radius: 0.7rem !important;
   border-top-right-radius: 0.7rem !important;
+}
+
+[v-cloak] {
+  display: none;
 }
 
 /*!

@@ -48,6 +48,10 @@ Route::get('/events/{event}/replies', 'ReplyController@index');
 
 Route::post('/events/{event}/replies', 'ReplyController@store');
 
+Route::patch('/replies/{reply}', 'ReplyController@update');
+
+Route::delete('/replies/{reply}', 'ReplyController@destroy');
+
 Route::get('{path}',"HomeController@index")->where( '/path', '([A-z\d-\/_.]+)?' );
 
 

@@ -536,6 +536,9 @@ input[type=file] {
           width:5rem;
             border-radius: 50%;   
         }
+        &-body{
+            width:auto;
+        }
     }
 }
 .addeventatc{
@@ -583,3 +586,6 @@ display: none !important;
     border-top-left-radius: .7rem !important;
     border-top-right-radius: .7rem !important;
 }
+
+
+[v-cloak] { display: none; }

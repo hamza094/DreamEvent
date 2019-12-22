@@ -16,7 +16,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
           
         <script type="text/javascript" src="https://addevent.com/libs/atc/1.6.1/atc.min.js" async defer></script>
 
@@ -49,7 +48,6 @@
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     
-    <link rel="shortcut icon" type="image/png" href="https://cdn1.medicalnewstoday.com/content/images/hero/284/284378/284378_1100.jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
 
        

@@ -36,4 +36,22 @@ class ReplyController extends Controller
         
         return back();
     }
+    
+    public function update(Reply $reply)
+    {
+         $this->authorize('update', $reply);
+        $this->validate(request(), ['body'=>'required|spamerror']);
+        $reply->update(request(['body']));
+        
+    }
+    
+    public function destroy(Reply $reply){
+           $this->authorize('update', $reply);
+        $reply->delete();
+        if (request()->wantsJson()) {
+            return response(['status'=>'Reply deleted']);
+        }
+
+        return back();
+    }
 }

@@ -5,6 +5,7 @@
                 <div class="single-event">
        <div class="row">
            <div class="col-md-7">
+             <div class="" id="app">
               <div class="single-event_left">
                 <img src="{{$event->image_path}}" alt="">                  
               
@@ -12,24 +13,41 @@
                  <p class="single-event_detail-heading">About this event <span><a href="" class="btn header-btn float-right">Follow Event</a></span> </p>
                   <p class="single-event_detail-desc">{{$event->desc}}</p>
               </div>
-              <div class="" id="app">
+              
                   <h5>Discussion</h5>
                   @if(Auth::user())
                   <reply-form :event="{{$event}}"></reply-form>
                   @endif
-              </div>
+             
                       @foreach ($replies as $reply)
-      
+      <reply inline-template :reply="{{$reply}}">
+       <div>
         <div class="single-event_replies">
+           
             <p><a href="/profile/{{$reply->user->id}}">
             <img src="{{$reply->user->avatar_path}}" alt="">
                 {{$reply->user->name}}</a> Replied</p> 
-            <p class="mt-2"><b>{{$reply->body}}</b></p>
-              <p class="float-right">Replied at:<b>{{$reply->created_at->diffForHumans()}}</b></p>
+            <p class="mt-2"><b v-text="body"></b></p>
+              <p>
+              @can('update',$reply)
+              <span class="span-left"><button class="btn btn-sm btn-primary" @click.prevent="show">Edit</button> <button class="btn btn-sm btn-danger" @click.prevent="destroy">Delete</button></span>
+              @endcan
+              <span class="float-right">Replied at:<b>{{$reply->created_at->diffForHumans()}}</b></span></p>
               </div>
+                   <div>
+ @include('event.modal')
+ </div>
+          </div>
+              </reply>
 @endforeach
-              </div>
+             
+              
+              
+              
            </div>
+               </div>
+               {!! $replies->render() !!}
+            </div>
            <div class="col-md-5">
                <div class="single-event_right">
                    <div class="single-event_main-info">
@@ -64,8 +82,7 @@
                  </div>
            </div>   
           </div>
-          {!! $replies->render() !!}
-
+          
        </div>
    </div>
    
