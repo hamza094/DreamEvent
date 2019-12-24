@@ -49,7 +49,7 @@
                {!! $replies->render() !!}
             </div>
            <div class="col-md-5">
-               <div class="single-event_right">
+               <div class="single-event_right mb-3">
                    <div class="single-event_main-info">
                        <p class="badge badge-success">{{$event->strtdt}}</p>
                        <p class="single-event_name">{{$event->name}}</p>
@@ -80,9 +80,10 @@
                        <p><a href="/profile/{{$event->user->id}}"><span><img src="{{$event->user->avatar_path}}" alt=""></span><span> {{$event->user->name}}</span></a></p>
                    </div>
                  </div>
+                           <div class="sharethis-inline-share-buttons mt-3"></div>
+
            </div>   
           </div>
-          
        </div>
        <div class="topic-events mt-5">
            <h3 class="text-cente mb-5">Related Events</h3>
