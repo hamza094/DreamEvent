@@ -12,7 +12,7 @@
              </div>
              <p class="float-right">
                  <span><button class="btn btn-danger" @click.prevent="modalHide()">Close</button></span>
-                 <span><button class="btn btn-success" @click.prevent="replyForm" :disabled="submitted">Submit</button></span>
+                 <span><button class="btn btn-success" @click.prevent="replyForm" :disabled="submitted">Update</button></span>
             </p>
          </form>
      </modal>

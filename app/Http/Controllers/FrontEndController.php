@@ -8,7 +8,7 @@ use App\Topic;
 use Illuminate\Support\Facades\Redis;
 use App\Trending;
 use Illuminate\Support\Facades\Cache;
-
+use Newsletter;
 
 class FrontEndController extends Controller
 {
@@ -21,5 +21,13 @@ class FrontEndController extends Controller
             'trending'=>$trending->get(),
             'topics'=>$topics
         ]);
+    }
+    
+    public function subscribe(Request $request){
+        $this->validate($request,[
+            'subscriber'=>'required|email',
+        ]);
+      $subscriber=request('subscriber');
+      Newsletter::subscribe($subscriber);
     }
 }

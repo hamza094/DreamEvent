@@ -82,7 +82,8 @@
             </div>
             @endforeach
         </div>
+            <subscribe></subscribe>
+
     </div>
-    
 
 @include('footer')
