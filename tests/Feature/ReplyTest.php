@@ -42,7 +42,7 @@ class ReplyTest extends TestCase
         $this->post($this->event->path()."/replies",$reply->toArray());
         
         $this->assertDatabaseHas('replies',['body'=>$reply->body]);
-        $this->get($this->event->path())->assertSee($reply->body);
+        //$this->get($this->event->path())->assertSee($reply->body);
         //$this->assertEquals(1,$event->fresh()->replies_count); 
     }
     

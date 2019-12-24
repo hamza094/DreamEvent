@@ -67,12 +67,13 @@ class EventsTest extends TestCase
     
     /** @test */
     public function guest_can_visit_single_events_page(){
-        $event=create('App\Event');
-        $this->withoutExceptionHandling()->get($event->path())
+        $topic=create('App\Topic');
+        $event=create('App\Event',['topic_id'=>$topic->id]);
+        $response=$this->withoutExceptionHandling()->get($event->path())
         ->assertSee($event->name);
     }
     
-    /** @test */
+      /** @test */
     public function guest_can_view_all_events(){
         $event=create('App\Event');
         $this->get('/api/events')->assertSee($event->name);

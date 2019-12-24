@@ -84,6 +84,31 @@
           </div>
           
        </div>
+       <div class="topic-events mt-5">
+           <h3 class="text-cente mb-5">Related Events</h3>
+           <div class="row">
+           @foreach($related_events as $event)
+                   <div class="col-md-3">
+             <div class="event-panel">
+              <div class="event">
+               <a href="{{$event->path()}}">
+                <div class="event-img">
+                        <img src="{{$event->image_path}}" alt="">
+                    </div>
+                    <div class="event-text">
+                    <div class="event-time">
+                        <p><i class="far fa-clock"></i><span> {{$event->strtdt}},</span><span> {{$event->strttm}}</span></p>
+                    </div>
+                    <p class="event-name">{{$event->name}}</p>
+                    <p class="event-location">{{$event->location}}</p>
+                    </div>
+                </a>
+                </div>
+                </div>
+            </div>
+           @endforeach
+           </div>
+       </div>
    </div>
    
     @include('footer')

@@ -149,6 +149,9 @@ class EventsController extends Controller
         $trending->push($event);
         $events=Event::orderBy('created_at','desc')->paginate(8);
         $replies=$event->replies()->paginate(5);
+        $related_events=Event::where('topic_id', '=', $event->topic->id)
+            ->where('id', '!=', $event->id)
+            ->paginate(4);
          /*   $googleClient=new GuzzleClient();
             $response = $googleClient->get('https://maps.googleapis.com/maps/api/geocode/json',[
         'query'=>[
@@ -164,6 +167,7 @@ class EventsController extends Controller
             'events'=>$events,
             'event'=>$event,
             'replies'=>$replies,
+            'related_events'=>$related_events
             //'lng'=>$coords->lng,
             //'lat'=>$coords->lat 
         ]);

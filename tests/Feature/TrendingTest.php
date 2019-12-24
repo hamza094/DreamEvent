@@ -38,9 +38,4 @@ class TrendingTest extends TestCase
         
     }
     
-    /** @test */
-    public function guest_can_subscribe_newsletter(){
-        $this->post('/subscribe',['subscriber'=>'hamza_pices@live.com'])
-            ->assertStatus(200);
-    }
 }

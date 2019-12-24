@@ -29,5 +29,9 @@ class FrontEndController extends Controller
         ]);
       $subscriber=request('subscriber');
       Newsletter::subscribe($subscriber);
+        
+         if (request()->wantsJson()) {
+            return response(['status'=>'Subscribed succesfull']);
+        }
     }
 }
