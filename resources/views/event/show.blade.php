@@ -17,8 +17,13 @@
                   <h5>Discussion</h5>
                   @if(Auth::user())
                   <reply-form :event="{{$event}}"></reply-form>
-                  @endif
-             
+                  <ticket-form inline-template :event="{{$event}}">
+                <div>
+                <p><button  class="btn event-btn float-right"  @click="$modal.show('ticketModal')">Attend Event</button></p>
+                   @include('event.ticket')
+                  </div>
+                </ticket-form>
+              @endif
                       @foreach ($replies as $reply)
       <reply inline-template :reply="{{$reply}}">
        <div>
@@ -72,9 +77,6 @@
 </div></p>
                   
                    </div>
-                   <div class="mt-3">
-                        <p><a href="" class="btn event-btn">Attend Event</a></p>
-                    </div>
                    <div class="mt-4 single-event_organize">
                        <h5><b>Organizer</b></h5>
                        <p><a href="/profile/{{$event->user->id}}"><span><img src="{{$event->user->avatar_path}}" alt=""></span><span> {{$event->user->name}}</span></a></p>

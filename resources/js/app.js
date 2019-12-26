@@ -75,6 +75,7 @@ Vue.component('events', require('./components/Events.vue').default);
 Vue.component('reply-form', require('./components/Reply-Form.vue').default);
 Vue.component('reply', require('./components/Reply.vue').default);
 Vue.component('subscribe', require('./components/Subscribe.vue').default);
+Vue.component('ticket-form', require('./components/TicketForm.vue').default);
 Vue.component('pagination', require('laravel-vue-pagination'));
 
 
