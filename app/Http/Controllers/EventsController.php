@@ -19,6 +19,8 @@ use Validator;
 use Storage;
 use File;
 use Image;
+use App\PurchaseTicket;
+use App\User;
 //use GuzzleHttp\Client as GuzzleClient;
 
 
@@ -152,6 +154,11 @@ class EventsController extends Controller
         $related_events=Event::where('topic_id', '=', $event->topic->id)
             ->where('id', '!=', $event->id)
             ->paginate(4);
+        $eventId=$event->id;
+        $guests = User::whereHas('tickets', function ($q1) use ($eventId) {
+    $q1->where('event_id', $eventId);
+})->get();
+
          /*   $googleClient=new GuzzleClient();
             $response = $googleClient->get('https://maps.googleapis.com/maps/api/geocode/json',[
         'query'=>[
@@ -167,7 +174,8 @@ class EventsController extends Controller
             'events'=>$events,
             'event'=>$event,
             'replies'=>$replies,
-            'related_events'=>$related_events
+            'related_events'=>$related_events,
+            'guests'=>$guests
             //'lng'=>$coords->lng,
             //'lat'=>$coords->lat 
         ]);

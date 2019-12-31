@@ -1,4 +1,5 @@
 @include('header')
+<script src="https://checkout.stripe.com/checkout.js"></script>
 
  
    <div class="container">
@@ -17,10 +18,9 @@
                   <h5>Discussion</h5>
                   @if(Auth::user())
                   <reply-form :event="{{$event}}"></reply-form>
-                  <ticket-form inline-template :event="{{$event}}">
+                  <ticket-form :event="{{$event}}">
                 <div>
-                <p><button  class="btn event-btn float-right"  @click="$modal.show('ticketModal')">Attend Event</button></p>
-                   @include('event.ticket')
+                   
                   </div>
                 </ticket-form>
               @endif
@@ -53,10 +53,10 @@
                </div>
                {!! $replies->render() !!}
             </div>
-           <div class="col-md-5">
+              <div class="col-md-5">
                <div class="single-event_right mb-3">
                    <div class="single-event_main-info">
-                       <p class="badge badge-success">{{$event->strtdt}}</p>
+                     <p class="badge badge-success">{{$event->strtdt}}</p>
                        <p class="single-event_name">{{$event->name}}</p>
                         <p class="single-event_price mt-3">Price: ${{$event->price}}</p>
                    </div>
@@ -83,6 +83,9 @@
                    </div>
                  </div>
                            <div class="sharethis-inline-share-buttons mt-3"></div>
+                                        @foreach($guests as $guest)
+            <p>{{$guest->id}}</p>
+            @endforeach
 
            </div>   
           </div>

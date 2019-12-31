@@ -38,6 +38,7 @@ Route::post("/api/profile/{user}/avatar","UsersController@avatar")->name('avatar
 Route::get("/api/events",'EventsController@events');
 Route::get('/api/findEvents',"EventsController@eventsearch");
 
+
 //Route::get('events/search', 'EventsController@search');
 
 Route::get('/','FrontEndController@index');
@@ -53,6 +54,8 @@ Route::patch('/replies/{reply}', 'ReplyController@update');
 Route::delete('/replies/{reply}', 'ReplyController@destroy');
 
 Route::post('/subscribe','FrontEndController@subscribe');
+
+Route::post('/buy/{event}',"FrontEndController@buy");
 
 Route::get('{path}',"HomeController@index")->where( '/path', '([A-z\d-\/_.]+)?' );
 

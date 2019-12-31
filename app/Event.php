@@ -46,6 +46,9 @@ class Event extends Model implements Searchable
     public function replies(){
         return $this->hasMany(Reply::class);
     }
+     public function purchaseTicket(){
+        return $this->hasMany(PurchaseTicket::class);
+    }
        
     public function addReply($reply)
     {
@@ -54,6 +57,7 @@ class Event extends Model implements Searchable
         return $reply;
     }
     
+       
       public function getSearchResult(): SearchResult
     {
        $url =  $this->slug;

@@ -9,9 +9,22 @@ use Illuminate\Support\Facades\Redis;
 use App\Trending;
 use Illuminate\Support\Facades\Cache;
 use Newsletter;
+use Stripe\Stripe;
+use Stripe\Charge;
+use App\PurchaseTicket;
+use Auth;
 
 class FrontEndController extends Controller
 {
+    public function __construct()
+    {
+      $this->middleware('auth',[
+            'only'=>[
+                'buy'
+            ]
+        ]);   
+    }
+    
     public function index(Trending $trending){
           $events=Event::orderBy('created_at','desc')->paginate(8);
         $topics=Topic::all();
@@ -33,5 +46,31 @@ class FrontEndController extends Controller
          if (request()->wantsJson()) {
             return response(['status'=>'Subscribed succesfull']);
         }
+    }
+    
+    public function buy(Request $request,Event $event){
+   Stripe::setApiKey("sk_test_T9ilml4rZL3nd3wOKEA11afC00RyjZdPUD");
+   $charge=Charge::create([
+       'amount' =>request('selectedprice')*100,
+       'currency' => 'usd',
+       'description' => 'Event Ticket Charge',
+       'source' => request('stripeToken'),
+]);
+    
+          $buy=PurchaseTicket::create([
+          'total'=>request('selectedprice'),
+          'user_id'=>auth()->user()->id,
+           'event_id'=>$event->id,  
+          'qty'=>request('selectedqty'),
+     ]);
+        $event->update(['qty'=>request('selectedqty') - $event->qty]);
+
+          
+        if (request()->wantsJson()) {
+            return response(['status'=>'Purchased succesfull']);
+        }
+    
+        
+
     }
 }
