@@ -57,6 +57,11 @@ Route::post('/subscribe','FrontEndController@subscribe');
 
 Route::post('/buy/{event}',"FrontEndController@buy");
 
+Route::post('/discussion/{reply}','DiscussionReplyController@store');
+Route::patch('/discussionreply/{discussionreply}', 'DiscussionReplyController@update');
+Route::delete('/discussionreply/{discussionreply}', 'DiscussionReplyController@destroy');
+
+
 Route::get('{path}',"HomeController@index")->where( '/path', '([A-z\d-\/_.]+)?' );
 
 

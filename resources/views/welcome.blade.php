@@ -6,7 +6,7 @@
                  <span class="heading-primary_sub">The Real world is calling</span>
               </h1>
               <p class="header-para">Join a local group to meet people, try something new, or do more of what you love</p>
-         <a class="btn btn-info header-btn" href="/create-event">Create An Event</a>  
+         <a class="btn btn-info header-btn" href="/events/create">Create An Event</a>  
             <br><br><br>
              
     </div>
@@ -18,7 +18,7 @@
         <p class="event-heading"><b>Trending Events</b></p>
         <div class="row">
            @foreach($trending as $event)
-            <div class="col-md-3">
+            <div class="col-md-3 text-center">
              <div class="tranding-event">
               <div class="event">
                <a href="{{$event->path}}">
@@ -43,7 +43,7 @@
                   <p class="event-heading mt-5"><b>Events</b></p>
         <div class="row">
            @foreach($events as $event)
-            <div class="col-md-3">
+            <div class="col-md-3 text-center">
              <div class="event-panel">
               <div class="event">
                <a href="{{$event->path()}}">
@@ -71,7 +71,7 @@
         <p class="">Browse groups by topics you're interested in.</p>
         <div class="row">
         @foreach($topics as $topic)
-      <div class="col-md-3">
+      <div class="col-md-3 text-center">
               <div class="mb-5">
                <a href="topic/{{$topic->id}}">
                 <div class="topic" style= "background-image: url('{{$topic->image}}'); background-position: center center;">

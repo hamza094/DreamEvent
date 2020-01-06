@@ -3,7 +3,7 @@
         <p class="Dashboard-heading">DashBoard</p>
         <div class="info">
             <div class="row">
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-3 text-center col-sm-6">
                    <div class="row info-row">
                        <div class="col-sm-9 info-right">
                            <span class="info-right_name">Users</span>
@@ -16,7 +16,7 @@
                      <p  class="info-left_origin"><span><i class="far fa-clock"></i> created</span><span> 4 days ago</span></p>
                    </div>
                 </div>
-                     <div class="col-md-3 col-sm-6">
+                     <div class="col-md-3 text-center col-sm-6">
                    <div class="row info-row">
                        <div class="col-sm-9 info-right">
                            <span class="info-right_name">Topics</span>
@@ -29,7 +29,7 @@
                      <p  class="info-left_origin"><span><i class="far fa-clock"></i> created</span><span> 7 days ago</span></p>
                    </div>
                 </div>
-                    <div class="col-md-3 col-sm-6">
+                    <div class="col-md-3 text-center col-sm-6">
                    <div class="row info-row">
                        <div class="col-sm-9 info-right">
                            <span class="info-right_name">Events</span>
@@ -42,7 +42,7 @@
                      <p  class="info-left_origin"><span><i class="far fa-clock"></i> created</span><span> 3 days ago</span></p>
                    </div>
                 </div>
-                    <div class="col-md-3 col-sm-6">
+                    <div class="col-md-3 text-center col-sm-6">
                    <div class="row info-row">
                        <div class="col-sm-9 info-right">
                            <span class="info-right_name">Others</span>

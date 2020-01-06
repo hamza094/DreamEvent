@@ -53,8 +53,10 @@ class FrontEndController extends Controller
    $charge=Charge::create([
        'amount' =>request('selectedprice')*100,
        'currency' => 'usd',
-       'description' => 'Event Ticket Charge',
+       'description' => "$event->name Ticket Charge",
        'source' => request('stripeToken'),
+        'receipt_email' => request('stripeEmail'),
+
 ]);
     
           $buy=PurchaseTicket::create([
@@ -63,7 +65,9 @@ class FrontEndController extends Controller
            'event_id'=>$event->id,  
           'qty'=>request('selectedqty'),
      ]);
-        $event->update(['qty'=>request('selectedqty') - $event->qty]);
+
+        
+        $event->update(['qty'=>$event->qty - request('selectedqty')]);
 
           
         if (request()->wantsJson()) {

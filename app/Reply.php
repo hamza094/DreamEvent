@@ -20,4 +20,15 @@ class Reply extends Model
     {
         return $this->created_at->gt(Carbon::now()->subMinute());
     }
+    
+     public function discussionreplies(){
+        return $this->hasMany(DiscussionReply::class);
+    }
+    
+     public function addDiscussionReply($discussionreply)
+    {
+        $discussionreply = $this->discussionreplies()->create($discussionreply);
+
+        return $discussionreply;
+    }
 }

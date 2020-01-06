@@ -532,6 +532,10 @@ input[type=file] {
         padding-bottom: 2rem !important;
         padding: .5rem;
         background-color: #ffffff;
+        transition: all .2s;
+        &:hover{
+        box-shadow: 0 0 10px rgba(0,0,0,.2);
+         }
         img{
           width:5rem;
             border-radius: 50%;   
@@ -622,4 +626,38 @@ StripeElement {
 
 .StripeElement--webkit-autofill {
   background-color: #fefde5 !important;
+}
+.guest{
+    margin-top: 3rem;
+    margin-left:2rem;
+    img{
+        border-radius: 50%;
+        width:3.1rem;
+        height: 3.2rem;
+        transition: all .2s;
+        &:hover{
+            border:2px solid #2D395D;
+            padding: .1rem;
+        }
+    }
+}
+.discussion-replies{
+    margin: 1.5rem;
+    &_main{
+        font-weight: 700;
+        font-size: 2rem;
+        text-transform: capitalize;
+    }
+    img{
+        width:2rem;
+        height: 2rem;
+        border-radius:50%;    
+    }
+    &_body{
+        font-weight: 700;
+        font-size: 1.2rem;
+    }
+    &_text{
+        font-size:1rem;
+    }
 }

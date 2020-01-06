@@ -39,7 +39,7 @@
         <main class="">
            <div class="container-fluid">
            <div class="row">
-           <div class="col-md-3">
+           <div class="col-md-3 text-center">
                <div class="panel">
                     <p class="panel-heading">
                         <i class="fab fa-the-red-yeti"></i> DreamEvent</p> 

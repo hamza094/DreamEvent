@@ -128,7 +128,7 @@ class UsersTest extends TestCase
     $this->assertEquals(asset('storage/avatars/me.jpg'),$user->avatar_path);
     }
     
-    /** @test */
+    
     public function guest_user_subscribe_newsleter(){
        $response=$this->post('/subscribe',['subscriber' => 'hamza_pisces@live.com'])->assertStatus(200);
     }

@@ -7,6 +7,7 @@
     data(){
     return{
       body:this.reply.body,
+      form:{},
       submitted:false
     };
     },
@@ -55,7 +56,18 @@
     }).catch(errors=>{
          swal.fire("Warning!","There is an error please try again","warning");
        });
+    },
+    discussionReplyForm(){
+            axios.post('/discussion/'+ this.reply.id,this.form).then(response=>{
+        swal.fire("Success!","Your successfully replied to discussion","success");
+            window.location.reload();
+            }).catch(errors=>{
+                console.log(errors.response.data);
+                 swal.fire('Error! Please Try Again');
+                
+            });
     }
-    }
+    },
+        
     }
 </script>

@@ -1,5 +1,5 @@
 @include('header')
-         <div class="app">
+         <div id="app">
           <edit-profile :user="{{$user}}"></edit-profile>
       <header class="header" data-type="background" data-speed="7" style="background: linear-gradient(to right bottom, rgba(42, 43, 88, 0.9), rgba(42, 43, 88, 0.9)), url('{{$user->backimg}}');
           background-size: cover;

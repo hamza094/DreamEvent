@@ -55,6 +55,10 @@ class User extends Authenticatable
         return $this->hasMany(PurchaseTicket::class);
     }
     
+    public function discussionreplies(){
+        return $this->hasMany(DiscussionReply::class);
+    }
+    
      public function lastReply()
     {
         return $this->hasOne(Reply::class)->latest();

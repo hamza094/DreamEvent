@@ -71,6 +71,29 @@ $factory->define(App\Reply::class, function (Faker $faker) {
     ];
 });
 
+$factory->define(App\DiscussionReply::class, function (Faker $faker) {
+    return [
+        'reply_id'=>function () {
+            return factory('App\Reply')->create()->id;
+        },
+        'user_id'=>function () {
+            return factory('App\User')->create()->id;
+        },
+        'replybody' => 'abra ka dabra',
+    ];
+});
 
 
 
+$factory->define(App\PurchaseTicket::class, function (Faker $faker) {
+    return [
+        'user_id'=>function () {
+            return factory('App\User')->create()->id;
+        },
+        'event_id'=>function () {
+            return factory('App\Event')->create()->id;
+        },
+        'total' =>90,
+        'qty'=>2
+    ];
+});

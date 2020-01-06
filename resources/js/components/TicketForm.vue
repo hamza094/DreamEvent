@@ -2,33 +2,44 @@
    <div>
                    <p><button  class="btn event-btn float-right"  @click="$modal.show('ticketModal')">Attend Event</button></p>
 
-    <modal class="model-design animated" v-cloak name="ticketModal" height="auto" width="60%" :click-to-close=false transition="ease">
-    <div class="row">
+    <modal  name="ticketModal" height="auto" width="60%" :click-to-close=false transition="ease">
+    <div class="row" v-if="!event.qty==0">
         <div class="col-md-7">
-            <div class="reply-form">
-                <h5 v-text="event.name"></h5>
-                <p><b>Per Ticket Price:{{event.price}}</b></p>
+            <form class="reply-form">
+                <h4 v-text="event.name"></h4>
+                <p><b>Per Ticket Price:${{event.price}}</b></p>
                 <p>
-                    <button class="btn btn-primary btn-sm" @click.prevent="decr">-</button>
+                    <span><b>Select Quantity:</b></span>
+                    <br>
+                    <button class="btn btn-primary btn-sm" @click.prevent="decr" v-show="selectedqty==0" disabled>-</button>
+                    <button class="btn btn-primary btn-sm" @click.prevent="decr"  v-show="!selectedqty==0">-</button>
                     <input type="text" name="selectedqty" v-model="selectedqty" readonly="readonly" class="text-center ticket-input">
-                    <button class="btn btn-primary btn-sm" @click.prevent="incr">+</button>
+                    <button class="btn btn-primary btn-sm" @click.prevent="incr" v-show="!qty>0" disabled>+</button>
+                    <button class="btn btn-primary btn-sm" @click.prevent="incr" v-show="qty>0">+</button>
                 </p>
                 <p><b>Quantity Left: <span v-text="qty"></span></b></p>
                 <p><b>Total Price: $<span name="selectedprice" v-text="selectedprice"></span></b></p>
                 <div class="form-group">
 
                 </div>
-            </div>
-        </div>
-        <div class="col-md-5">
-            <h4 class="mt-5">Choose Payment Method</h4>
-            <form action="/" method="post">
-              <input type="hidden" name="stripeToken" v-model="stripeToken">
-              <input type="hidden" name="stripeEmail" v-model="stripeEmail">
-             <button class="btn btn-sm btn-primary" @click.prevent="buy">Purchase</button>
             </form>
         </div>
+        <div class="col-md-5">
+            <h4 class="mt-5 mb-3">Purchase Ticket</h4>
+            <form action="/" method="post" class="mb-3">
+              <input type="hidden" name="stripeToken" v-model="stripeToken">
+              <input type="hidden" name="stripeEmail" v-model="stripeEmail">
+            <button class="btn btn-sm btn-success" @click.prevent="buy" v-show="selectedqty==0" disabled><b>Purchase</b></button>
+            <button class="btn btn-sm btn-success" @click.prevent="buy" v-show="!selectedqty==0"><b>Purchase</b></button>
+            </form>
+            <p>*Policy: Purchased ticket can not be refunded</p>
 
+        </div>
+
+    </div>
+    <div v-else class="mt-5 mb-5 ml-5">
+        <h3>Sorry! Events Ticket Sold</h3>
+        <p><b>*We Will Update event tickets if more quantity available</b></p>
     </div>
     <p class="float-right mr-3">
         <span><button class="btn btn-danger" @click.prevent="$modal.hide('ticketModal')">Close</button></span>
@@ -57,7 +68,7 @@ export default{
         created(){
       this.stripe=StripeCheckout.configure({
           key:"pk_test_WtlPYx4DSs5vXZ9yFINdZDru00iWLlEhjQ",
-          image:"https://stripe.com/img/documentation/checkout/marketplace.png",
+          image:"https://cdn1.medicalnewstoday.com/content/images/hero/284/284378/284378_1100.jpg",
           locale:"auto",
           token:(token)=>{
               this.stripeToken=token.id;
@@ -70,6 +81,7 @@ export default{
                     this.selectedprice=0;
         }) .catch(errors=>{
                         swal.fire(errors.response.data.errors);
+                    console.log(errors.response.data);
 
     });   
           }
