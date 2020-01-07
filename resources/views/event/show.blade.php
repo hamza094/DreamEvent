@@ -89,7 +89,7 @@
                    <div class="mt-4 single-event_organize">
                        <h5><b>Organizer</b></h5>
                        <p><a href="/profile/{{$event->user->id}}"><span><img src="{{$event->user->avatar_path}}" alt=""></span><span> {{$event->user->name}}</span></a>
-                       <button class="btn btn-link">Contact Organizer</button>
+                       <contact-form :event="{{$event}}"></contact-form>
                        </p>
                    </div>
                  </div>

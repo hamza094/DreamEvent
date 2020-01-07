@@ -12,6 +12,7 @@ use Newsletter;
 use Stripe\Stripe;
 use Stripe\Charge;
 use App\PurchaseTicket;
+use Mail;
 use Auth;
 
 class FrontEndController extends Controller
@@ -20,7 +21,7 @@ class FrontEndController extends Controller
     {
       $this->middleware('auth',[
             'only'=>[
-                'buy'
+                'buy','mail'
             ]
         ]);   
     }
@@ -65,16 +66,34 @@ class FrontEndController extends Controller
            'event_id'=>$event->id,  
           'qty'=>request('selectedqty'),
      ]);
-
-        
         $event->update(['qty'=>$event->qty - request('selectedqty')]);
-
-          
-        if (request()->wantsJson()) {
+            if (request()->wantsJson()) {
             return response(['status'=>'Purchased succesfull']);
         }
+   }
     
+    public function mail(Request $request,Event $event)
+    {
+          $this->validate($request,[
+            'subject'=>'required',
+            'body'=>'required',
+        ]);
         
-
+        $data=array(
+        'subject'=>$request->subject,
+        'body'=>$request->body,
+        'name'=>auth()->user()->name,
+        'eventName'=>$event->name,
+        'eventSlug'=>$event->slug,    
+        'user'=>auth()->user()->email,
+        'organizer'=>$event->user->email    
+        );
+        Mail::send('emails.contact',$data,function($message) use ($data) {
+            $message->from($data['user']);
+            $message->to($data['organizer']);
+            $message->subject($data['subject']);
+            });
+        return response(['status'=>'mail sent successfully']);
+        
     }
 }
