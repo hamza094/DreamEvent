@@ -27,11 +27,13 @@ class DiscussionReplyController extends Controller
         $this->validate($request,[
            'replybody'=>'required',
            ]);
+         $this->authorize('permission', $discussionreply);
         $discussionreply->update(request(['replybody']));
         
     }
     
       public function destroy(DiscussionReply $discussionreply){
+        $this->authorize('permission', $discussionreply);
         $discussionreply->delete();
         if (request()->wantsJson()) {
             return response(['status'=>'Discussion Reply deleted']);

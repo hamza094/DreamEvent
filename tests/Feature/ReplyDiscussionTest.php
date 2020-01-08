@@ -37,8 +37,8 @@ class ReplyDiscussionTest extends TestCase
           /** @test */
     public function authorized_user_can_update_discussion_reply()
     {
-        $this->signIn();
         $user=create('App\User');
+        $this->signIn($user);
         $discussionreply=create('App\DiscussionReply',['user_id'=>$user->id]);
         $Updatedbody='Avengers Assemble';
         $this->patch("/discussionreply/$discussionreply->id",['replybody'=>$Updatedbody,'user_id'=>$user->id]);
@@ -49,8 +49,8 @@ class ReplyDiscussionTest extends TestCase
       /** @test */   
     public function authorized_user_can_delete_a_reply()
     {
-        $this->signIn();
         $user=create('App\User');
+        $this->signIn($user);
         $discussionreply=create('App\DiscussionReply',['user_id'=>$user->id]);
         $response=$this->withoutExceptionHandling()->json('DELETE',"/discussionreply/{$discussionreply->id}");
         $response->assertStatus(200);

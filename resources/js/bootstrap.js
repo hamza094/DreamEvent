@@ -23,7 +23,7 @@ window.Vue = require('vue');
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-let authorizations=require('./authorization');
+let authorizations=require('./authorizations');
 
 Vue.prototype.authorize = function (...params) {
     if (! window.App.signedIn) return false;

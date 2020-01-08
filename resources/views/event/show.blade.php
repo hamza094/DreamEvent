@@ -11,7 +11,7 @@
                 <img src="{{$event->image_path}}" alt="">                  
               
               <div class="single-event_detail">
-                 <p class="single-event_detail-heading">About this event <span><a href="" class="btn header-btn float-right">Follow Event</a></span> </p>
+                 <event-follow :event="{{$event}}"></event-follow>
                   <p class="single-event_detail-desc">{{$event->desc}}</p>
               </div>
             @if(Auth::user())
@@ -33,7 +33,9 @@
               <span class="span-left"><button class="btn btn-sm btn-primary" @click.prevent="show">Edit</button> <button class="btn btn-sm btn-danger" @click.prevent="destroy">Delete</button></span>
               @endcan
               <span class="float-right">Replied at:<b>{{$reply->created_at->diffForHumans()}}</b></span></p>
-              <p class="mb-3"> <span class="float-left btn btn-link"  @click="$modal.show('reply{{$reply->id}}')">Reply</span>
+            @if(Auth::user())
+             <p class="mb-3"> <span class="float-left btn btn-link"  @click="$modal.show('reply{{$reply->id}}')">Reply</span>
+             @endif
               @if($reply->discussionreplies->count()>0)
               <span class="float-left btn btn-link"  @click="$modal.show('replyall{{$reply->id}}')">View All Replies</span>
               @endif</p>
@@ -73,7 +75,11 @@
                           <p><i class="far fa-calendar-alt"></i> <b>{{$event->strtdt}} to {{$event->enddt}}</b></p>
                           <p><i class="far fa-clock"></i> <b>{{$event->strttm}} - {{$event->endtm}} PKM</b></p>
                           <p><i class="fas fa-map-marker-alt"></i><span> <b> {{$event->location}}</span><span> {{$event->venue}}</span></span></p>
+                          @if(Auth::user())
                           <ticket-form :event="{{$event}}"></ticket-form>
+                          @else
+                        <p><a  href="/login" class="btn event-btn float-right">Buy Ticket</a></p>
+                        @endif
                           <!--<div id="map"></div>-->
                         <p>           <div title="Add to Calendar" class="addeventatc">
     Add to Calendar
@@ -89,7 +95,9 @@
                    <div class="mt-4 single-event_organize">
                        <h5><b>Organizer</b></h5>
                        <p><a href="/profile/{{$event->user->id}}"><span><img src="{{$event->user->avatar_path}}" alt=""></span><span> {{$event->user->name}}</span></a>
+                        @if(Auth::user())
                        <contact-form :event="{{$event}}"></contact-form>
+                       @endif
                        </p>
                    </div>
                  </div>

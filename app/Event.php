@@ -49,6 +49,9 @@ class Event extends Model implements Searchable
      public function purchaseTicket(){
         return $this->hasMany(PurchaseTicket::class);
     }
+      public function follows(){
+        return $this->hasMany(Follow::class);
+    }
        
     public function addReply($reply)
     {

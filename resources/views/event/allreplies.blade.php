@@ -10,7 +10,7 @@
               </span> 
               </p>
    @foreach($reply->discussionreplies as $reply)
-        <discussionreply :reply="{{$reply}}" :user="{{$reply->user}}"></discussionreply>
+        <discussionreply :reply="{{$reply}}" :user="{{$reply->user}}" ></discussionreply>
       <hr>
     @endforeach
              </div>

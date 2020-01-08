@@ -58,6 +58,10 @@ class User extends Authenticatable
     public function discussionreplies(){
         return $this->hasMany(DiscussionReply::class);
     }
+     public function follows(){
+        return $this->hasMany(Follow::class);
+    }
+    
     
      public function lastReply()
     {

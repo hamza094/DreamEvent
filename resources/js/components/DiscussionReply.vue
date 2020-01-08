@@ -11,10 +11,10 @@
                   <button class="btn btn-link btn-sm" @click="update">Update</button><button class="btn btn-link btn-sm" @click="editing = false">Close</button>
               </span>
     <span v-else class="discussion-replies_body" v-text="replybody"></span>
-       <br><br>
-        <span>
-           <button class="btn btn-primary btn-sm" @click="editing = true">Edit</button>
-           <button class="btn btn-danger btn-sm" @click.prevent="destroy">Delete</button>
+    <span v-if="authorize('updateDiscussionReply',reply)">
+       <br>
+          <button class="btn btn-primary btn-sm" @click="editing = true"><i class="far fa-edit"></i></button>
+           <button class="btn btn-danger btn-sm" @click.prevent="destroy"><i class="far fa-trash-alt"></i></button>
         </span>   
         </div>
 </template>
@@ -41,7 +41,7 @@ export default{
             this.replybody=this.reply.replybody;
             }); 
         },
-             destroy(){
+            destroy(){
         axios.delete('/discussionreply/'+this.reply.id,{
     }).then(response=>{
         swal.fire("Success!","Your discussion reply deleted successfully","success");
