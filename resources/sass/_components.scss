@@ -661,3 +661,16 @@ StripeElement {
         font-size:1rem;
     }
 }
+
+   .follow-btn{
+        color:#ffffff!important;
+        border-color: #5CDB95 !important;
+        background-color:#5CDB95 !important;
+        font-weight: 700 !important;
+        transition: all .2s;
+        &:hover,&:active{
+            color:#2D395D !important;
+        border-color:#ffffff !important;
+        background-color:#ffffff !important;
+        }
+    }

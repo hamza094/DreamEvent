@@ -704,6 +704,22 @@ StripeElement {
   font-size: 1rem;
 }
 
+.follow-btn {
+  color: #ffffff !important;
+  border-color: #5CDB95 !important;
+  background-color: #5CDB95 !important;
+  font-weight: 700 !important;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.follow-btn:hover,
+.follow-btn:active {
+  color: #2D395D !important;
+  border-color: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors

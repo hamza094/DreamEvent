@@ -10,6 +10,8 @@ class Event extends Model implements Searchable
 {
     protected $guarded=[];
     
+    protected $appends = ['isFollowedTo'];
+    
      public function getRouteKeyName()
     {
         return 'slug';
@@ -49,7 +51,7 @@ class Event extends Model implements Searchable
      public function purchaseTicket(){
         return $this->hasMany(PurchaseTicket::class);
     }
-      public function follows(){
+      public function followers(){
         return $this->hasMany(Follow::class);
     }
        
@@ -60,6 +62,26 @@ class Event extends Model implements Searchable
         return $reply;
     }
     
+      public function follow($userId = null)
+    {
+        $this->followers()->create([
+            'user_id'=>$userId ?: auth()->id()
+        ]);
+
+        return $this;
+    }
+    
+    public function unfollow($userId = null)
+    {
+        $this->followers()->where('user_id', $userId ?: auth()->id())->delete();
+    }
+    
+     public function getIsFollowedToAttribute()
+    {
+        return  $this->followers()
+            ->where('user_id', auth()->id())
+            ->exists();
+    }
        
       public function getSearchResult(): SearchResult
     {

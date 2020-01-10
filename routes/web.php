@@ -62,6 +62,10 @@ Route::patch('/discussionreply/{discussionreply}', 'DiscussionReplyController@up
 Route::delete('/discussionreply/{discussionreply}', 'DiscussionReplyController@destroy');
 Route::post('/mail/{event}','FrontEndController@mail');
 
+Route::post('/events/{event}/follow','FollowerController@follow');
+Route::delete('/events/{event}/follow','FollowerController@unfollow');
+
+
 Route::get('{path}',"HomeController@index")->where( '/path', '([A-z\d-\/_.]+)?' );
 
 

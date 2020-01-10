@@ -2328,13 +2328,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['event'],
+  props: ['active'],
   data: function data() {
-    return {};
+    return {
+      button: {
+        active: this.active
+      }
+    };
   },
   methods: {
-    Follow: function Follow() {}
+    Follow: function Follow() {
+      var _this = this;
+
+      axios.post(location.pathname + '/follow').then(function (response) {
+        _this.button.active = true;
+        swal.fire("Success!", "Your Are Following The Event", "success");
+      })["catch"](function (errors) {
+        swal.fire("Warning!", "Error! Please Try Again ", "warning");
+      });
+    },
+    UnFollow: function UnFollow() {
+      var _this2 = this;
+
+      axios["delete"](location.pathname + '/follow').then(function (response) {
+        _this2.button.active = false;
+        swal.fire("Info!", "Your UnFollowed The Event", "info");
+      })["catch"](function (errors) {
+        swal.fire("Warning!", "Error! Please Try Again ", "warning");
+      });
+    }
   }
 });
 
@@ -50580,20 +50607,33 @@ var render = function() {
       _vm._v("About this event\n    "),
       _vm.signedIn
         ? _c("span", [
-            _c(
-              "a",
-              {
-                staticClass: "btn header-btn float-right",
-                attrs: { href: "" },
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    return _vm.Follow($event)
-                  }
-                }
-              },
-              [_vm._v("Follow Event")]
-            )
+            this.button.active
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn follow-btn float-right",
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.UnFollow($event)
+                      }
+                    }
+                  },
+                  [_vm._v("UnFollow Event")]
+                )
+              : _c(
+                  "button",
+                  {
+                    staticClass: "btn header-btn float-right",
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.Follow($event)
+                      }
+                    }
+                  },
+                  [_vm._v("Follow Event")]
+                )
           ])
         : _vm._e()
     ])

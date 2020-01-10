@@ -37,5 +37,31 @@ class EvenetTest extends TestCase
         $this->assertCount(1,$event->replies);
     }
     
-  
+    /** @test */
+    public function an_event_can_be_followed_to(){
+        $event=create('App\Event');
+        $event->follow($userId=1);
+        $this->assertEquals(1,$event->followers()->where('user_id',$userId)->count());
+    }
+    
+     /** @test */
+    public function an_event_can_be_unfollowed_from()
+    {
+        $event = create('App\Event');
+        $event->follow($userId = 1);
+        $event->unfollow($userId);
+        $this->assertCount(0, $event->followers);
+    }
+    
+         /** @test */
+    public function authenticated_user_followed_to()
+    {
+        $event = create('App\Event');
+        $this->signIn();
+        $this->assertFalse($event->isFollowedTo);
+        $event->follow();
+        $this->assertTrue($event->isFollowedTo);
+        
+   }
+          
 }

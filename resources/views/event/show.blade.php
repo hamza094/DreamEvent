@@ -11,7 +11,7 @@
                 <img src="{{$event->image_path}}" alt="">                  
               
               <div class="single-event_detail">
-                 <event-follow :event="{{$event}}"></event-follow>
+                 <event-follow :active="{{json_encode($event->isFollowedTo)}}"></event-follow>
                   <p class="single-event_detail-desc">{{$event->desc}}</p>
               </div>
             @if(Auth::user())
