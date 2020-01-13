@@ -21,6 +21,7 @@ use File;
 use Image;
 use App\PurchaseTicket;
 use App\User;
+
 //use GuzzleHttp\Client as GuzzleClient;
 
 
@@ -36,7 +37,7 @@ class EventsController extends Controller
     {
       $this->middleware('auth',[
             'only'=>[
-                'create','store'
+                'create','store','update','delete'
             ]
         ]);   
     }
@@ -135,7 +136,7 @@ class EventsController extends Controller
             return response($event, 201);
         }
         
-        return redirect()->back()->with('success', 'Event Created Successfully!');
+        return redirect($event->path())->with('success', 'Event Updated Successfully!');
         
     }
 
@@ -187,9 +188,13 @@ class EventsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Event $event)
     {
-        //
+         $this->authorize('update', $event);
+        $events=Event::orderBy('created_at','desc')->paginate(8);
+        $topics = Topic::all();
+        return view('event.edit',compact('event','topics','events'));
+
     }
 
     /**
@@ -199,9 +204,35 @@ class EventsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Event $event)
     {
-        //
+    $this->validate($request,[
+    'name'=>'required',
+    'desc'=>'required',
+    'strtdt'=>'required',
+    'strttm'=>'required',
+    'endtm'=>'required',
+    'location'=>'required',
+    'price'=>'required',
+    'venue'=>'required',
+    'qty'=>'required',
+    ]);
+        
+        
+    $this->authorize('update', $event);
+    $event->update(request(['name','desc','strtdt','enddt','strttm','endtm','location','price','qty','venue','topic_id']));
+        
+    if(!empty($request->image))
+    {
+    $user = Auth::user();
+    $file = $request->file('image');
+    $filename=uniqid($user->id."_").".".$file->getClientOriginalExtension();  
+    Storage::disk('s3')->put($filename,File::get($file),'public');
+    $image_path=Storage::disk('s3')->url($filename);
+    $event->update(['image_path'=>$image_path]);
+    }
+
+        return redirect($event->path())->with('success', 'Event Updated Successfully!');
     }
 
     /**
@@ -210,8 +241,28 @@ class EventsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Event $event)
     {
-        //
+        $this->authorize('update', $event);
+        $event->delete();
     }
+    
+    public function delete(Event $event)
+    {
+        $this->authorize('update', $event);
+        $event->forceDelete();
+    }
+    
+     public function draftdelete($event)
+    {
+        $events=Event::withTrashed()->where('slug',$event)->first();
+        $events->forceDelete();
+    }
+
+    public function undrafted($event)
+    {
+         $events=Event::withTrashed()->where('slug',$event)->first();
+        $events->restore();
+    }
+    
 }

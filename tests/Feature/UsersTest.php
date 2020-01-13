@@ -130,7 +130,18 @@ class UsersTest extends TestCase
     
     
     public function guest_user_subscribe_newsleter(){
-       $response=$this->post('/subscribe',['subscriber' => 'hamza_pisces@live.com'])->assertStatus(200);
+       $this->post('/subscribe',['subscriber' => 'hamza_pisces@live.com'])
+           ->assertStatus(200);
+    }
+    
+    /** @test */
+    public function authenticated_user_see_his_events(){
+        $event=create('App\Event');
+        $this->get('/myevents')->assertRedirect('/login');
+        $user=create('App\User');
+        $this->signIn($user);
+        $event=create('App\Event',['user_id'=>$user->id]);
+        $this->get('/myevents')->assertSee($event->name);
     }
     
 }

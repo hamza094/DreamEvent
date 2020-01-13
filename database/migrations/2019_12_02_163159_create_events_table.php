@@ -29,6 +29,7 @@ class CreateEventsTable extends Migration
             $table->unsignedInteger('price');
             $table->unsignedInteger('qty');
             $table->string('image_path')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

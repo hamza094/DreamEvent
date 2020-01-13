@@ -455,7 +455,23 @@ input[type=file] {
         background-color: #5CDB95 !important;
         }
     }
-   
+    &-option{
+        margin-top: 2rem;
+        text-align: center;
+    }
+    &-null{
+        width:100%;
+        text-align: center;
+        margin-top:3.3rem;
+        p{
+            font-size:1.3rem;
+            font-weight: 400;
+        }
+        img{
+            margin-bottom: 1rem;
+            
+        }
+    }
 }
 .create-event{
     max-width:960px !important;

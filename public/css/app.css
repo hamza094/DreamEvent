@@ -478,6 +478,26 @@ input[type=file] {
   background-color: #5CDB95 !important;
 }
 
+.event-option {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.event-null {
+  width: 100%;
+  text-align: center;
+  margin-top: 3.3rem;
+}
+
+.event-null p {
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+
+.event-null img {
+  margin-bottom: 1rem;
+}
+
 .create-event {
   max-width: 960px !important;
 }

@@ -32,15 +32,10 @@
                 ]) !!};
     </script>
  
-             <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js" type="text/javascript"></script>
           <script src="https://cdn.tiny.cloud/1/dvtavx74nw7o1b3z7q3d5hi9thrc3feptxfydctl1shlggz5/tinymce/5/tinymce.min.js" ></script>
-                                            <script>
-    @if (session('success'))
-            iziToast.success({
-            message:"{{ session('success') }}"
-        });                 
-        @endif              
-    </script>
+                     
+                      
+    
                          
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
@@ -48,7 +43,7 @@
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
+     <link rel="stylesheet" href="{{asset('css/iziToast.min.css')}}">  
        
         <!-- Styles -->
         <style>
@@ -140,7 +135,7 @@
                             <div class="vue-dropdown_up">
                             <a class="vue-dropdown_item_list" href="/dashboard"><i class="fab fa-dashcube"></i> Dashboard</a>
                             <a class="vue-dropdown_item_list" href="/profile/{{ Auth::user()->id }}"><i class="fas fa-user"></i> My Profile</a>
-                            <a class="vue-dropdown_item_list"><i class="fas fa-cogs"></i>My Events</a>
+                            <a href="/myevents" class="vue-dropdown_item_list"><i class="fas fa-cogs"></i>My Events</a>
                               <a class="vue-dropdown_item_list" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                       <i class="fas fa-sign-out-alt"></i>  {{ __('Logout') }}

@@ -31,6 +31,10 @@ Route::get('/profile/{user}', 'UsersController@show');
 //Route::post('/event-create','EventsController@store');
 
 Route::resource('events','EventsController');
+Route::get('/events/{event}/delete','EventsController@delete');
+Route::get('/events/{event}/draftdelete','EventsController@draftdelete');
+Route::get('/events/{event}/undrafted','EventsController@undrafted');
+
 
 Route::patch('/profile/{user}', 'UsersController@update');
 
@@ -65,6 +69,7 @@ Route::post('/mail/{event}','FrontEndController@mail');
 Route::post('/events/{event}/follow','FollowerController@follow');
 Route::delete('/events/{event}/follow','FollowerController@unfollow');
 
+Route::get('myevents','UsersController@myevents')->name('myevents');
 
 Route::get('{path}',"HomeController@index")->where( '/path', '([A-z\d-\/_.]+)?' );
 

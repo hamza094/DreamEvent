@@ -19,7 +19,7 @@ class UsersController extends Controller
     {
       $this->middleware('auth',[
             'only'=>[
-                'show','avatar'
+                'show','avatar','myevents'
             ]
         ]);   
     }
@@ -109,6 +109,14 @@ class UsersController extends Controller
     Storage::disk('s3')->put($thumbName,$jpg,'public');    
         
          return response([], 204);
+    }
+    
+    public function myevents(){
+         $events=auth()->user()->events;
+        if(request('drafted')) {
+            $events=auth()->user()->events()->onlyTrashed()->get();
+        }
+        return view('profile.events',compact('events'));
     }
     
 }

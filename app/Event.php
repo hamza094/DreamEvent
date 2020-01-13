@@ -5,9 +5,14 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Event extends Model implements Searchable
 {
+    use SoftDeletes;
+    
+    protected $dates = ['deleted_at'];
+
     protected $guarded=[];
     
     protected $appends = ['isFollowedTo'];

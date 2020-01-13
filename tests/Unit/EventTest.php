@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\User;
 use App\Event;
 
-class EvenetTest extends TestCase
+class EventTest extends TestCase
 {
     use RefreshDatabase;
     /**
@@ -63,5 +63,6 @@ class EvenetTest extends TestCase
         $this->assertTrue($event->isFollowedTo);
         
    }
-          
+    
+
 }

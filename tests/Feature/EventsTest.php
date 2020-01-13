@@ -88,6 +88,93 @@ class EventsTest extends TestCase
         $this->assertCount(2, $results);
         $this->assertTrue(true);
     }
+    
+    /** @test*/
+    public function authenticated_user_visit_edit_evant_page()
+    {
+        $user=create('App\User');
+        $this->signIn($user);
+        $topic=create('App\Topic');
+        $event=create('App\Event',['user_id'=>$user->id]);
+        $this->get($event->path().'/edit')
+            ->assertSee($event->name);
+
+    
+    }
+    
+     /** @test */
+    public function authenticated_user_update_his_event()
+    { 
+        $user=create('App\User');
+        $this->signIn($user);
+        $event=create('App\Event',['user_id'=>$user->id]);
+        $name="kola bola";
+        $desc='lorem ipsum jipsum';
+        $strtdt="14 dec 2010";
+        $strttm="9:45";
+        $enddt="9:45";
+        $endtm="14 dec 2010";
+        $loc="lhr";
+        $ven="Plazza Hotel";
+        $price=45;
+        $qty=2;
+        $this->withoutExceptionHandling()->patch($event->path(),['name'=>$name,'desc'=>$desc,'strtdt'=>$strtdt,
+        'strttm'=>$strttm,'enddt'=>$enddt,'endtm'=>$endtm,'location'=>$loc,'venue'=>$ven,'price'=>$price,'qty'=>$qty]);
+        $this->assertDatabaseHas('events',['id'=>$event->id,'desc'=>$desc]);
+
+    }
+    
+    /** @test */
+    public function authenticated_user_delete_his_event()
+    {
+        $user=create('App\User');
+        $this->signIn($user);
+        $event=create('App\Event',['user_id'=>$user->id]);
+        $this->get("/events/{$event->slug}/delete");
+        $this->assertDatabaseMissing('events',['id'=>$event->id]);
+    }
+    
+    /** @test */
+    public function authenticated_user_draft_his_events()
+    {
+        $user=create('App\User');
+        $this->signIn($user);
+        $event=create('App\Event',['user_id'=>$user->id]);
+        $this->assertCount(1,$event->get());
+        $this->delete($event->path());
+        $this->assertCount(0,$event->get());
+        $this->assertCount(1,$event->withTrashed()->get());
+    }
+    
+     /** @test */
+    public function authenticated_user_undraft_his_events()
+    {
+        $user=create('App\User');
+        $this->signIn($user);
+        $event=create('App\Event',['user_id'=>$user->id]);
+        $this->delete($event->path());
+        $this->assertCount(0,$event->get());
+        $this->assertCount(1,$event->withTrashed()->get());
+        $this->withoutExceptionHandling()->get("/events/{$event->slug}/undrafted");
+        $this->assertCount(1,$event->get());
+    }
+    
+    /** @test */
+    public function event_update_session_validation(){
+        $user=create('App\User');
+        $this->signIn($user);
+        $event=create('App\Event',['user_id'=>$user->id]);
+        $this->withExceptionHandling()->patch($event->path(),[
+        'name'=>'Changed',
+        'strtdt'=>'Changed',
+        'strttm'=>"Changed",
+        'enddt'=>"Changed",
+        'endtm'=>"Changed",
+        'location'=>"Changed",
+        'venue'=>"Changed",
+        'price'=>45,
+        'qty'=>2,
+        ])->assertSessionHasErrors('desc');
+    }
 
 }
-
