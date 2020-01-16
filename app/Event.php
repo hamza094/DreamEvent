@@ -6,12 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
 
 class Event extends Model implements Searchable
 {
     use SoftDeletes;
     
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at','strtdt','enddt'];
 
     protected $guarded=[];
     
@@ -93,5 +94,15 @@ class Event extends Model implements Searchable
        $url =  $this->slug;
          
        return new SearchResult($this, $this->name, $url);
+    }
+    
+    public function getStartDateAttribute()
+    {
+        return Carbon::parse($this->strtdt)->format('j F, Y');
+    }
+    
+    public function getEndDateAttribute()
+    {
+        return Carbon::parse($this->enddt)->format('j F, Y');
     }
 }

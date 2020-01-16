@@ -34,8 +34,8 @@ class EventsTest extends TestCase
     {
         $this->signIn();
         $event=make('App\Event');
-        $response=$this->post('/events',['name' => 'thanos','desc'=>'deede dede ded','strtdt'=>'14 dec 2010',
-        'strttm'=>'9:45','enddt'=>'4 mar','endtm'=>'9:45','location'=>'lhr','price'=>45,'g-recaptcha-response'=>'token','venue'=>'lhr',
+        $response=$this->post('/events',['name' => 'thanos','desc'=>'deede dede ded','strtdt'=>2019-12-22,
+        'strttm'=>'9:45','enddt'=>2019-12-23,'endtm'=>'9:45','location'=>'lhr','price'=>45,'g-recaptcha-response'=>'token','venue'=>'lhr',
         'topic_id'=>1,'qty'=>1,'image_path'=>'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTHZInbmRX8Mtrdptido88vfG9e8tmTPNcYMuYdOTPFjwRE0bAG']);
          $this->assertDatabaseHas('events',['name'=>'thanos']);
     }
@@ -110,9 +110,9 @@ class EventsTest extends TestCase
         $event=create('App\Event',['user_id'=>$user->id]);
         $name="kola bola";
         $desc='lorem ipsum jipsum';
-        $strtdt="14 dec 2010";
+        $strtdt=2019-12-22;
         $strttm="9:45";
-        $enddt="9:45";
+        $enddt=2019-12-22;
         $endtm="14 dec 2010";
         $loc="lhr";
         $ven="Plazza Hotel";

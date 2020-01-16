@@ -21,6 +21,7 @@ use File;
 use Image;
 use App\PurchaseTicket;
 use App\User;
+use Carbon\Carbon;
 
 //use GuzzleHttp\Client as GuzzleClient;
 
@@ -124,7 +125,6 @@ class EventsController extends Controller
            'venue'=>request('venue'),
            'topic_id'=>request('topic_id')
            ]);
-        
         $user = Auth::user();
     $file = $request->file('image');
     $filename=uniqid($user->id."_").".".$file->getClientOriginalExtension();  

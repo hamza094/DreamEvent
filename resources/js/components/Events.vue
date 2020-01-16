@@ -17,7 +17,7 @@
                     </div>
                     <div class="event-text">
                         <div class="event-time">
-                            <p><i class="far fa-clock"></i><span> {{event.strtdt}},</span><span> {{event.strttm}}</span></p>
+                            <p><i class="far fa-clock"></i><span> {{event.strtdt | eventDate}},</span><span> {{event.strttm}}</span></p>
                         </div>
                         <p class="event-name">{{event.name}}</p>
                         <p class="event-location">{{event.location}}</p>

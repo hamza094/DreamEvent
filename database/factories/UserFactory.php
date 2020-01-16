@@ -38,12 +38,14 @@ $factory->define(App\Topic::class, function (Faker $faker) {
 });
 
 $factory->define(App\Event::class, function (Faker $faker) {
+       $startDate = \Carbon\Carbon::createFromTimeStamp($faker->dateTimeBetween('-30 days', '+30 days')->getTimestamp());
+    $endDate = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $startDate)->addHour();
 return [
       'name'=>$faker->sentence,
          'desc'=> 'Nunc magna metus, laoreet sed ex nec, consequat finibus risus. Aenean massa est, venenatis id dignissim id, maximus vitae sem.',
-         'strtdt'=>'4 july 2000',
+         'strtdt'=>$startDate,
           'strttm'=>'19:45',
-    'enddt'=>'4 july 2001',
+    'enddt'=>$endDate,
           'endtm'=>'19:55',
     'price'=>45,
     'location'=>'lahore,Pakistan',

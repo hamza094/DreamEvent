@@ -23,6 +23,20 @@ const toast = swal.mixin({
   //timer: 3000
 });
 
+/*import { Calendar } from '@fullcalendar/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
+
+document.addEventListener('DOMContentLoaded', function() {
+  var calendarEl = document.getElementById('calendar');
+
+  var calendar = new Calendar(calendarEl, {
+    plugins: [ dayGridPlugin ]
+  });
+
+  calendar.render();
+});*/
+
+
 swal.disableInput();
 
 import VueRouter from 'vue-router'
@@ -30,6 +44,13 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 Vue.use(require('vue-script2'))
+
+import moment from 'moment';
+
+Vue.filter('eventDate',function(data){
+   return  moment(data).format("MMM Do YYYY");  
+})
+
 
 import VueProgressBar from 'vue-progressbar';
 

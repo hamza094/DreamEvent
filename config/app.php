@@ -163,6 +163,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Spatie\Newsletter\NewsletterServiceProvider::class,
+        MaddHatter\LaravelFullcalendar\ServiceProvider::class,
+
 
         /*
          * Package Service Providers...
@@ -229,6 +231,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Newsletter' => Spatie\Newsletter\NewsletterFacade::class,
+        'Calendar' => MaddHatter\LaravelFullcalendar\Facades\Calendar::class,
+
 
 
 

@@ -19,9 +19,9 @@ class CreateEventsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->string('slug')->unique()->nullable();
             $table->text('desc');
-            $table->string('strtdt');
+            $table->date('strtdt')->nullable();
             $table->string('strttm');
-            $table->string('enddt');
+            $table->date('enddt')->nullable();
             $table->string('endtm');
             $table->string('location');
             $table->string('venue');

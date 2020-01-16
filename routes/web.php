@@ -71,6 +71,10 @@ Route::delete('/events/{event}/follow','FollowerController@unfollow');
 
 Route::get('myevents','UsersController@myevents')->name('myevents');
 
+Route::get('/fullcalender','FullCalender@view');
+
+Route::get('api/calender','FullCalender@index');
+
 Route::get('{path}',"HomeController@index")->where( '/path', '([A-z\d-\/_.]+)?' );
 
 

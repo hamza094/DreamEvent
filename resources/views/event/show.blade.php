@@ -59,26 +59,48 @@
                 <div class="single-event_right mb-3">
                     <div class="single-event_main-info">
                         <p>
-                            <span class="badge badge-success">{{$event->strtdt}}</span> @if($event->qty!=0)
-                            <span class="badge badge-success">Tickets Available</span> @else
-                            <span class="badge badge-danger">Tickets Not Available</span> @endif
-                        </p>
+                           @if($event->strtdt > \Carbon\Carbon::now()->toDateTimeString())
+                            <span class="badge badge-success">{{$event->strtdt->diffforHumans()}}</span>
+                            @else
+                            <span class="badge badge-danger">{{$event->strtdt->diffforHumans()}}</span>
+                           @endif
+                           
+                           @if(\Carbon\Carbon::now()->toDateTimeString() > $event->enddt)
+                           <span></span>
+                            @else
+                            @if($event->qty!=0)
+                            <span class="badge badge-success">Tickets Available</span>
+                            @else
+                            <span class="badge badge-danger">Tickets Not Available</span>
+                            @endif
+                            @endif
+                            @if(\Carbon\Carbon::now()->toDateTimeString() > $event->enddt)
+                            <span class="badge badge-danger">Event Closed</span>
+                            @else
+                            <span class="badge badge-success">Event Open</span>
+                            @endif
+                            
+                         </p>
                         <p class="single-event_name">{{$event->name}}</p>
                         <p class="single-event_price mt-3">Price: ${{$event->price}}</p>
                     </div>
                     <div class="mt-4">
                         <h5><b>Date and time</b></h5>
-                        <p><i class="far fa-calendar-alt"></i> <b>{{$event->strtdt}} to {{$event->enddt}}</b></p>
-                        <p><i class="far fa-clock"></i> <b>{{$event->strttm}} - {{$event->endtm}} PKM</b></p>
+                        <p><i class="far fa-calendar-alt"></i> <b>{{$event->startdate}} to {{$event->enddate}}</b></p>
+                        <p><i class="far fa-clock"></i> <b>{{$event->strttm}} - {{$event->endtm}} PKST</b></p>
                         <p><i class="fas fa-map-marker-alt"></i><span> <b> {{$event->location}}</span><span> {{$event->venue}}</span></span>
                         </p>
                         
                         <!--Event Ticket Option-->
+                        @if(\Carbon\Carbon::now()->toDateTimeString() > $event->enddt)
+                        <p></p>
+                        @else
                         @if(Auth::user())
                         <ticket-form :event="{{$event}}"></ticket-form>
                         @else
                         <p><a href="/login" class="btn event-btn float-right">Buy Ticket</a></p>
                         @endif
+                        
                         <!--<div id="map"></div>-->
                         
                         <!-- Event Add to calender-->
@@ -93,7 +115,7 @@
                                 <span class="location">{{$event->location}}</span>
                             </div>
                         </p>
-
+                       @endif
                     </div>
                     <div class="mt-4 single-event_organize">
                         <h5><b>Organizer</b></h5>
@@ -125,7 +147,7 @@
                             </div>
                             <div class="event-text">
                                 <div class="event-time">
-                                    <p><i class="far fa-clock"></i><span> {{$event->strtdt}},</span><span> {{$event->strttm}}</span></p>
+                                    <p><i class="far fa-clock"></i><span> {{$event->startdate}},</span><span> {{$event->strttm}}</span></p>
                                 </div>
                                 <p class="event-name">{{$event->name}}</p>
                                 <p class="event-location">{{$event->location}}</p>

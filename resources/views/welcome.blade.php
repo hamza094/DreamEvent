@@ -6,7 +6,8 @@
                  <span class="heading-primary_sub">The Real world is calling</span>
               </h1>
               <p class="header-para">Join a local group to meet people, try something new, or do more of what you love</p>
-         <a class="btn btn-info header-btn" href="/events/create">Create An Event</a>  
+            <a class="btn btn-info header-btn" href="/fullcalender">Event Calender</a>  
+              <a class="btn btn-info header-btn" href="/events/create">Create An Event</a>
             <br><br><br>
              
     </div>
@@ -52,7 +53,7 @@
                     </div>
                     <div class="event-text">
                     <div class="event-time">
-                        <p><i class="far fa-clock"></i><span> {{$event->strtdt}},</span><span> {{$event->strttm}}</span></p>
+                        <p><i class="far fa-clock"></i><span> {{$event->startdate}},</span><span> {{$event->strttm}}</span></p>
                     </div>
                     <p class="event-name">{{$event->name}}</p>
                     <p class="event-location">{{$event->location}}</p>
