@@ -63,7 +63,7 @@ class UsersTest extends TestCase
     {
         $this->signIn();
         $user=create('App\User');
-        $this->withoutExceptionHandling()->get("/profile/{$user->id}")
+        $this->get("/profile/{$user->id}")
             ->assertSee($user->name);
     }
     
@@ -135,7 +135,7 @@ class UsersTest extends TestCase
     }
     
     /** @test */
-    public function authenticated_user_see_his_events(){
+    public function authenticated_user_see_his_created_events(){
         $event=create('App\Event');
         $this->get('/myevents')->assertRedirect('/login');
         $user=create('App\User');
@@ -143,5 +143,15 @@ class UsersTest extends TestCase
         $event=create('App\Event',['user_id'=>$user->id]);
         $this->get('/myevents')->assertSee($event->name);
     }
+    
+    /** @test */
+    public function authenticated_user_can_see_events_his_participated_events(){
+        $this->signIn();
+        $user=create('App\User');
+        $ticket=create('App\PurchaseTicket',['user_id'=>$user->id]);
+        $this->get("/profile/{$user->id}")
+            ->assertSee($ticket->event->name);
+    }
+    
     
 }

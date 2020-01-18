@@ -694,3 +694,40 @@ StripeElement {
 .fc-title{
     font-size: 1rem;
 }
+
+.event-ticket{
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+    &_heading{
+        font-size:1.5rem;
+        font-weight: 400;
+        text-align: center;
+    }
+    &_img{
+        width:6rem;
+        height: 5.1rem;
+    }
+    &_single{
+        background-color: #ffffff;
+        &-name{
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+        &-detail{
+            margin-left: .6rem;
+        }
+
+    }
+    a{
+        &:hover{
+            
+        }
+    }
+}
+
+.over{
+    background-color: pink;
+}
+.not-over{
+    background-color:palegreen;
+}

@@ -26,6 +26,37 @@
             <div class="col-md-8">
                <h3>Activity feed</h3>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis aut cupiditate fugit deleniti voluptatem, fugiat, architecto tempore nesciunt! Id distinctio nam quod atque voluptatum ipsam error odio, tempore similique alias quia eaque, aspernatur unde ipsum earum incidunt sunt laborum blanditiis magni doloribus molestias. Esse, dolor, accusamus. Nostrum nulla exercitationem veritatis eum iure atque eaque blanditiis, animi quas magni! Placeat ratione facilis at totam blanditiis, reiciendis tempore nihil perspiciatis, dolorem pariatur ad corporis accusantium impedit distinctio ab consequuntur libero nisi laudantium vitae aliquid, enim quam quos molestiae. Velit recusandae aperiam eligendi cupiditate hic vitae quis ullam, itaque suscipit. Eligendi deleniti, repudiandae.
+              <div class="event-ticket">
+                <p class="event-ticket_heading">You are Member of these events</p>
+                <div class="row">
+                @foreach($user->tickets as $ticket)
+                <div class="col-lg-6 col-md-12">
+                    <a href="/events/{{$ticket->event->slug}}" target="_blank">
+                    <div class="event-ticket_single">
+                      <div class="row">
+                    <div class="col-sm-3">
+                        <img src="{{$ticket->event->image_path}}" alt="" class="event-ticket_img">
+                        @if($ticket->event > \Carbon\Carbon::now()->toDateTimeString())
+                      <span class="badge badge-success">{{$ticket->event->strtdt->diffforHumans()}}</span>
+                    @else
+                    <span class="badge badge-warning">Event Over</span>
+                    @endif
+                    </div>
+                    <div class="col-sm-9">
+                       <div class="event-ticket_single-detail">
+                        <p class="event-ticket_single-name">{!!substr(strip_tags($ticket->event->name), 0, 28)!!}</p>
+                           <p><b>Start At:{{$ticket->event->StartDate}}</b></p>
+                           <p><b><span>Ticket Qty:{{$ticket->qty}}</span> <span>Total Amount:${{$ticket->total}}</span></b></p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+             </a>
+                </div>
+                
+         @endforeach 
+                  </div>
+              </div>
             </div>
             <div class="col-md-4">
                 <div class="user-profile">

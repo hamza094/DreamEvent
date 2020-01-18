@@ -176,5 +176,12 @@ class EventsTest extends TestCase
         'qty'=>2,
         ])->assertSessionHasErrors('desc');
     }
+    
+    /** @test */
+    public function guest_can_see_event_calender(){
+        $event=create('App\Event',['strtdt'=>\Carbon\Carbon::now()->toDateTimeString()]);
+        $this->get('/fullcalender')
+            ->assertSee($event->name);
+    }
 
 }
