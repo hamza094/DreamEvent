@@ -75,6 +75,8 @@ Route::get('/fullcalender','FullCalender@view');
 
 Route::get('api/calender','FullCalender@index');
 
+Route::get('/template','FrontEndController@template');
+
 Route::get('{path}',"HomeController@index")->where( '/path', '([A-z\d-\/_.]+)?' );
 
 

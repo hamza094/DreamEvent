@@ -164,8 +164,8 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Spatie\Newsletter\NewsletterServiceProvider::class,
         MaddHatter\LaravelFullcalendar\ServiceProvider::class,
-
-
+        Barryvdh\DomPDF\ServiceProvider::class,
+        
         /*
          * Package Service Providers...
          */
@@ -232,8 +232,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'Newsletter' => Spatie\Newsletter\NewsletterFacade::class,
         'Calendar' => MaddHatter\LaravelFullcalendar\Facades\Calendar::class,
-
-
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
 
     ],
