@@ -25,7 +25,7 @@ class CreateFollowsTable extends Migration
                 ->references('id')
                 ->on('events')
                 ->onDelete('cascade');
-            
+                  
         });
     }
 

@@ -33,4 +33,5 @@ class FollowTest extends TestCase
         $this->assertCount(0, $event->followers);
     }
     
+     
 }

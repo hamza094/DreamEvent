@@ -120,11 +120,11 @@
     <body>
        <div id="">
           
-           <div class="main-navbar">
+           <div class="main-navbar" id="nav">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                            <dropdown class="float-right">
+                        <dropdown class="float-right">
                       <template v-slot:trigger>
                                <a class="vue-dropdown-menu"><img src="{{Auth::user()->profile}}" alt="{{Auth::user()->name}}'s avatar" class="dropdown-img">
                                
@@ -146,6 +146,8 @@
                         </form>
                </div>
            </dropdown>
+                                       <notifications class="float-right mr-3"></notifications>
+
                     @else
                         <a href="{{ route('login') }}">Login</a>
 

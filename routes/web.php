@@ -75,7 +75,9 @@ Route::get('/fullcalender','FullCalender@view');
 
 Route::get('api/calender','FullCalender@index');
 
-Route::get('/template','FrontEndController@template');
+Route::delete('/profile/{user}/notifications/{notification}','NotificationsController@destroy');
+
+Route::get('/profile/{user}/notifications','NotificationsController@index');
 
 Route::get('{path}',"HomeController@index")->where( '/path', '([A-z\d-\/_.]+)?' );
 

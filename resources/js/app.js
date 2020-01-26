@@ -99,6 +99,7 @@ Vue.component('discussionreply', require('./components/DiscussionReply.vue').def
 Vue.component('contact-form', require('./components/ContactForm.vue').default);
 Vue.component('event-follow', require('./components/EventFollow.vue').default);
 Vue.component('event-option', require('./components/EventOption.vue').default);
+Vue.component('notifications', require('./components/Notifications.vue').default);
 Vue.component('pagination', require('laravel-vue-pagination'));
 
 
@@ -127,4 +128,8 @@ const app = new Vue({
      router
 });
 
+const nav= new Vue({
+   el:'#nav',
+    router
+}); 
  

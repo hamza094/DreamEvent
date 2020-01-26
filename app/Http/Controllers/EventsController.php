@@ -22,6 +22,7 @@ use Image;
 use App\PurchaseTicket;
 use App\User;
 use Carbon\Carbon;
+use App\Notifications\ThreadHasUpdated;
 
 //use GuzzleHttp\Client as GuzzleClient;
 
@@ -231,8 +232,16 @@ class EventsController extends Controller
     $image_path=Storage::disk('s3')->url($filename);
     $event->update(['image_path'=>$image_path]);
     }
-
+         foreach($event->followers as $follower){
+        if ($follower->user_id != $event->user_id) {
+            $follower->user->notify(new ThreadHasUpdated($event));
+        }
+        }
+        
         return redirect($event->path())->with('success', 'Event Updated Successfully!');
+        
+        
+        
     }
 
     /**

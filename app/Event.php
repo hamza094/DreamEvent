@@ -7,6 +7,8 @@ use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
+use App\Notifications\ReplyHasAdded;
+
 
 class Event extends Model implements Searchable
 {
@@ -64,9 +66,18 @@ class Event extends Model implements Searchable
     public function addReply($reply)
     {
         $reply = $this->replies()->create($reply);
+        
+        //Prepare notifications for all follower
+        
+        foreach($this->followers as $follower){
+        if ($follower->user_id != $reply->user_id) {
+            $follower->user->notify(new ReplyHasAdded($this,$reply));
+        }
+        }
 
         return $reply;
     }
+    
     
       public function follow($userId = null)
     {

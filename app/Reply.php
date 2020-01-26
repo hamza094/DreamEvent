@@ -4,6 +4,7 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use App\Notifications\ReplyAddedToDiscussion;
 
 class Reply extends Model
 {
@@ -28,6 +29,10 @@ class Reply extends Model
      public function addDiscussionReply($discussionreply)
     {
         $discussionreply = $this->discussionreplies()->create($discussionreply);
+         
+    if($this->user->id != $discussionreply->user->id){
+    $this->user->notify(new ReplyAddedToDiscussion($this,$discussionreply));
+    }
 
         return $discussionreply;
     }

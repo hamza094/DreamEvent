@@ -781,6 +781,26 @@ StripeElement {
   background-color: palegreen;
 }
 
+.dropdown-item {
+  white-space: inherit !important;
+}
+
+.notification-alert {
+  background-color: #05D4F3;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+  top: 8px;
+  left: 28px;
+}
+
+.notifications-img {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+}
+
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
