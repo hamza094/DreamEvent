@@ -45,8 +45,8 @@ class ReplyHasAdded extends Notification
     {
         return [
             'message'=>' New replied added to '.$this->event->name.' by '.$this->reply->user->name,
-            'notifier' =>$this->reply->user,
-            'link'=>$this->event->path()
+            'notifier'=>$this->reply->user,
+            'link'=>$this->reply->path()
         ];
     }
 }

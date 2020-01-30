@@ -36,4 +36,12 @@ class Reply extends Model
 
         return $discussionreply;
     }
+    
+      public function path()
+    {
+         $perPage = config('dream.pagination.perPage');
+         $replyPosition = $this->event->replies()->pluck('id')->search($this->id) + 1;
+         $page = ceil($replyPosition / $perPage);
+         return $this->event->path()."?page={$page}#reply-{$this->id}";
+    }
 }

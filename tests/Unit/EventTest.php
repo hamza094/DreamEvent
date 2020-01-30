@@ -17,6 +17,14 @@ class EventTest extends TestCase
      * @return void
      */
     
+       /** @test */
+    public function a_event_can_make_a_string_path(){
+        $thread=create('App\Event');
+        $this->assertEquals(
+            "/events/{$thread->slug}",$thread->path());
+    }
+    
+    
     /** @test */
     public function a_event_has_a_creator()
     {

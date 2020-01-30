@@ -46,8 +46,8 @@ class ReplyAddedToDiscussion extends Notification
     {
         return [
              'message'=>' New discussion added by '.$this->replydiscussion->user->name,
-            'notifier' =>$this->replydiscussion->user,
-            'link'=>$this->reply->event->path()
+            'notifier'=>$this->replydiscussion->user,
+            'link'=>$this->reply->path()
         ];
     }
 }

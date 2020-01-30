@@ -26,7 +26,7 @@
                         <!-- All Event Discussion-->      
                         @foreach ($replies as $reply)
                         <reply inline-template :reply="{{$reply}}">
-                            <div>
+                            <div id="reply-{{$reply->id}}">
                                 <div class="single-event_replies">
 
                                     <p><a href="/profile/{{$reply->user->id}}">
