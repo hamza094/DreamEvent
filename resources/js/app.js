@@ -133,3 +133,8 @@ const nav= new Vue({
     router
 }); 
  
+
+const show= new Vue({
+   el:'#show',
+    router
+}); 

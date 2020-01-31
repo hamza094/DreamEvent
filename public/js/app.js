@@ -78758,6 +78758,10 @@ var nav = new Vue({
   el: '#nav',
   router: router
 });
+var show = new Vue({
+  el: '#show',
+  router: router
+});
 
 /***/ }),
 

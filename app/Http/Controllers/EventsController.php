@@ -23,8 +23,7 @@ use App\PurchaseTicket;
 use App\User;
 use Carbon\Carbon;
 use App\Notifications\ThreadHasUpdated;
-
-//use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\Client as GuzzleClient;
 
 
 class EventsController extends Controller
@@ -161,7 +160,7 @@ class EventsController extends Controller
     $q1->where('event_id', $eventId);
 })->get();
 
-         /*   $googleClient=new GuzzleClient();
+            $googleClient=new GuzzleClient();
             $response = $googleClient->get('https://maps.googleapis.com/maps/api/geocode/json',[
         'query'=>[
             'address'=>$event->location,
@@ -170,16 +169,16 @@ class EventsController extends Controller
         ]
     ]);
         $googleBody=json_decode($response->getBody());
-        $coords=$googleBody->results[0]->geometry->location;*/
+        $coords=$googleBody->results[0]->geometry->location;
        
         return view('event.show',[
             'events'=>$events,
             'event'=>$event,
             'replies'=>$replies,
             'related_events'=>$related_events,
-            'guests'=>$guests
-            //'lng'=>$coords->lng,
-            //'lat'=>$coords->lat 
+            'guests'=>$guests,
+            'lng'=>$coords->lng,
+            'lat'=>$coords->lat 
         ]);
     }
 
