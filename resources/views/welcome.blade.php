@@ -1,4 +1,5 @@
 @include('header')
+  <!-- Header-->
    <header class="main-header" data-type="background" data-speed="7">
     <div class="header_bg">  
                <div class="main-header_text-box">
@@ -15,7 +16,8 @@
         </div>
           
     </header>
-    <div class="container mt-5" id="app">                     
+    <div class="container mt-5" id="app">
+       <!-- Tranding-->                     
         <p class="event-heading"><b>Trending Events</b></p>
         <div class="row">
            @foreach($trending as $event)
@@ -40,7 +42,7 @@
              @endforeach
          </div>
                  
-                 
+                 <!-- All Events-->
                   <p class="event-heading mt-5"><b>Events</b></p>
         <div class="row">
            @foreach($events as $event)
@@ -67,7 +69,7 @@
     <div class="text-center">
         <a href="/events" class="btn event-btn">Show All Events >></a>
     </div>
-                   
+                   <!-- All Topics-->
         <p class="event-heading"><b>Topics</b></p>
         <p class="">Browse groups by topics you're interested in.</p>
         <div class="row">

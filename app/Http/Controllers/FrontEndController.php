@@ -53,15 +53,21 @@ class FrontEndController extends Controller
     public function buy(Request $request,Event $event){
         
    Stripe::setApiKey("sk_test_T9ilml4rZL3nd3wOKEA11afC00RyjZdPUD");
+        
+    //Charge User    
     $charge=Charge::create(array(
        'amount' =>request('selectedprice')*100,
        'currency' => 'usd',
        'description' => "$event->name Ticket Charge",
        'source' => request('stripeToken'),
     ));
+        
+        //Get required card information
         $last4 =$charge->source->last4;
         $brand=$charge->source->brand;
         $customerId=$charge->source->customer;
+        
+    //handle purchase ticket on server side    
     $buy=PurchaseTicket::create([
           'total'=>request('selectedprice'),
           'user_id'=>auth()->user()->id,
@@ -70,6 +76,7 @@ class FrontEndController extends Controller
      ]);
         $event->update(['qty'=>$event->qty - request('selectedqty')]);
         
+        //generate random number for invoice
         $num=mt_rand(1000, 9999);
     $num2=mt_rand(1000, 9999);
     $real_num=$num."-".$num2;
@@ -89,7 +96,7 @@ class FrontEndController extends Controller
         'date'=>\Carbon\Carbon::now()->toDateTimeString(),
         );
         
-        $pdf = PDF::loadView('emails.ticket', $data)->setPaper('a4'); 
+        $pdf = PDF::loadView('emails.ticket', $data)->setPaper('a4'); //send pdf receipt with mail
         Mail::send('emails.ticket',$data,function($message) use ($data,$pdf) {
             $message->from('dreamevent@gmail.com');
             $message->to($data['user']);

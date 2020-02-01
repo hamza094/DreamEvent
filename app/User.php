@@ -72,6 +72,7 @@ class User extends Authenticatable
         return $this->hasOne(Reply::class)->latest();
     }
     
+    //User avatar path
    public function getProfileAttribute()
    {
        if($this->avatar_path!=null){

@@ -63,17 +63,29 @@
                 <!-- Event Right Side-->
                 <div class="single-event_right mb-3" id="show">
                     <div class="single-event_main-info">
+                       <!-- Event Top Badges-->
                         <p>
                             @if($event->strtdt > \Carbon\Carbon::now()->toDateTimeString())
-                            <span class="badge badge-success">{{$event->strtdt->diffforHumans()}}</span> @else
-                            <span class="badge badge-danger">{{$event->strtdt->diffforHumans()}}</span> @endif @if(\Carbon\Carbon::now()->toDateTimeString() > $event->enddt)
-                            <span></span> @else @if($event->qty!=0)
-                            <span class="badge badge-success">Tickets Available</span> @else
-                            <span class="badge badge-danger">Tickets Not Available</span> @endif @endif @if(\Carbon\Carbon::now()->toDateTimeString() > $event->enddt)
-                            <span class="badge badge-danger">Event Closed</span> @else
-                            <span class="badge badge-success">Event Open</span> @endif
+                            <span class="badge badge-success">{{$event->strtdt->diffforHumans()}}</span> 
+                            @else
+                            <span class="badge badge-danger">{{$event->strtdt->diffforHumans()}}</span> 
+                            @endif 
+                            @if(\Carbon\Carbon::now()->toDateTimeString() > $event->enddt)
+                            <span></span> @else
+                             @if($event->qty!=0)
+                            <span class="badge badge-success">Tickets Available</span> 
+                            @else
+                            <span class="badge badge-danger">Tickets Not Available</span>
+                             @endif 
+                             @endif
+                            @if(\Carbon\Carbon::now()->toDateTimeString() > $event->enddt)
+                            <span class="badge badge-danger">Event Closed</span>
+                            @else
+                            <span class="badge badge-success">Event Open</span>
+                            @endif
 
                         </p>
+                        <!-- Event Info-->
                         <p class="single-event_name">{{$event->name}}</p>
                         <p class="single-event_price mt-3">Price: ${{$event->price}}</p>
                     </div>
@@ -87,8 +99,10 @@
                         <div class="collapse" id="collapseExample">
                             <div class="card card-body">
                                 @if($event->venue!=null)
-                                <b>{{$event->venue}}</b> @else
-                                <b>Sorry! No more information available</b> @endif
+                                <b>{{$event->venue}}</b> 
+                                @else
+                                <b>Sorry! No more information available</b> 
+                                @endif
                             </div>
                         </div>
                         <!--Event Ticket Option-->
@@ -115,6 +129,7 @@
                         </p>
                         @endif
                     </div>
+                    <!-- Event Organizer --> 
                     <div class="mt-4 single-event_organize">
                         <h5><b>Organizer</b></h5>
                         <p><a href="/profile/{{$event->user->id}}"><span><img src="{{$event->user->avatar_path}}" alt=""></span><span> <b>{{$event->user->name}}</b></span></a> 
@@ -125,7 +140,7 @@
                         @endif
                         </p>
                     </div>
-
+                     <!-- View Event Guests-->
                     @if($guests->count()>0)
                     <button class="btn btn-primary btn-sm" @click="$modal.show('guestModal')">View Event Guests</button> @include('event.guest') 
                     @endif

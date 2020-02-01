@@ -31,7 +31,9 @@ class Reply extends Model
         $discussionreply = $this->discussionreplies()->create($discussionreply);
          
     if($this->user->id != $discussionreply->user->id){
-    $this->user->notify(new ReplyAddedToDiscussion($this,$discussionreply));
+        
+    //Prepare notifications when new discussion reply added
+      $this->user->notify(new ReplyAddedToDiscussion($this,$discussionreply));
     }
 
         return $discussionreply;

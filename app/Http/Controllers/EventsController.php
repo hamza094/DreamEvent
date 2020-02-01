@@ -126,6 +126,8 @@ class EventsController extends Controller
            'topic_id'=>request('topic_id')
            ]);
         $user = Auth::user();
+        
+    //Store Event Image 
     $file = $request->file('image');
     $filename=uniqid($user->id."_").".".$file->getClientOriginalExtension();  
     Storage::disk('s3')->put($filename,File::get($file),'public');
@@ -156,10 +158,13 @@ class EventsController extends Controller
             ->where('id', '!=', $event->id)
             ->paginate(4);
         $eventId=$event->id;
+        
+        //Event bought ticket users
         $guests = User::whereHas('tickets', function ($q1) use ($eventId) {
     $q1->where('event_id', $eventId);
 })->get();
-
+             
+        //google geocode map
             $googleClient=new GuzzleClient();
             $response = $googleClient->get('https://maps.googleapis.com/maps/api/geocode/json',[
         'query'=>[
@@ -231,6 +236,8 @@ class EventsController extends Controller
     $image_path=Storage::disk('s3')->url($filename);
     $event->update(['image_path'=>$image_path]);
     }
+        
+        //send notification on event update
          foreach($event->followers as $follower){
         if ($follower->user_id != $event->user_id) {
             $follower->user->notify(new ThreadHasUpdated($event));
@@ -261,6 +268,7 @@ class EventsController extends Controller
         $event->forceDelete();
     }
     
+    //draft event delete
      public function draftdelete($event)
     {
         $events=Event::withTrashed()->where('slug',$event)->first();

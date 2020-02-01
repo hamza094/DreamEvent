@@ -11,6 +11,7 @@ class Trending
         return array_map('json_decode', Redis::zrevrange($this->cacheKey(), 0, 3));
     }
 
+    //push trending events
     public function push($event)
     {
         Redis::zincrby($this->cacheKey(), 1, json_encode([
