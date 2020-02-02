@@ -16,7 +16,7 @@ class TopicsController extends Controller
      */
     public function index()
     {
-         return Topic::latest()->paginate(10); 
+         return Topic::all(); 
         
     }
     

@@ -39,6 +39,14 @@ class Reply extends Model
         return $discussionreply;
     }
     
+        public static function boot()
+    {
+        parent::boot();
+        static::deleting(function ($reply) {
+            $reply->discussionreplies->each->delete();
+        });
+    }
+    
       public function path()
     {
          $perPage = config('dream.pagination.perPage');

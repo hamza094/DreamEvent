@@ -34,10 +34,12 @@ class EventsTest extends TestCase
     {
         $this->signIn();
         $event=make('App\Event');
+        $topic=create('App\Topic');
         $response=$this->post('/events',['name' => 'thanos','desc'=>'deede dede ded','strtdt'=>2019-12-22,
         'strttm'=>'9:45','enddt'=>2019-12-23,'endtm'=>'9:45','location'=>'lhr','price'=>45,'g-recaptcha-response'=>'token','venue'=>'lhr',
-        'topic_id'=>1,'qty'=>1,'image_path'=>'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTHZInbmRX8Mtrdptido88vfG9e8tmTPNcYMuYdOTPFjwRE0bAG']);
+        'topic_id'=>$topic->id,'qty'=>1,'image_path'=>'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTHZInbmRX8Mtrdptido88vfG9e8tmTPNcYMuYdOTPFjwRE0bAG']);
          $this->assertDatabaseHas('events',['name'=>'thanos']);
+        //$this->assertCount(1,$topic->events_count);
     }
     
     /** @test */
@@ -50,6 +52,17 @@ class EventsTest extends TestCase
         $this->post('/events',$event->toArray())
             ->assertSessionHasErrors('name');
     }
+    
+    /** @test */
+    public function an_event_requires_a_unique_slug(){
+        $this->signIn();
+        create('App\Event',[],2);
+        $event=create('App\Event',['name'=>'Foo Title']);
+        $this->assertEquals($event->fresh()->slug,'foo-title');
+    $event2=create('App\Event',['name'=>'Foo Title']);
+    $this->assertEquals("foo-title-{$event2['id']}", $event2['slug']);
+   }
+    
     
     /** @test */    
     public function a_thread_event_recaptcha_verification(){

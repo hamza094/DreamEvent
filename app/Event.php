@@ -30,11 +30,19 @@ class Event extends Model implements Searchable
         return "/events/{$this->slug}";
     }
     
+     public function topic(){
+        return $this->belongsTo(Topic::class);
+    }
+    
      public static function boot()
     {
         parent::boot();
+        static::deleting(function ($event) {
+            $event->replies->each->delete();
+        });
         static::created(function ($event) {
             $event->update(['slug'=>$event->name]);
+            $event->topic()->increment('events_count');
         });
     }
     
@@ -43,15 +51,12 @@ class Event extends Model implements Searchable
         $slug = str_slug($value);
         if (static::whereSlug($slug)->exists()) {
             $slug = "{$slug}-".$this->id;
-        }
+    }
 
         $this->attributes['slug'] = $slug;
     }
     public function user(){
         return $this->belongsTo(User::class,'user_id');
-    }
-    public function topic(){
-        return $this->belongsTo(Topic::class,'topic_id');
     }
     public function replies(){
         return $this->hasMany(Reply::class);

@@ -44,14 +44,27 @@ class TopicsTest extends TestCase
             ->assertStatus(200);
     }    
         
+      /** @test */
+    public function an_event_requires_a_unique_slug()
+    {
+      $this->signIn();
+      create('App\Topic',[],2);
+      $topic=create('App\Topic',['name'=>'Foo Title']);
+      $this->assertEquals($topic->fresh()->slug,'foo-title');
+      $topic2=create('App\Topic',['name'=>'Foo Title']);
+      $this->assertEquals("foo-title-{$topic2['id']}", $topic2['slug']);
+   }
+    
     /** @test */
     public function admin_can_delete_a_topic()
     {
         $this->signIn();
         $topic=create('App\Topic');
+        $event=create('App\Event',['topic_id'=>$topic->id]);
         $response=$this->json('DELETE',"/api/topics/{$topic->id}");
         $response->assertStatus(200);
         $this->assertDatabaseMissing('topics',['id'=>$topic->id]);
+
     }
   
     /** @test */
@@ -68,6 +81,6 @@ class TopicsTest extends TestCase
     /** @test */
     public function guest_can_topic_related_events(){
         $topic=create('App\Topic');
-        $this->withoutExceptionHandling()->get("topic/{$topic->id}")->assertSee($topic->name);
+        $this->withoutExceptionHandling()->get("topic/{$topic->slug}")->assertSee($topic->name);
     }
 }

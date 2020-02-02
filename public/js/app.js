@@ -3386,6 +3386,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -62224,9 +62225,7 @@ var render = function() {
                         _c("i", { staticClass: "far fa-clock" }),
                         _c("span", [
                           _vm._v(
-                            " " +
-                              _vm._s(_vm._f("eventDate")(event.strtdt)) +
-                              ","
+                            " " + _vm._s(_vm._f("timeDate")(event.strtdt)) + ","
                           )
                         ]),
                         _c("span", [_vm._v(" " + _vm._s(event.strttm))])
@@ -63125,17 +63124,26 @@ var render = function() {
       _vm._v(" "),
       _c(
         "tbody",
-        _vm._l(_vm.topics.data, function(topic) {
+        _vm._l(_vm.topics, function(topic) {
           return _c("tr", { key: topic.id }, [
             _c("td", [_c("b", [_vm._v(_vm._s(topic.id))])]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(topic.name))]),
+            _c("td", [
+              _c(
+                "a",
+                {
+                  staticClass: "text-user",
+                  attrs: { href: "topic/" + topic.slug, target: "_blank" }
+                },
+                [_vm._v(_vm._s(topic.name))]
+              )
+            ]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(topic.created_at))]),
+            _c("td", [_vm._v(_vm._s(_vm._f("timeDate")(topic.created_at)))]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(topic.created_by))]),
             _vm._v(" "),
-            _c("td", [_vm._v("5")]),
+            _c("td", [_vm._v(_vm._s(topic.events_count))]),
             _vm._v(" "),
             _c("td", [
               _c(
@@ -63383,7 +63391,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Created By")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Associated Events")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Related Events")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Option")])
       ])
@@ -63463,44 +63471,48 @@ var render = function() {
       _vm._v(" "),
       _c(
         "tbody",
-        _vm._l(_vm.users.data, function(user) {
-          return _c("tr", { key: user.id }, [
-            _c("td", [_c("b", [_vm._v(_vm._s(user.id))])]),
-            _vm._v(" "),
-            _c("td", [
-              _c(
-                "a",
-                {
-                  staticClass: "text-user",
-                  attrs: { href: "profile/" + user.id }
-                },
-                [_vm._v(_vm._s(user.name))]
-              )
-            ]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(user.created_at))]),
-            _vm._v(" "),
-            _c("td", [_vm._v("admin")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("2")]),
-            _vm._v(" "),
-            _c("td", [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-sm btn-danger",
-                  on: {
-                    click: function($event) {
-                      return _vm.deleteUser(user.id)
+        [
+          _vm._l(_vm.users.data, function(user) {
+            return _c("tr", { key: user.id }, [
+              _c("td", [_c("b", [_vm._v(_vm._s(user.id))])]),
+              _vm._v(" "),
+              _c("td", [
+                _c(
+                  "a",
+                  {
+                    staticClass: "text-user",
+                    attrs: { href: "profile/" + user.id }
+                  },
+                  [_vm._v(_vm._s(user.name))]
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(user.created_at))]),
+              _vm._v(" "),
+              _c("td", [_vm._v("admin")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("2")]),
+              _vm._v(" "),
+              _c("td", [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-sm btn-danger",
+                    on: {
+                      click: function($event) {
+                        return _vm.deleteUser(user.id)
+                      }
                     }
-                  }
-                },
-                [_vm._v("Delete")]
-              )
+                  },
+                  [_vm._v("Delete")]
+                )
+              ])
             ])
-          ])
-        }),
-        0
+          }),
+          _vm._v(" "),
+          _c("p", [_vm._v(_vm._s(_vm.users.length))])
+        ],
+        2
       )
     ])
   ])
@@ -78684,7 +78696,7 @@ sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.disableInput();
 
 Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
-Vue.filter('eventDate', function (data) {
+Vue.filter('timeDate', function (data) {
   return moment__WEBPACK_IMPORTED_MODULE_2___default()(data).format("MMM Do YYYY");
 });
 

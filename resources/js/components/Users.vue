@@ -29,6 +29,7 @@
       <button class="btn btn-sm btn-danger" @click="deleteUser(user.id)">Delete</button>
       </td>
     </tr>
+    <p>{{users.length}}</p>
    </tbody>
 </table>
    </div>

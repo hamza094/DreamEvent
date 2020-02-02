@@ -16,8 +16,10 @@ class CreateTopicsTable extends Migration
         Schema::create('topics', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('slug')->unique()->nullable();
             $table->string('image')->nullable();
             $table->string('created_by');
+            $table->unsignedInteger('events_count')->default(0);
             $table->timestamps();
         });
     }

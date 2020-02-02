@@ -8,18 +8,18 @@
       <th scope="col">Name</th>
       <th scope="col">Created At</th>
       <th scope="col">Created By</th>
-      <th scope="col">Associated Events</th>
+      <th scope="col">Related Events</th>
       <th scope="col">Option</th>
       
     </tr>
   </thead>
   <tbody>
-    <tr  v-for="topic in topics.data" :key="topic.id">
+    <tr  v-for="topic in topics" :key="topic.id">
       <td><b>{{topic.id}}</b></td>
-      <td>{{topic.name}}</td>
-      <td>{{topic.created_at}}</td>
+    <td><a v-bind:href="'topic/'+topic.slug" class="text-user" target="_blank">{{topic.name}}</a></td>
+      <td>{{topic.created_at | timeDate}}</td>
       <td>{{topic.created_by}}</td>
-      <td>5</td>
+      <td>{{topic.events_count}}</td>
       <td>
       <button class="btn btn-sm btn-primary" @click="editModal(topic)">Edit</button>
       <button class="btn btn-sm btn-danger" @click="destroy(topic.id)">Delete</button>

@@ -45,7 +45,7 @@ Vue.use(VueRouter)
 
 import moment from 'moment';
 
-Vue.filter('eventDate',function(data){
+Vue.filter('timeDate',function(data){
    return  moment(data).format("MMM Do YYYY");  
 })
 

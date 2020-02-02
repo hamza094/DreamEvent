@@ -9,6 +9,32 @@ class Topic extends Model
   protected $guarded = [];
     
      public function events(){
-        return $this->hasMany('App\Event');
+        return $this->hasMany(Event::class);
+    }
+    
+      public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    
+    public static function boot()
+    {
+        parent::boot();
+        static::created(function ($topic) {
+            $topic->update(['slug'=>$topic->name]);
+        });
+        static::deleting(function ($topic) {
+            $topic->events->each->forceDelete();
+        });
+    }
+    
+        public function setSlugAttribute($value)
+    {
+        $slug = str_slug($value);
+        if (static::whereSlug($slug)->exists()) {
+            $slug = "{$slug}-".$this->id;
+    }
+
+        $this->attributes['slug'] = $slug;
     }
 }

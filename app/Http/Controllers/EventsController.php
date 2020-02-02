@@ -127,7 +127,6 @@ class EventsController extends Controller
            ]);
         $user = Auth::user();
         
-    //Store Event Image 
     $file = $request->file('image');
     $filename=uniqid($user->id."_").".".$file->getClientOriginalExtension();  
     Storage::disk('s3')->put($filename,File::get($file),'public');
@@ -266,6 +265,8 @@ class EventsController extends Controller
     {
         $this->authorize('update', $event);
         $event->forceDelete();
+        $event->topic->decrement('events_count');
+
     }
     
     //draft event delete
@@ -273,11 +274,13 @@ class EventsController extends Controller
     {
         $events=Event::withTrashed()->where('slug',$event)->first();
         $events->forceDelete();
+        $event->topic->decrement('events_count');
+
     }
 
     public function undrafted($event)
     {
-         $events=Event::withTrashed()->where('slug',$event)->first();
+        $events=Event::withTrashed()->where('slug',$event)->first();
         $events->restore();
     }
     

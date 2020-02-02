@@ -72,6 +72,14 @@ class User extends Authenticatable
         return $this->hasOne(Reply::class)->latest();
     }
     
+      public static function boot()
+    {
+        parent::boot();
+        static::deleting(function ($user) {
+            $user->events->each->forceDelete();
+        });
+    }
+    
     //User avatar path
    public function getProfileAttribute()
    {

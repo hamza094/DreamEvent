@@ -18,7 +18,7 @@
 <div class="container mt-5">
                   <p class="event-heading"><b>Events</b></p>
         <div class="row">
-          @if($topic->events->count() >= 0)
+          @if($topic->events->count() == 0)
           <div class="text-center">
           <h3>Sorry! No Event Found Of Related Topic</h3>
             </div>
@@ -33,7 +33,7 @@
                     </div>
                     <div class="event-text">
                     <div class="event-time">
-                        <p><i class="far fa-clock"></i><span> {{$event->strtdt}},</span><span> {{$event->strttm}}</span></p>
+                        <p><i class="far fa-clock"></i><span> {{$event->startdate}},</span><span> {{$event->strttm}}</span></p>
                     </div>
                     <p class="event-name">{{$event->name}}</p>
                     <p class="event-location">{{$event->location}}</p>
