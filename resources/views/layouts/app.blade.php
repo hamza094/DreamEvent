@@ -44,15 +44,18 @@
                     <p class="panel-heading">
                         <i class="fab fa-the-red-yeti"></i> DreamEvent</p> 
                 <ul class="panel-list">
-                  @if(Auth::user())
-                   <router-link to="/dashboard" class="panel-list_item">
+                  @if(Auth::user() && Auth::user()->isAdmin())
+                   <router-link to="/dream-dashboard" class="panel-list_item">
                        <p><i class="fas fa-desktop desktop"></i><span> Dashboard</span></p>
                 </router-link>
-                 <router-link to="/users" class="panel-list_item">
-                     <p><i class="fas fa-users-cog cog"></i><span> User Managment</span></p>
+                 <router-link to="/manage-users" class="panel-list_item">
+                     <p><i class="fas fa-users-cog cog"></i><span> Manage Users </span></p>
                 </router-link>
-                 <router-link to="/topics" class="panel-list_item">
-                  <p><i class="fas fa-globe-europe globe"></i><span> Topics</span></p>
+                <router-link to="/manage-events" class="panel-list_item">
+                     <p><i class="far fa-calendar-check em"></i><span> Manage Events </span></p>
+                </router-link>
+                 <router-link to="/manage-topics" class="panel-list_item">
+                  <p><i class="fas fa-globe-europe globe"></i><span> Manage Topics</span></p>
                 </router-link>
                 @endif
                 </ul>
@@ -69,10 +72,15 @@
                                    </span></a>
                               </template>
                             <div class="vue-dropdown_up">
-                            <a class="vue-dropdown_item_list" href="/dashboard"><i class="fab fa-dashcube"></i> Dashboard</a>
+                            @if(Auth::user()->isAdmin())
+                            <a class="vue-dropdown_item_list" href="/dream-dashboard"><i class="fab fa-dashcube"></i> Dashboard</a>
+                            @endif
                             <a class="vue-dropdown_item_list" href="profile/{{ Auth::user()->id }}"><i class="fas fa-user"></i> My Profile</a>
+                            @if(Auth::user()->isAdmin())
                             <a class="vue-dropdown_item_list"><i class="fas fa-cogs"></i> Settings</a>
-                              <a class="vue-dropdown_item_list" href="{{ route('logout') }}" onclick="event.preventDefault();
+                             @endif
+                            <a href="/myevents" class="vue-dropdown_item_list"><i class="fas fa-cogs"></i>My Events</a>
+                             <a class="vue-dropdown_item_list" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                       <i class="fas fa-sign-out-alt"></i>  {{ __('Logout') }}
                                     </a>

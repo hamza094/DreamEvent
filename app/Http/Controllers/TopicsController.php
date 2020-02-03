@@ -8,7 +8,8 @@ use Auth;
 use App\Event;
 class TopicsController extends Controller
 {
-   
+    
+    
     /**
      * Display a listing of the resource.
      *
@@ -43,12 +44,14 @@ class TopicsController extends Controller
             'image'=>'required'
             ]);
         
+        if(Auth::user()->isAdmin()){
         $topic=Topic::create([
             'name'=>request('name'),
             'image'=>request('image'),
             'created_by'=>auth()->id()
             
         ]);
+        }
     }
 
     /**
@@ -89,7 +92,8 @@ class TopicsController extends Controller
     public function update(Request $request, $id)
     {
         $topic=Topic::findOrFail($id);
-        $topic->update(request(['name']));
+         $topic->update(request(['name']));
+        
     }
 
     /**

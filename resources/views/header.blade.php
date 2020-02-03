@@ -133,7 +133,9 @@
                                    </span></a>
                               </template>
                             <div class="vue-dropdown_up">
-                            <a class="vue-dropdown_item_list" href="/dashboard"><i class="fab fa-dashcube"></i> Dashboard</a>
+                            @if(Auth::user()->isAdmin())
+                            <a class="vue-dropdown_item_list" href="/dream-dashboard"><i class="fab fa-dashcube"></i> Dashboard</a>
+                            @endif
                             <a class="vue-dropdown_item_list" href="/profile/{{ Auth::user()->id }}"><i class="fas fa-user"></i> My Profile</a>
                             <a href="/myevents" class="vue-dropdown_item_list"><i class="fas fa-cogs"></i>My Events</a>
                               <a class="vue-dropdown_item_list" href="{{ route('logout') }}" onclick="event.preventDefault();

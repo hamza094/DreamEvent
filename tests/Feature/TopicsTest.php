@@ -18,7 +18,9 @@ class TopicsTest extends TestCase
     /** @test */
     public function admin_view_all_topics()
     {
-        $this->signIn();
+         $admin=create('App\User');
+        config(['dream.adminstrators'=>[$admin->email]]);
+        $this->signIn($admin);
         $topics=create('App\Topic');
          $this->get('/api/topics')
         ->assertSee($topics->name);
@@ -38,7 +40,9 @@ class TopicsTest extends TestCase
     /** @test */
     public function an_admin_can_add_a_topic()
     {
-        $this->signIn();
+         $admin=create('App\User');
+        config(['dream.adminstrators'=>[$admin->email]]);
+        $this->signIn($admin);
        $topic=create('App\Topic');
         $this->post('/api/topics',$topic->toArray())
             ->assertStatus(200);
@@ -58,7 +62,9 @@ class TopicsTest extends TestCase
     /** @test */
     public function admin_can_delete_a_topic()
     {
-        $this->signIn();
+         $admin=create('App\User');
+        config(['dream.adminstrators'=>[$admin->email]]);
+        $this->signIn($admin);
         $topic=create('App\Topic');
         $event=create('App\Event',['topic_id'=>$topic->id]);
         $response=$this->json('DELETE',"/api/topics/{$topic->id}");
@@ -70,11 +76,13 @@ class TopicsTest extends TestCase
     /** @test */
     public function an_admin_can_update_a_topic()
     {
-        $this->signIn();
+        $admin=create('App\User');
+        config(['dream.adminstrators'=>[$admin->email]]);
+        $this->signIn($admin);
         $topic=create('App\Topic');
         $Updatedname='Assemble';
         $Updatedcreated='Cap';
-        $this->patch("/api/topics/{$topic->id}",['name'=>$Updatedname,'created_by'=>$Updatedcreated]);
+        $this->withoutExceptionHandling()->patch("/api/topics/{$topic->id}",['name'=>$Updatedname,'created_by'=>$Updatedcreated]);
         $this->assertDatabaseHas('topics',['id'=>$topic->id,'name'=>$Updatedname]);
     }
      

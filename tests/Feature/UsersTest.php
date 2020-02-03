@@ -31,7 +31,9 @@ class UsersTest extends TestCase
      /** @test */
     public function admin_view_all_users()
     {
-        $this->signIn();
+         $admin=create('App\User');
+        config(['dream.adminstrators'=>[$admin->email]]);
+        $this->signIn($admin);
         $user=create('App\User');
          $this->withoutExceptionHandling()->get('api/users')
         ->assertSee($user->name);
@@ -40,7 +42,9 @@ class UsersTest extends TestCase
       /** @test */
     public function admin_can_delete_a_user()
     {
-        $this->signIn();
+         $admin=create('App\User');
+        config(['dream.adminstrators'=>[$admin->email]]);
+        $this->signIn($admin);
         $user=create('App\User');
         $response=$this->json('DELETE',"api/users/{$user->id}");
         $response->assertStatus(200);
@@ -50,7 +54,9 @@ class UsersTest extends TestCase
     /** @test */
     public function an_admin_can_search_users()
     {
-        $this->signIn();
+         $admin=create('App\User');
+        config(['dream.adminstrators'=>[$admin->email]]);
+        $this->signIn($admin);
         create('App\User', [], 10);
         create('App\User', ['name' => 'thanos'], 2);
         $results = $this->getJson('api/findUsers/?q=thanos')->json()['data'];

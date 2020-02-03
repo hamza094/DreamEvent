@@ -26,7 +26,7 @@ class UsersController extends Controller
         
     public function index()
     {
-         return User::latest()->paginate(30); 
+         return User::orderBy('id','asc')->paginate(15); 
         
     }
     
@@ -48,9 +48,9 @@ class UsersController extends Controller
             $users = User::where(function($query) use ($search){
                 $query->where('name','LIKE',"%$search%")
                         ->orWhere('email','LIKE',"%$search%");
-            })->paginate(30);
+            })->paginate(15);
         }else{
-            $users = User::latest()->paginate(30);
+            $users = User::orderBy('id','asc')->paginate(15);
         }
         return $users;
     }

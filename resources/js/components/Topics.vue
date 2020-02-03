@@ -1,14 +1,14 @@
 <template>
-   <div>
-       <p class="Dashboard-heading">Topics<button class="btn btn-light ml-2 btn-sm" @click="newModal"> +</button></p>
+   <div v-if="authorize('isAdmin')">
+       <p  class="Dashboard-heading">Topics<button class="btn btn-light ml-2 btn-sm" @click="newModal"> +</button></p>
        <table class="table table-hover">
   <thead>
     <tr>
       <th scope="col">SrNo</th>
       <th scope="col">Name</th>
-      <th scope="col">Created At</th>
       <th scope="col">Created By</th>
       <th scope="col">Related Events</th>
+      <th scope="col">Created At</th>
       <th scope="col">Option</th>
       
     </tr>
@@ -17,10 +17,10 @@
     <tr  v-for="topic in topics" :key="topic.id">
       <td><b>{{topic.id}}</b></td>
     <td><a v-bind:href="'topic/'+topic.slug" class="text-user" target="_blank">{{topic.name}}</a></td>
-      <td>{{topic.created_at | timeDate}}</td>
       <td>{{topic.created_by}}</td>
-      <td>{{topic.events_count}}</td>
-      <td>
+     <td>{{topic.events_count}}</td>
+    <td>{{topic.created_at | timeExactDate}}</td>
+     <td>
       <button class="btn btn-sm btn-primary" @click="editModal(topic)">Edit</button>
       <button class="btn btn-sm btn-danger" @click="destroy(topic.id)">Delete</button>
       </td>
@@ -63,6 +63,10 @@
     </div>
   </div>
 </div>
+   </div>
+   <div v-else class="text-center mt-5">
+       <h2 class="mt-5">Only Admin Can Access Dashboard</h2>
+       <a href="/" class="btn btn-primary mt-2">Go Back</a>
    </div>
 </template>
 

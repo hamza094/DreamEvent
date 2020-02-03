@@ -18,8 +18,9 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password','avatar_path'
     ];
+    
+    protected $appends = ['isAdmin','profile'];
 
-    protected $appends=array('profile');
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -91,7 +92,16 @@ class User extends Authenticatable
            return $path;
        }
          
-   }          
+   }
+    
+      public function isAdmin()
+    {
+        return in_array($this->email, config('dream.adminstrators'));
+    }
+    
+    public function getisAdminAttribute(){
+        return $this->isAdmin();
+    }
 
     
 }

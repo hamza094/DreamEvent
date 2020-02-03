@@ -49,6 +49,9 @@ Vue.filter('timeDate',function(data){
    return  moment(data).format("MMM Do YYYY");  
 })
 
+Vue.filter('timeExactDate',function(data){
+   return  moment(data).format("MMM Do YY, h:mm:ss a");  
+})
 
 import VueProgressBar from 'vue-progressbar';
 
@@ -106,9 +109,10 @@ Vue.component('pagination', require('laravel-vue-pagination'));
 
 
 const routes = [
-  { path: '/dashboard', component: require('./components/Dashboard.vue').default },
-  { path: '/users', component: require('./components/Users.vue').default },
-  { path: '/topics', component: require('./components/Topics.vue').default },
+  { path: '/dream-dashboard', component: require('./components/Dashboard.vue').default },
+  { path: '/manage-users', component: require('./components/Users.vue').default },
+  { path: '/manage-topics', component: require('./components/Topics.vue').default },
+  { path: '/manage-events', component: require('./components/EventsManage.vue').default },
   { path: '*', component:require('./components/Error.vue').default}
 ]
 

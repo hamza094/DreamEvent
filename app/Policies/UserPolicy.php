@@ -55,6 +55,11 @@ class UserPolicy
     {
         return $user->me($signedInUser);
     }
+    
+     public function admin(User $user)
+    {
+        return $user->isAdmin();
+    }
    
     /**
      * Determine whether the user can delete the model.

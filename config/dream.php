@@ -6,11 +6,12 @@ return[
       'secret'=>env('RECAPTCHA_SECRET')
   ],
     'adminstrators'=>[
-         'cterry@example.com'
+         'kreiger.amos@example.org',
+        'blanche48@example.com'
 
-    ],
+  ],
     'pagination'=>[
-        'perPage'=>1
+        'perPage'=>4
     ]
 ];
 
