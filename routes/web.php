@@ -26,6 +26,15 @@ Route::get('login/{provider}/callback', 'Auth\SocialAccountController@handleProv
 //profile routes
 Route::get('/profile/{user}', 'UsersController@show');
 
+//backend admin access
+Route::get('/api/users',"UsersController@index")->middleware('admin');
+Route::get('/api/findUsers',"UsersController@search")->middleware('admin');
+Route::delete('/api/users/{id}',"UsersController@destroy")->middleware('admin');
+Route::resource('api/topics','TopicsController')->middleware('admin');    
+Route::get("/api/allevents",'EventsController@allevents')->middleware('admin');
+Route::get("/api/eventscount",'EventsController@eventscount')->middleware('admin');
+Route::get('/api/findAllEvents',"EventsController@admineventsearch")->middleware('admin');
+
 
 
 //Route::post('/event-create','EventsController@store');

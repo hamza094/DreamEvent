@@ -53,6 +53,11 @@ Vue.filter('timeExactDate',function(data){
    return  moment(data).format("MMM Do YY, h:mm:ss a");  
 })
 
+
+Vue.filter('now',function(data){
+   return  moment();  
+})
+
 import VueProgressBar from 'vue-progressbar';
 
 Vue.use(VueProgressBar, {

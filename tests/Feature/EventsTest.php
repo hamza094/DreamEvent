@@ -197,4 +197,28 @@ class EventsTest extends TestCase
             ->assertSee($event->name);
     }
 
+    
+     /** @test */
+    public function admin_view_all_events()
+    {
+        $admin=create('App\User');
+        config(['dream.adminstrators'=>[$admin->email]]);
+        $this->signIn($admin);
+        $event=create('App\Event');
+         $this->withoutExceptionHandling()->get('/api/allevents')
+        ->assertSee($event->name);
+    }
+    
+        /** @test */
+    public function an_admin_can_search_events()
+    {
+        $admin=create('App\User');
+        config(['dream.adminstrators'=>[$admin->email]]);
+        $this->signIn($admin);
+        create('App\Event', [], 10);
+        create('App\Event', ['name' => 'thanos'], 2);
+        $results = $this->withoutExceptionHandling()->getJson('api/findAllEvents/?q=thanos')->json()['data'];
+        $this->assertCount(2, $results);
+        $this->assertTrue(true);
+    }
 }

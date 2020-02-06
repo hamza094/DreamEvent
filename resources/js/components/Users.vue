@@ -25,7 +25,7 @@
         {{user.name}} 
         <span v-if="user.isAdmin" class="badge badge-primary">Admin</span></a></td>
         <td>{{user.email}}</td>
-        <td class="text-center">2</td>
+        <td class="text-center">{{user.events.length}}</td>
         <td>{{user.created_at | timeExactDate}}</td>
       <td>
       <button class="btn btn-sm btn-danger" @click="deleteUser(user.id)">Delete</button>

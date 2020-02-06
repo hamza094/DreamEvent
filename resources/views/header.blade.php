@@ -134,13 +134,13 @@
                               </template>
                             <div class="vue-dropdown_up">
                             @if(Auth::user()->isAdmin())
-                            <a class="vue-dropdown_item_list" href="/dream-dashboard"><i class="fab fa-dashcube"></i> Dashboard</a>
+                                <a class="vue-dropdown_item_list" href="/dream-dashboard"><i class="fab fa-dashcube"></i><b> Dashboard</b></a>
                             @endif
-                            <a class="vue-dropdown_item_list" href="/profile/{{ Auth::user()->id }}"><i class="fas fa-user"></i> My Profile</a>
-                            <a href="/myevents" class="vue-dropdown_item_list"><i class="fas fa-cogs"></i>My Events</a>
+                                <a class="vue-dropdown_item_list" href="/profile/{{ Auth::user()->id }}"><i class="fas fa-user"></i> <b>My Profile</b></a>
+                                <a href="/myevents" class="vue-dropdown_item_list"><i class="fas fa-cogs"></i><b>My Events</b></a>
                               <a class="vue-dropdown_item_list" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                      <i class="fas fa-sign-out-alt"></i>  {{ __('Logout') }}
+                                  <i class="fas fa-sign-out-alt"></i>  <b>{{ __('Logout') }}</b>
                                     </a>
                               
                               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
