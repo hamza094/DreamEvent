@@ -2681,11 +2681,262 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      events: {},
+      counts: {},
+      search: '',
+      todaydate: '',
+      status: 'all',
+      active: false,
+      liveactive: false,
+      draftedactive: false
+    };
   },
-  methods: {}
+  methods: {
+    loadEvents: function loadEvents() {
+      var _this = this;
+
+      axios.get('/api/allevents').then(function (_ref) {
+        var data = _ref.data;
+        return _this.events = data;
+      });
+      this.status = 'All Events';
+      this.active = true;
+      this.draftedactive = false;
+      this.liveactive = false;
+      this.search = '';
+    },
+    loadCount: function loadCount() {
+      var _this2 = this;
+
+      axios.get('/api/eventscount').then(function (_ref2) {
+        var data = _ref2.data;
+        return _this2.counts = data;
+      });
+    },
+    drafted: function drafted() {
+      var _this3 = this;
+
+      axios.get('/api/allevents?drafted=1').then(function (_ref3) {
+        var data = _ref3.data;
+        return _this3.events = data;
+      });
+      this.status = 'Drafted Events';
+      this.draftedactive = true;
+      this.liveactive = false;
+      this.active = false;
+      this.search = '';
+    },
+    all: function all() {
+      this.loadEvents();
+    },
+    live: function live() {
+      var _this4 = this;
+
+      axios.get('/api/allevents?live=1').then(function (_ref4) {
+        var data = _ref4.data;
+        return _this4.events = data;
+      });
+      this.status = 'Live Events';
+      this.active = false;
+      this.draftedactive = false;
+      this.liveactive = true;
+      this.search = '';
+    },
+    destroy: function destroy(slug) {
+      var _this5 = this;
+
+      swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.value) {
+          axios.get('/events/' + slug + '/delete').then(function () {
+            swal.fire('Deleted!', 'Event has been deleted.', 'success');
+          })["catch"](function () {
+            swal.fire("Failed!", "There was something wrong.", "warning");
+          });
+        }
+
+        _this5.$emit('AfterComplete');
+      });
+    },
+    draftdelete: function draftdelete(slug) {
+      var _this6 = this;
+
+      swal.fire({
+        title: 'Are you sure?',
+        text: "You won't see this event live!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, draft it!'
+      }).then(function (result) {
+        if (result.value) {
+          axios["delete"]('/events/' + slug).then(function () {
+            swal.fire('Drafted!', 'Event has been drafted.', 'success');
+          })["catch"](function () {
+            swal.fire("Failed!", "There was something wrong.", "warning");
+          });
+        }
+
+        _this6.$emit('AfterCompleteDraft');
+      });
+    },
+    draft: function draft(slug) {
+      var _this7 = this;
+
+      swal.fire({
+        title: 'Are you sure?',
+        text: "You won't see this event live!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, draft it!'
+      }).then(function (result) {
+        if (result.value) {
+          axios["delete"]('/events/' + slug).then(function () {
+            swal.fire('Drafted!', 'Event has been drafted.', 'success');
+          })["catch"](function () {
+            swal.fire("Failed!", "There was something wrong.", "warning");
+          });
+        }
+
+        _this7.$emit('AfterCompleteDraft');
+      });
+    },
+    UnDraft: function UnDraft(slug) {
+      var _this8 = this;
+
+      swal.fire({
+        title: 'Are you sure?',
+        text: "You re going to make this event live!",
+        type: 'info',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Make It Live!'
+      }).then(function (result) {
+        if (result.value) {
+          axios.get('/events/' + slug + '/undrafted').then(function () {
+            swal.fire('Undrafted!', 'Event has been live.', 'success');
+          })["catch"](function () {
+            swal.fire("Failed!", "There was something wrong.", "warning");
+          });
+        }
+
+        _this8.$emit('AfterComplete');
+      });
+    },
+    getResults: function getResults() {
+      var _this9 = this;
+
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      axios.get('/api/allevents?page=' + page).then(function (response) {
+        _this9.events = response.data;
+      });
+    },
+    searchIt: _.debounce(function () {
+      Fire.$emit('searching');
+    }, 325)
+  },
+  created: function created() {
+    var _this10 = this;
+
+    this.loadEvents();
+    this.loadCount();
+    Fire.$on('searching', function () {
+      var query = _this10.search;
+      axios.get('/api/findAllEvents?q=' + query).then(function (data) {
+        _this10.events = data.data;
+      });
+    });
+    this.$on('AfterComplete', function () {
+      _this10.loadEvents();
+
+      _this10.loadCount();
+    });
+    this.$on('AfterCompleteDraft', function () {
+      _this10.loadEvents();
+
+      _this10.drafted();
+    });
+  },
+  mounted: function mounted() {
+    this.todaydate = new Date().toJSON().slice(0, 10).replace(/-/g, '-');
+  }
 });
 
 /***/ }),
@@ -62328,7 +62579,252 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm.authorize("isAdmin")
-    ? _c("div", [_vm._v("\n     This is Backend event Manage\n ")])
+    ? _c(
+        "div",
+        [
+          _c("p", { staticClass: "Dashboard-heading" }, [_vm._v("Events")]),
+          _vm._v(" "),
+          _c("p", { staticClass: "Dashboard-heading" }, [
+            _vm._v("Total Events :" + _vm._s(_vm.counts.length))
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "Dashboard-heading" }, [
+            _vm._v("Event Status:" + _vm._s(this.status))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "dropdown float-right" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary dropdown-toggle",
+                attrs: {
+                  type: "button",
+                  id: "dropdownMenuButton",
+                  "data-toggle": "dropdown",
+                  "aria-haspopup": "true",
+                  "aria-expanded": "false"
+                }
+              },
+              [_vm._v("\n    Select Event Option \n  ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "dropdown-menu",
+                attrs: { "aria-labelledby": "dropdownMenuButton" }
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "dropdown-item",
+                    attrs: { href: "#" },
+                    on: { click: _vm.all }
+                  },
+                  [
+                    _vm.active
+                      ? _c("span", { staticClass: "text-primary" }, [
+                          _c("i", { staticClass: "far fa-check-circle" }),
+                          _vm._v(" "),
+                          _c("b", [_vm._v("All Events")])
+                        ])
+                      : _c("span", [_vm._v("All Events")])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "dropdown-item",
+                    attrs: { href: "#" },
+                    on: { click: _vm.live }
+                  },
+                  [
+                    _vm.liveactive
+                      ? _c("span", { staticClass: "text-primary" }, [
+                          _c("i", { staticClass: "far fa-check-circle" }),
+                          _vm._v(" "),
+                          _c("b", [_vm._v("Live Events")])
+                        ])
+                      : _c("span", [_vm._v("Live Events")])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "dropdown-item",
+                    attrs: { href: "#" },
+                    on: { click: _vm.drafted }
+                  },
+                  [
+                    _vm.draftedactive
+                      ? _c("span", { staticClass: "text-primary" }, [
+                          _c("i", { staticClass: "far fa-check-circle" }),
+                          _vm._v(" "),
+                          _c("b", [_vm._v("Drafted Events")])
+                        ])
+                      : _c("span", [_vm._v("Drafted Events")])
+                  ]
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("div", { staticClass: "col-sm-4" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.search,
+                    expression: "search"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "event",
+                  placeholder: "Search Event"
+                },
+                domProps: { value: _vm.search },
+                on: {
+                  keyup: _vm.searchIt,
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.search = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("table", { staticClass: "table table-hover" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.events.data, function(event) {
+                return _c("tr", { key: event.id }, [
+                  _c("td", [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "text-user",
+                        attrs: {
+                          href: "events/" + event.slug,
+                          target: "_blank"
+                        }
+                      },
+                      [_vm._v(_vm._s(event.name))]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm._f("timeDate")(event.strtdt)))]),
+                  _vm._v(" "),
+                  _vm.todaydate > event.enddt
+                    ? _c("td", [_vm._m(1, true)])
+                    : _c("td", [_vm._m(2, true)]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(event.price))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(event.sold))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(event.qty))]),
+                  _vm._v(" "),
+                  event.deleted_at == null
+                    ? _c("td", [_vm._m(3, true)])
+                    : _c("td", [_vm._m(4, true)]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "text-user",
+                        attrs: {
+                          href: "profile/" + event.user_id,
+                          target: "_blank"
+                        }
+                      },
+                      [_vm._v(_vm._s(event.user.name))]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  event.deleted_at == null
+                    ? _c("td", [
+                        _c("p", [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-sm btn-primary",
+                              on: {
+                                click: function($event) {
+                                  return _vm.draft(event.slug)
+                                }
+                              }
+                            },
+                            [_vm._v("Draft")]
+                          ),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-sm btn-danger",
+                              on: {
+                                click: function($event) {
+                                  return _vm.destroy(event.slug)
+                                }
+                              }
+                            },
+                            [_vm._v("Delete")]
+                          )
+                        ])
+                      ])
+                    : _c("td", [
+                        _c("p", [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-success btn-sm",
+                              on: {
+                                click: function($event) {
+                                  return _vm.UnDraft(event.slug)
+                                }
+                              }
+                            },
+                            [_vm._v("Live")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-danger btn-sm",
+                              on: {
+                                click: function($event) {
+                                  return _vm.draftdelete(event.slug)
+                                }
+                              }
+                            },
+                            [_vm._v("Delete")]
+                          )
+                        ])
+                      ])
+                ])
+              }),
+              0
+            )
+          ]),
+          _vm._v(" "),
+          _c("pagination", {
+            attrs: { data: _vm.events },
+            on: { "pagination-change-page": _vm.getResults }
+          })
+        ],
+        1
+      )
     : _c("div", { staticClass: "text-center mt-5" }, [
         _c("h2", { staticClass: "mt-5" }, [
           _vm._v("Only Admin Can Access Dashboard")
@@ -62339,7 +62835,64 @@ var render = function() {
         ])
       ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Event Name")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Start Date")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Status")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Price")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Ticket Sold")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Tickets Left")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Current Status")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Created By")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Option")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "text-danger" }, [
+      _c("b", [_vm._v("Event Over")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "text-primary" }, [
+      _c("b", [_vm._v("Event Open")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "active" }, [_c("b", [_vm._v("Active")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "text-warning" }, [
+      _c("b", [_vm._v("Drafted")])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -63607,7 +64160,9 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(user.email))]),
                   _vm._v(" "),
-                  _c("td", { staticClass: "text-center" }, [_vm._v("2")]),
+                  _c("td", { staticClass: "text-center" }, [
+                    _vm._v(_vm._s(user.events.length))
+                  ]),
                   _vm._v(" "),
                   _c("td", [
                     _vm._v(_vm._s(_vm._f("timeExactDate")(user.created_at)))
@@ -78834,6 +79389,9 @@ Vue.filter('timeDate', function (data) {
 });
 Vue.filter('timeExactDate', function (data) {
   return moment__WEBPACK_IMPORTED_MODULE_2___default()(data).format("MMM Do YY, h:mm:ss a");
+});
+Vue.filter('now', function (data) {
+  return moment__WEBPACK_IMPORTED_MODULE_2___default()();
 });
 
 Vue.use(vue_progressbar__WEBPACK_IMPORTED_MODULE_3___default.a, {

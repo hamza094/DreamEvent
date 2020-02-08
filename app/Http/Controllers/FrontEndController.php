@@ -74,7 +74,13 @@ class FrontEndController extends Controller
            'event_id'=>$event->id,  
           'qty'=>request('selectedqty'),
      ]);
-        $event->update(['qty'=>$event->qty - request('selectedqty')]);
+        $event->update(
+            [
+                'qty'=>$event->qty - request('selectedqty'),
+                'sold'=>$event->sold +  request('selectedqty')
+            ]
+        );
+        
         
         //generate random number for invoice
         $num=mt_rand(1000, 9999);

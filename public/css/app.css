@@ -61,6 +61,10 @@
   color: cadetblue;
 }
 
+.active {
+  color: forestgreen;
+}
+
 .shake {
   color: crimson;
 }

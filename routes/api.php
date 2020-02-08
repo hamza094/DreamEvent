@@ -21,11 +21,7 @@ Route::middleware('admin')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResources(['topics'=>'TopicsController']);    
 
 
-Route::get('/users',"UsersController@index");
-Route::delete('/users/{id}',"UsersController@destroy");
-Route::get('/findUsers',"UsersController@search");
 
 

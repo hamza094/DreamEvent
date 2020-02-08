@@ -44,14 +44,12 @@ class TopicsController extends Controller
             'image'=>'required'
             ]);
         
-        if(Auth::user()->isAdmin()){
         $topic=Topic::create([
             'name'=>request('name'),
             'image'=>request('image'),
             'created_by'=>auth()->id()
             
         ]);
-        }
     }
 
     /**

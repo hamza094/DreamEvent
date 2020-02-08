@@ -29,7 +29,9 @@ class TopicsTest extends TestCase
     /** @test */
     public function topic_must_required_a_name()
     {
-        $this->signIn();
+        $admin=create('App\User');
+        config(['dream.adminstrators'=>[$admin->email]]);
+        $this->signIn($admin);
         $topic=make('App\Topic',[
             'name'=>null
         ]);
@@ -49,7 +51,7 @@ class TopicsTest extends TestCase
     }    
         
       /** @test */
-    public function an_event_requires_a_unique_slug()
+    public function a_topic_requires_a_unique_slug()
     {
       $this->signIn();
       create('App\Topic',[],2);

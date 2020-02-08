@@ -42,6 +42,21 @@ class EventsController extends Controller
             ]
         ]);   
     }
+    
+    public function allevents(){
+        if(request('drafted')) {
+            return Event::onlyTrashed()->orderBy('created_at','desc')->with('user')->paginate(100);
+        }elseif(request('live')){
+            return Event::orderBy('created_at','desc')->with('user')->paginate(100); 
+          }else{
+            return Event::withTrashed()->orderBy('created_at','desc')->with('user')->paginate(15); 
+         }
+    }
+    
+    public function eventscount(){
+        return Event::withTrashed()->get(); 
+    }
+    
    public function index(){
        $events=Event::orderBy('created_at','desc')->paginate(8);
        return view('event.all',compact('events'));
@@ -60,6 +75,17 @@ class EventsController extends Controller
             })->paginate(16);
         }else{
             $events = Event::latest()->paginate(16);
+        }
+        return $events;
+    }
+    
+    public function admineventsearch(){
+           if ($search = \Request::get('q')) {
+            $events = Event::where(function($query) use ($search){
+                $query->where('name','LIKE',"%$search%");
+            })->withTrashed()->with('user')->paginate(16);
+        }else{
+               $events= Event::withTrashed()->orderBy('created_at','desc')->with('user')->paginate(15); 
         }
         return $events;
     }
