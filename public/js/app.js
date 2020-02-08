@@ -2734,6 +2734,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2798,12 +2808,104 @@ __webpack_require__.r(__webpack_exports__);
       this.liveactive = true;
       this.search = '';
     },
-    getResults: function getResults() {
+    destroy: function destroy(slug) {
       var _this5 = this;
+
+      swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.value) {
+          axios.get('/events/' + slug + '/delete').then(function () {
+            swal.fire('Deleted!', 'Event has been deleted.', 'success');
+          })["catch"](function () {
+            swal.fire("Failed!", "There was something wrong.", "warning");
+          });
+        }
+
+        _this5.$emit('AfterComplete');
+      });
+    },
+    draftdelete: function draftdelete(slug) {
+      var _this6 = this;
+
+      swal.fire({
+        title: 'Are you sure?',
+        text: "You won't see this event live!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, draft it!'
+      }).then(function (result) {
+        if (result.value) {
+          axios["delete"]('/events/' + slug).then(function () {
+            swal.fire('Drafted!', 'Event has been drafted.', 'success');
+          })["catch"](function () {
+            swal.fire("Failed!", "There was something wrong.", "warning");
+          });
+        }
+
+        _this6.$emit('AfterCompleteDraft');
+      });
+    },
+    draft: function draft(slug) {
+      var _this7 = this;
+
+      swal.fire({
+        title: 'Are you sure?',
+        text: "You won't see this event live!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, draft it!'
+      }).then(function (result) {
+        if (result.value) {
+          axios["delete"]('/events/' + slug).then(function () {
+            swal.fire('Drafted!', 'Event has been drafted.', 'success');
+          })["catch"](function () {
+            swal.fire("Failed!", "There was something wrong.", "warning");
+          });
+        }
+
+        _this7.$emit('AfterCompleteDraft');
+      });
+    },
+    UnDraft: function UnDraft(slug) {
+      var _this8 = this;
+
+      swal.fire({
+        title: 'Are you sure?',
+        text: "You re going to make this event live!",
+        type: 'info',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Make It Live!'
+      }).then(function (result) {
+        if (result.value) {
+          axios.get('/events/' + slug + '/undrafted').then(function () {
+            swal.fire('Undrafted!', 'Event has been live.', 'success');
+          })["catch"](function () {
+            swal.fire("Failed!", "There was something wrong.", "warning");
+          });
+        }
+
+        _this8.$emit('AfterComplete');
+      });
+    },
+    getResults: function getResults() {
+      var _this9 = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       axios.get('/api/allevents?page=' + page).then(function (response) {
-        _this5.events = response.data;
+        _this9.events = response.data;
       });
     },
     searchIt: _.debounce(function () {
@@ -2811,15 +2913,25 @@ __webpack_require__.r(__webpack_exports__);
     }, 325)
   },
   created: function created() {
-    var _this6 = this;
+    var _this10 = this;
 
     this.loadEvents();
     this.loadCount();
     Fire.$on('searching', function () {
-      var query = _this6.search;
+      var query = _this10.search;
       axios.get('/api/findAllEvents?q=' + query).then(function (data) {
-        _this6.events = data.data;
+        _this10.events = data.data;
       });
+    });
+    this.$on('AfterComplete', function () {
+      _this10.loadEvents();
+
+      _this10.loadCount();
+    });
+    this.$on('AfterCompleteDraft', function () {
+      _this10.loadEvents();
+
+      _this10.drafted();
     });
   },
   mounted: function mounted() {
@@ -62640,7 +62752,66 @@ var render = function() {
                       },
                       [_vm._v(_vm._s(event.user.name))]
                     )
-                  ])
+                  ]),
+                  _vm._v(" "),
+                  event.deleted_at == null
+                    ? _c("td", [
+                        _c("p", [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-sm btn-primary",
+                              on: {
+                                click: function($event) {
+                                  return _vm.draft(event.slug)
+                                }
+                              }
+                            },
+                            [_vm._v("Draft")]
+                          ),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-sm btn-danger",
+                              on: {
+                                click: function($event) {
+                                  return _vm.destroy(event.slug)
+                                }
+                              }
+                            },
+                            [_vm._v("Delete")]
+                          )
+                        ])
+                      ])
+                    : _c("td", [
+                        _c("p", [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-success btn-sm",
+                              on: {
+                                click: function($event) {
+                                  return _vm.UnDraft(event.slug)
+                                }
+                              }
+                            },
+                            [_vm._v("Live")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-danger btn-sm",
+                              on: {
+                                click: function($event) {
+                                  return _vm.draftdelete(event.slug)
+                                }
+                              }
+                            },
+                            [_vm._v("Delete")]
+                          )
+                        ])
+                      ])
                 ])
               }),
               0
@@ -62685,7 +62856,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Current Status")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Created By")])
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Created By")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Option")])
       ])
     ])
   },

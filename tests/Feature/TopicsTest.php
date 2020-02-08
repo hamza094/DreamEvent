@@ -51,7 +51,7 @@ class TopicsTest extends TestCase
     }    
         
       /** @test */
-    public function an_event_requires_a_unique_slug()
+    public function a_topic_requires_a_unique_slug()
     {
       $this->signIn();
       create('App\Topic',[],2);

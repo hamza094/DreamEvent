@@ -22,6 +22,7 @@ class EventPolicy
     
     public function update(User $user, Event $event)
     {
-        return $event->user_id == $user->id;
+         $user= $event->user_id == $user->id || $user->isAdmin();
+        return $user;
     }
 }
