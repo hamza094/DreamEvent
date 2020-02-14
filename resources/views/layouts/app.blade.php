@@ -35,6 +35,8 @@
     
 </head>
 <body>
+   <div id="nav"></div>
+   <div id="show"></div>
     <div id="app">
         <main class="">
            <div class="container-fluid">
@@ -51,11 +53,14 @@
                  <router-link to="/manage-users" class="panel-list_item">
                      <p><i class="fas fa-users-cog cog"></i><span> Manage Users </span></p>
                 </router-link>
+                 <router-link to="/manage-topics" class="panel-list_item">
+                  <p><i class="fas fa-globe-europe globe"></i><span> Manage Topics</span></p>
+                </router-link>
                 <router-link to="/manage-events" class="panel-list_item">
                      <p><i class="far fa-calendar-check em"></i><span> Manage Events </span></p>
                 </router-link>
-                 <router-link to="/manage-topics" class="panel-list_item">
-                  <p><i class="fas fa-globe-europe globe"></i><span> Manage Topics</span></p>
+                <router-link to="/manage-tickets" class="panel-list_item">
+                     <p><i class="fas fa-ticket-alt tm"></i><span> Manage Tickets </span></p>
                 </router-link>
                 @endif
                 </ul>

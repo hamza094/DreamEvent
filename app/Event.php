@@ -121,4 +121,14 @@ class Event extends Model implements Searchable
     {
         return Carbon::parse($this->enddt)->format('j F, Y');
     }
+    
+     public function getEventStartAttribute()
+    {
+        return Carbon::parse($this->strtdt)->format('d-m-Y');
+    }
+    
+    public function getEventEndAttribute()
+    {
+        return Carbon::parse($this->enddt)->format('d-m-Y');
+    }
 }

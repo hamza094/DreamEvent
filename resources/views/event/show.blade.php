@@ -18,12 +18,13 @@
                         </div>
 
                         <!--Event Reply Form-->
-                        @if(Auth::user())
+                        @if(Auth::user() and $replies->count() > 0)
                         <reply-form :event="{{$event}}"></reply-form>
                         @endif
                         <h4 class="text-center mt-3">Discussions</h4>
 
                         <!-- All Event Discussion-->
+                        @if($replies->count() > 0)
                         @foreach ($replies as $reply)
                         <reply inline-template :reply="{{$reply}}">
                             <div id="reply-{{$reply->id}}">
@@ -55,6 +56,14 @@
                         </reply>
                         @include('event.allreplies')
                         @endforeach
+                        @else
+                        <div class="text-center mt-5">
+                        <h2 class="mb-4">No New Discussion Yet</h2>
+                        @if(Auth::user())
+                        <reply-form :event="{{$event}}"></reply-form>
+                        @endif
+                        </div>
+                        @endif
                     </div>
                 </div>
                 {!! $replies->render() !!}
@@ -114,25 +123,14 @@
                         @else
                         <p><a href="/login" class="btn event-btn float-right">Buy Ticket</a></p>
                         @endif
-
-                        <!-- Event Add to calender-->
-                        <p>
-                            <div title="Add to Calendar" class="addeventatc">
-                                Add to Calendar
-                                <span class="start">{{$event->strtdt}} {{$event->strttm}}</span>
-                                <span class="end">{{$event->enddt}} {{$event->endtm}}</span>
-                                <span class="timezone">Pakistan/Islamabad</span>
-                                <span class="title">{{$event->name}}</span>
-                                <span class="description">{{$event->desc}}</span>
-                                <span class="location">{{$event->location}}</span>
-                            </div>
-                        </p>
-                        @endif
+                        @endif  
+                    <!-- View Event Guests-->
+                    <button class="btn btn-primary btn-sm" @click="$modal.show('guestModal')">View Event Guests</button> @include('event.guest')
                     </div>
                     <!-- Event Organizer --> 
                     <div class="mt-4 single-event_organize">
                         <h5><b>Organizer</b></h5>
-                        <p><a href="/profile/{{$event->user->id}}"><span><img src="{{$event->user->avatar_path}}" alt=""></span><span> <b>{{$event->user->name}}</b></span></a> 
+                        <p><a href="/profile/{{$event->user->id}}" target="_blank"><span><img src="{{$event->user->avatar_path}}" alt=""></span><span> <b>{{$event->user->name}}</b></span></a> 
                         @if(Auth::user())
                         <span class="float-right">
                         <contact-form :event="{{$event}}"></contact-form>
@@ -140,12 +138,18 @@
                         @endif
                         </p>
                     </div>
-                     <!-- View Event Guests-->
-                    @if($guests->count()>0)
-                    <button class="btn btn-primary btn-sm" @click="$modal.show('guestModal')">View Event Guests</button> @include('event.guest') 
-                    @endif
                 </div>
                 <div id="map"></div>
+                    <!-- Event Add to calender-->
+                            <div title="Add to Calendar" class="addeventatc mt-3">
+                                Add to Calendar
+                                <span class="start">{{$event->eventstart}} {{$event->strttm}}</span>
+                                <span class="end">{{$event->eventend}} {{$event->endtm}}</span>
+                                <span class="timezone">Pakistan/Islamabad</span>
+                                <span class="title">{{$event->name}}</span>
+                                <span class="description">{{$event->desc}}</span>
+                                <span class="location">{{$event->location}}</span>
+                            </div>
                 <div class="sharethis-inline-share-buttons mt-3"></div>
             </div>
         </div>

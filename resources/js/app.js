@@ -118,6 +118,7 @@ const routes = [
   { path: '/manage-users', component: require('./components/Users.vue').default },
   { path: '/manage-topics', component: require('./components/Topics.vue').default },
   { path: '/manage-events', component: require('./components/EventsManage.vue').default },
+  { path: '/manage-tickets', component: require('./components/TicketManage.vue').default },
   { path: '*', component:require('./components/Error.vue').default}
 ]
 

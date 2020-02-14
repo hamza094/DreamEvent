@@ -3,6 +3,9 @@
         :pivot-x="1"
         scrollable>
         <button class="btn btn-lg btn-link float-right" @click="$modal.hide('guestModal')">x</button>
+        <h3 class="text-center mt-2">Participating Event Guests</h3>
+        @if($guests->count()>0)
+         <p class="small text-center"><b>{{$guests->count()}} guests are going to attend this event</b></p>
         <div class="row">
         @foreach($guests as $guest)
         <div class="col-md-3 text-center">
@@ -14,5 +17,10 @@
     </div>
  </div>
  @endforeach
-</div>                          
+</div>  
+   @else
+   <h3 class="text-center mt-5 mb-3">
+       No Event Participating guest yet 
+   </h3>  
+   @endif                      
     </modal>

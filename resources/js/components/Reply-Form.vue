@@ -1,7 +1,7 @@
 <template>
  <div>
      <a class="btn event-btn"
-     @click="$modal.show('reply-modal')">Add Reply</a>
+     @click="$modal.show('reply-modal')">Add Discussion</a>
      <modal class="model-design animated slideInUp" :class="{'SlideInDown':!isRed}" name="reply-modal"
         height="auto"
          width="60%"

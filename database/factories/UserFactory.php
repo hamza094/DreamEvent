@@ -53,7 +53,9 @@ return [
             return factory('App\User')->create()->id;
         },
     'venue'=>'Lahore',
-    'topic_id'=>1,
+     'topic_id'=>function () {
+            return factory('App\Topic')->create()->id;
+    },
     'qty'=>2,
     'image_path'=>'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTHZInbmRX8Mtrdptido88vfG9e8tmTPNcYMuYdOTPFjwRE0bAG'
     
@@ -96,6 +98,7 @@ $factory->define(App\PurchaseTicket::class, function (Faker $faker) {
             return factory('App\Event')->create()->id;
         },
         'total' =>90,
-        'qty'=>2
+        'qty'=>2,
+        'receipt'=>'6576'
     ];
 });

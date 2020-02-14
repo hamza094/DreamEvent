@@ -61,6 +61,10 @@
   color: cadetblue;
 }
 
+.tm {
+  color: dodgerblue;
+}
+
 .active {
   color: forestgreen;
 }
@@ -690,7 +694,7 @@ StripeElement {
 }
 
 .guest {
-  margin-top: 3rem;
+  margin-top: 2rem;
   margin-left: 2rem;
 }
 

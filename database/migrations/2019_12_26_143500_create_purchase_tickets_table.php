@@ -19,6 +19,8 @@ class CreatePurchaseTicketsTable extends Migration
             $table->integer('user_id');
             $table->integer('qty');
             $table->integer('total');
+            $table->text('receipt');
+            $table->boolean('delivered')->default(false);
             $table->timestamps();
         });
     }

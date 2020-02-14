@@ -21,4 +21,9 @@ class PurchaseTicket extends Model
     public function user(){
         return $this->belongsTo(User::class,'user_id');
     }
+    
+    public function deliver(){
+        $this->update(['delivered'=>true]);
+    }
+    
 }

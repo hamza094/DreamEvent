@@ -55,9 +55,11 @@
 .globe {
     color: #6B6AE4;
 }
-
 .em{
     color:cadetblue;
+}
+.tm{
+    color:dodgerblue;
 }
 .active{
     color:forestgreen;
@@ -650,7 +652,7 @@ StripeElement {
   background-color: #fefde5 !important;
 }
 .guest{
-    margin-top: 3rem;
+    margin-top: 2rem;
     margin-left:2rem;
     img{
         border-radius: 50%;

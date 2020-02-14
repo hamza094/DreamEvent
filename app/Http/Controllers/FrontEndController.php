@@ -66,6 +66,11 @@ class FrontEndController extends Controller
         $last4 =$charge->source->last4;
         $brand=$charge->source->brand;
         $customerId=$charge->source->customer;
+    
+    //generate random number for invoice
+    $num=mt_rand(1000, 9999);
+    $num2=mt_rand(1000, 9999);
+    $real_num=$num."-".$num2;    
         
     //handle purchase ticket on server side    
     $buy=PurchaseTicket::create([
@@ -73,6 +78,7 @@ class FrontEndController extends Controller
           'user_id'=>auth()->user()->id,
            'event_id'=>$event->id,  
           'qty'=>request('selectedqty'),
+          'receipt'=>$real_num
      ]);
         $event->update(
             [
@@ -82,11 +88,7 @@ class FrontEndController extends Controller
         );
         
         
-        //generate random number for invoice
-        $num=mt_rand(1000, 9999);
-    $num2=mt_rand(1000, 9999);
-    $real_num=$num."-".$num2;
-        
+
         $data=array(
         'subject'=>'Event Ticket Receipt',    
         'name'=>auth()->user()->name,

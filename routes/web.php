@@ -34,8 +34,13 @@ Route::resource('api/topics','TopicsController')->middleware('admin');
 Route::get("/api/allevents",'EventsController@allevents')->middleware('admin');
 Route::get("/api/eventscount",'EventsController@eventscount')->middleware('admin');
 Route::get('/api/findAllEvents',"EventsController@admineventsearch")->middleware('admin');
-
-
+Route::get('/api/tickets',"TicketController@index")->middleware('admin');
+Route::get('/api/ticketscount',"TicketController@ticketcount")->middleware('admin');
+Route::get('/api/ticketsdelivered',"TicketController@delivered")->middleware('admin');
+Route::delete('/api/ticket/{ticket}',"TicketController@destroy")->middleware('admin');
+Route::get('/api/findtickets',"TicketController@search")->middleware('admin');
+Route::post('/api/ticket/deliver/{ticket}',"TicketController@deliver")->middleware('admin');
+Route::get('/ticket/show',"TicketController@showme");
 
 //Route::post('/event-create','EventsController@store');
 
