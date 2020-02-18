@@ -11,7 +11,7 @@ class SpamTest extends TestCase
 {
     
     /**
-     * A basic feature test example.
+     * A spam feature test.
      *
      * @return void
      */

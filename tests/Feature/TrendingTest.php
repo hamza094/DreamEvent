@@ -12,6 +12,12 @@ class TrendingTest extends TestCase
 {
     use RefreshDatabase;
     
+    /**
+     * Trending Events Feature test.
+     *
+     * @return void
+     */
+    
       public function setUp(): void
     {
         parent::setUp();

@@ -12,6 +12,12 @@ class AdminTest extends TestCase
 {
     use RefreshDatabase;
     
+    /**
+     * An  Admin Access test.
+     *
+     * @return void
+     */
+    
      /** @test */
     public function admin_view_all_events()
     {

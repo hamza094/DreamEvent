@@ -13,7 +13,7 @@ class UsersTest extends TestCase
 {
         use RefreshDatabase;
     /**
-     * A basic user test example.
+     * User Feature test.
      *
      * @return void
      */
@@ -97,12 +97,6 @@ class UsersTest extends TestCase
     $user=create('App\User');
     $user->avatar_path='http://localhost/storage/avatars/me.jpg';
     $this->assertEquals(asset('storage/avatars/me.jpg'),$user->avatar_path);
-    }
-    
-    
-    public function guest_user_subscribe_newsleter(){
-       $this->post('/subscribe',['subscriber' => 'hamza_pisces@live.com'])
-           ->assertStatus(200);
     }
     
     /** @test */
