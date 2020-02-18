@@ -9,8 +9,9 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class NotificationsTest extends TestCase
 {
     use RefreshDatabase;
+    
     /**
-     * A basic feature test example.
+     * A Notification feature test.
      *
      * @return void
      */

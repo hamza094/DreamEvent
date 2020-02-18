@@ -10,6 +10,12 @@ class ReplyTest extends TestCase
 {
     use RefreshDatabase;
     
+     /**
+     * A Discussion feature test.
+     *
+     * @return void
+     */
+    
       public function setup(): void
       {
         parent::setUp();

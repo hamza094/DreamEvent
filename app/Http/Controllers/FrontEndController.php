@@ -30,6 +30,8 @@ class FrontEndController extends Controller
     public function index(Trending $trending){
           $events=Event::orderBy('created_at','desc')->paginate(8);
         $topics=Topic::all();
+        $subscriber=Newsletter::getMembers();
+        $subscriber_count=$subscriber['total_items'];
 //Redis::del('high_events');
          return view('welcome', [
             'events'=>$events,

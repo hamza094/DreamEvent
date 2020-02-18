@@ -19,9 +19,9 @@ class EventTest extends TestCase
     
        /** @test */
     public function a_event_can_make_a_string_path(){
-        $thread=create('App\Event');
+        $event=create('App\Event');
         $this->assertEquals(
-            "/events/{$thread->slug}",$thread->path());
+            "/events/{$event->slug}",$event->path());
     }
     
     
@@ -30,6 +30,13 @@ class EventTest extends TestCase
     {
         $event=create('App\Event');
         $this->assertInstanceOf('App\User',$event->user);
+    }
+    
+     /** @test */
+    public function it_belongs_to_a_project()
+    {
+        $event = create('App\Event');
+        $this->assertInstanceOf('App\Topic', $event->topic);
     }
     
       /** @test */

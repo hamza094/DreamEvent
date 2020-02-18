@@ -9,8 +9,9 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class TopicsTest extends TestCase
 {
     use RefreshDatabase;
+    
     /**
-     * A basic feature test example.
+     * Topic feature test.
      *
      * @return void
      */
@@ -86,11 +87,5 @@ class TopicsTest extends TestCase
         $Updatedcreated='Cap';
         $this->withoutExceptionHandling()->patch("/api/topics/{$topic->id}",['name'=>$Updatedname,'created_by'=>$Updatedcreated]);
         $this->assertDatabaseHas('topics',['id'=>$topic->id,'name'=>$Updatedname]);
-    }
-     
-    /** @test */
-    public function guest_can_topic_related_events(){
-        $topic=create('App\Topic');
-        $this->withoutExceptionHandling()->get("topic/{$topic->slug}")->assertSee($topic->name);
     }
 }

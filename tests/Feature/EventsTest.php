@@ -11,6 +11,12 @@ class EventsTest extends TestCase
 {
     use RefreshDatabase;
     
+    /**
+     * An  Event Feature test.
+     *
+     * @return void
+     */
+    
         public function setUp(): void
     {
         parent::setUp();
@@ -70,12 +76,6 @@ class EventsTest extends TestCase
         unset(app()[Recaptcha::class]);
         $this->post('/events',['g-recaptcha-response'=>'test'])
         ->assertSessionHasErrors('g-recaptcha-response');
-    }
-    
-    /** @test */
-    public function a_guest_can_visit_welcome_page()
-    {
-        $this->get('/')->assertStatus(200);
     }
     
     /** @test */
@@ -188,13 +188,6 @@ class EventsTest extends TestCase
         'price'=>45,
         'qty'=>2,
         ])->assertSessionHasErrors('desc');
-    }
-    
-    /** @test */
-    public function guest_can_see_event_calender(){
-        $event=create('App\Event',['strtdt'=>\Carbon\Carbon::now()->toDateTimeString()]);
-        $this->get('/fullcalender')
-            ->assertSee($event->name);
     }
 
 }
