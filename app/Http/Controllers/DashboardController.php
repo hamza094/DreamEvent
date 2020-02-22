@@ -13,11 +13,14 @@ class DashboardController extends Controller
     
 public function index(Request $request){
 $counters = [];
-if($request->filled('user')) {
-   return DateFunctions::userRation();
-   
-    }elseif($request->filled('event')){
-        return Event::all()->count();
+if($request->filled('userRatio')){
+    
+   return DateFunctions::averageRatio('App\User');
+    
+}elseif($request->filled('monthUser')){
+        return DateFunctions::byThisMonth('App\User');
+    }elseif($request->filled('users')){
+      return User::all()->count();
     }
         return response()->json($counters);
     }

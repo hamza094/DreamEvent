@@ -4,29 +4,37 @@ namespace App\Functions;
 use Carbon\Carbon;
 use App\User;
 use App\Event;
-
 class DateFunctions{
     
-public static function userRation(){
-/**Get last user from last mont*/           
-$fromDate =  self::getUserStartMonth();
-$tillDate = self::getUserEndMonth();
-$lastmonth=User::whereBetween('created_at',[$fromDate,$tillDate])->count();
+public static function averageRatio($data){
+
+$lastmonth=self::byLastMonth($data);
             
 /**Get this month user*/            
- $thismonth=User::whereYear('created_at', Carbon::now()->year)
-->whereMonth('created_at',Carbon::now()->month)->count();
+ $thismonth=self::byThisMonth($data);
             
 /** Calcaulate users avaerage ratio */            
 return self::calculateRatio($lastmonth,$thismonth);
 }
+    
+public static function byLastMonth($data){
+    $fromDate =  self::getStartMonth();
+$tillDate = self::getEndMonth();
+return $data::whereBetween('created_at',[$fromDate,$tillDate])->count();
+}    
+    
+public static function byThisMonth($data){
+return $data::whereYear('created_at', Carbon::now()->year)
+->whereMonth('created_at',Carbon::now()->month)->count();
+}    
+    
     /**Get last user from Start Date*/ 
-     private static function getUserStartMonth(){
+     private static function getStartMonth(){
        return Carbon::now()->subMonth()->startOfMonth()->toDateString();
     }
      
   /**Get last user from End Date*/     
-    private static function getUserEndMonth(){
+    private static function getEndMonth(){
        return Carbon::now()->subMonth()->endOfMonth()->toDateString();
           
     }

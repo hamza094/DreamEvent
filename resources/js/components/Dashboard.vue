@@ -10,26 +10,17 @@
                          <span class="info-right_name">Users</span>
 
                            <br>
-                           <span class="info-right_count" v-if="counts > 0">{{counts}}% inc</span>
-                            <span class="info-right_count" v-if="counts < 0">{{counts}}% dec</span>
-
+                            <span class="info-right_count">{{this.usersCount}}</span>
+                            <br>
+                            <span class="info-right_name">This Month</span>
+                           <span class="float-right"><b>{{userMonth}}</b>
+                           <span class="flaot-rght ml-2 active" v-if="userRatio > 0">{{userRatio}}% <i class="fas fa-arrow-up"></i></span>
+                        <span class="flaot-rght ml-2" v-if="userRatio < 0">{{userRatio}}% </span>
+                          </span>
                       </div>
                      <div class="col-sm-3 info-left">
                          <i class="fas fa-users-cog cog info-left_icon"></i>
                      </div>
-                   </div>
-                </div>
-                     <div class="col-md-3 text-center col-sm-6">
-                   <div class="row info-row">
-                       <div class="col-sm-9 info-right">
-                           <span class="info-right_name">Topics</span>
-                           <br>
-                           <span class="info-right_count">2340</span>
-                        </div>
-                     <div class="col-sm-3 info-left">
-                         <i class="fas fa-globe-europe globe info-left_icon"></i>
-                     </div>
-                     <p  class="info-left_origin"><span><i class="far fa-clock"></i> created</span><span> 7 days ago</span></p>
                    </div>
                 </div>
                     <div class="col-md-3 text-center col-sm-6">
@@ -40,12 +31,25 @@
                            <span class="info-right_count">4400</span>
                         </div>
                      <div class="col-sm-3 info-left">
-                         <i class="far fa-handshake shake info-left_icon"></i>
+                         <i class="fas fa-paste globe info-left_icon"></i>
                      </div>
                      <p  class="info-left_origin"><span><i class="far fa-clock"></i> created</span><span> 3 days ago</span></p>
                    </div>
                 </div>
-                    <div class="col-md-3 text-center col-sm-6">
+                     <div class="col-md-3 text-center col-sm-6">
+                   <div class="row info-row">
+                       <div class="col-sm-9 info-right">
+                           <span class="info-right_name">Topics</span>
+                           <br>
+                           <span class="info-right_count">2340</span>
+                        </div>
+                     <div class="col-sm-3 info-left">
+                         <i class="fas fa-globe-europe shake info-left_icon"></i>
+                     </div>
+                     <p  class="info-left_origin"><span><i class="far fa-clock"></i> created</span><span> 7 days ago</span></p>
+                   </div>
+                </div>
+                      <div class="col-md-3 text-center col-sm-6">
                    <div class="row info-row">
                        <div class="col-sm-9 info-right">
                            <span class="info-right_name">Tickets</span>
@@ -72,16 +76,23 @@
     export default {
         data(){
         return{
-        counts:0,  
+        userRatio:0,
+        usersCount:0,
+        userMonth:0    
     }
     },
         methods:{
-            /*CountUsers(){
-                console.log(this.counts);
-            this.value = this.counts+5;
-            },*/
-            CountEvents(){
-                
+            userCount(){
+                axios.get('/api/dashboard?users=true').
+            then(({data})=>(this.usersCount=data));
+            },
+            UsersRatio(){
+                axios.get('/api/dashboard?userRatio=true').
+            then(({data})=>(this.userRatio=data));
+            },
+            UserMonth(){
+                axios.get('/api/dashboard?monthUser=true').
+            then(({data})=>(this.userMonth=data));
             },
             CountTopics(){
                 
@@ -90,8 +101,10 @@
                 
             }
         },
-        mounted(){
-        axios.get('/api/dashboard?user=true').then(({data})=>(this.counts=data));
+        created(){
+          this.UsersRatio();
+          this.UserMonth();
+          this.userCount();
         },
        
     }

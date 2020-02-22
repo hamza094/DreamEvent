@@ -2163,28 +2163,50 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      counts: 0
+      userRatio: 0,
+      usersCount: 0,
+      userMonth: 0
     };
   },
   methods: {
-    /*CountUsers(){
-        console.log(this.counts);
-    this.value = this.counts+5;
-    },*/
-    CountEvents: function CountEvents() {},
+    userCount: function userCount() {
+      var _this = this;
+
+      axios.get('/api/dashboard?users=true').then(function (_ref) {
+        var data = _ref.data;
+        return _this.usersCount = data;
+      });
+    },
+    UsersRatio: function UsersRatio() {
+      var _this2 = this;
+
+      axios.get('/api/dashboard?userRatio=true').then(function (_ref2) {
+        var data = _ref2.data;
+        return _this2.userRatio = data;
+      });
+    },
+    UserMonth: function UserMonth() {
+      var _this3 = this;
+
+      axios.get('/api/dashboard?monthUser=true').then(function (_ref3) {
+        var data = _ref3.data;
+        return _this3.userMonth = data;
+      });
+    },
     CountTopics: function CountTopics() {},
     CountTicket: function CountTicket() {}
   },
-  mounted: function mounted() {
-    var _this = this;
-
-    axios.get('/api/dashboard?user=true').then(function (_ref) {
-      var data = _ref.data;
-      return _this.counts = data;
-    });
+  created: function created() {
+    this.UsersRatio();
+    this.UserMonth();
+    this.userCount();
   }
 });
 
@@ -61882,17 +61904,32 @@ var render = function() {
                   _vm._v(" "),
                   _c("br"),
                   _vm._v(" "),
-                  _vm.counts > 0
-                    ? _c("span", { staticClass: "info-right_count" }, [
-                        _vm._v(_vm._s(_vm.counts) + "% inc")
-                      ])
-                    : _vm._e(),
+                  _c("span", { staticClass: "info-right_count" }, [
+                    _vm._v(_vm._s(this.usersCount))
+                  ]),
                   _vm._v(" "),
-                  _vm.counts < 0
-                    ? _c("span", { staticClass: "info-right_count" }, [
-                        _vm._v(_vm._s(_vm.counts) + "% dec")
-                      ])
-                    : _vm._e()
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "info-right_name" }, [
+                    _vm._v("This Month")
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "float-right" }, [
+                    _c("b", [_vm._v(_vm._s(_vm.userMonth))]),
+                    _vm._v(" "),
+                    _vm.userRatio > 0
+                      ? _c("span", { staticClass: "flaot-rght ml-2 active" }, [
+                          _vm._v(_vm._s(_vm.userRatio) + "% "),
+                          _c("i", { staticClass: "fas fa-arrow-up" })
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.userRatio < 0
+                      ? _c("span", { staticClass: "flaot-rght ml-2" }, [
+                          _vm._v(_vm._s(_vm.userRatio) + "% ")
+                        ])
+                      : _vm._e()
+                  ])
                 ]),
                 _vm._v(" "),
                 _vm._m(0)
@@ -61939,15 +61976,15 @@ var staticRenderFns = [
     return _c("div", { staticClass: "col-md-3 text-center col-sm-6" }, [
       _c("div", { staticClass: "row info-row" }, [
         _c("div", { staticClass: "col-sm-9 info-right" }, [
-          _c("span", { staticClass: "info-right_name" }, [_vm._v("Topics")]),
+          _c("span", { staticClass: "info-right_name" }, [_vm._v("Events")]),
           _vm._v(" "),
           _c("br"),
           _vm._v(" "),
-          _c("span", { staticClass: "info-right_count" }, [_vm._v("2340")])
+          _c("span", { staticClass: "info-right_count" }, [_vm._v("4400")])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-sm-3 info-left" }, [
-          _c("i", { staticClass: "fas fa-globe-europe globe info-left_icon" })
+          _c("i", { staticClass: "fas fa-paste globe info-left_icon" })
         ]),
         _vm._v(" "),
         _c("p", { staticClass: "info-left_origin" }, [
@@ -61955,7 +61992,7 @@ var staticRenderFns = [
             _c("i", { staticClass: "far fa-clock" }),
             _vm._v(" created")
           ]),
-          _c("span", [_vm._v(" 7 days ago")])
+          _c("span", [_vm._v(" 3 days ago")])
         ])
       ])
     ])
@@ -61967,15 +62004,15 @@ var staticRenderFns = [
     return _c("div", { staticClass: "col-md-3 text-center col-sm-6" }, [
       _c("div", { staticClass: "row info-row" }, [
         _c("div", { staticClass: "col-sm-9 info-right" }, [
-          _c("span", { staticClass: "info-right_name" }, [_vm._v("Events")]),
+          _c("span", { staticClass: "info-right_name" }, [_vm._v("Topics")]),
           _vm._v(" "),
           _c("br"),
           _vm._v(" "),
-          _c("span", { staticClass: "info-right_count" }, [_vm._v("4400")])
+          _c("span", { staticClass: "info-right_count" }, [_vm._v("2340")])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-sm-3 info-left" }, [
-          _c("i", { staticClass: "far fa-handshake shake info-left_icon" })
+          _c("i", { staticClass: "fas fa-globe-europe shake info-left_icon" })
         ]),
         _vm._v(" "),
         _c("p", { staticClass: "info-left_origin" }, [
@@ -61983,7 +62020,7 @@ var staticRenderFns = [
             _c("i", { staticClass: "far fa-clock" }),
             _vm._v(" created")
           ]),
-          _c("span", [_vm._v(" 3 days ago")])
+          _c("span", [_vm._v(" 7 days ago")])
         ])
       ])
     ])
@@ -64667,7 +64704,7 @@ var render = function() {
           _c("p", { staticClass: "Dashboard-heading" }, [_vm._v("Users")]),
           _vm._v(" "),
           _c("p", { staticClass: "Dashboard-heading" }, [
-            _vm._v("Total Users: " + _vm._s(_vm.users.data.length))
+            _vm._v("Total Users:")
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group row" }, [
