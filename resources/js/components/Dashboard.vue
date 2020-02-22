@@ -6,14 +6,17 @@
                 <div class="col-md-3 text-center col-sm-6">
                    <div class="row info-row">
                        <div class="col-sm-9 info-right">
-                           <span class="info-right_name">Users</span>
+                           <span class="info-right_name">Total</span>
+                         <span class="info-right_name">Users</span>
+
                            <br>
-                           <span class="info-right_count">3580</span>
+                           <span class="info-right_count" v-if="counts > 0">{{counts}}% inc</span>
+                            <span class="info-right_count" v-if="counts < 0">{{counts}}% dec</span>
+
                       </div>
                      <div class="col-sm-3 info-left">
                          <i class="fas fa-users-cog cog info-left_icon"></i>
                      </div>
-                     <p  class="info-left_origin"><span><i class="far fa-clock"></i> created</span><span> 4 days ago</span></p>
                    </div>
                 </div>
                      <div class="col-md-3 text-center col-sm-6">
@@ -45,7 +48,7 @@
                     <div class="col-md-3 text-center col-sm-6">
                    <div class="row info-row">
                        <div class="col-sm-9 info-right">
-                           <span class="info-right_name">Others</span>
+                           <span class="info-right_name">Tickets</span>
                            <br>
                            <span class="info-right_count">1234</span>
                    </div>
@@ -67,9 +70,30 @@
 
 <script>
     export default {
-        mounted() {
-            console.log('Component mounted.')
-        }
+        data(){
+        return{
+        counts:0,  
+    }
+    },
+        methods:{
+            /*CountUsers(){
+                console.log(this.counts);
+            this.value = this.counts+5;
+            },*/
+            CountEvents(){
+                
+            },
+            CountTopics(){
+                
+            },
+            CountTicket(){
+                
+            }
+        },
+        mounted(){
+        axios.get('/api/dashboard?user=true').then(({data})=>(this.counts=data));
+        },
+       
     }
 </script>
 

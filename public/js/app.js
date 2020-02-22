@@ -2160,9 +2160,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      counts: 0
+    };
+  },
+  methods: {
+    /*CountUsers(){
+        console.log(this.counts);
+    this.value = this.counts+5;
+    },*/
+    CountEvents: function CountEvents() {},
+    CountTopics: function CountTopics() {},
+    CountTicket: function CountTicket() {}
+  },
   mounted: function mounted() {
-    console.log('Component mounted.');
+    var _this = this;
+
+    axios.get('/api/dashboard?user=true').then(function (_ref) {
+      var data = _ref.data;
+      return _this.counts = data;
+    });
   }
 });
 
@@ -61845,7 +61867,45 @@ var render = function() {
     ? _c("div", [
         _c("p", { staticClass: "Dashboard-heading" }, [_vm._v("DashBoard")]),
         _vm._v(" "),
-        _vm._m(0),
+        _c("div", { staticClass: "info" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-3 text-center col-sm-6" }, [
+              _c("div", { staticClass: "row info-row" }, [
+                _c("div", { staticClass: "col-sm-9 info-right" }, [
+                  _c("span", { staticClass: "info-right_name" }, [
+                    _vm._v("Total")
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "info-right_name" }, [
+                    _vm._v("Users")
+                  ]),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _vm.counts > 0
+                    ? _c("span", { staticClass: "info-right_count" }, [
+                        _vm._v(_vm._s(_vm.counts) + "% inc")
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.counts < 0
+                    ? _c("span", { staticClass: "info-right_count" }, [
+                        _vm._v(_vm._s(_vm.counts) + "% dec")
+                      ])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _vm._m(0)
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._m(1),
+            _vm._v(" "),
+            _vm._m(2),
+            _vm._v(" "),
+            _vm._m(3)
+          ])
+        ]),
         _vm._v(" "),
         _c("p", [
           _vm._v(
@@ -61868,112 +61928,90 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "info" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-3 text-center col-sm-6" }, [
-          _c("div", { staticClass: "row info-row" }, [
-            _c("div", { staticClass: "col-sm-9 info-right" }, [
-              _c("span", { staticClass: "info-right_name" }, [_vm._v("Users")]),
-              _vm._v(" "),
-              _c("br"),
-              _vm._v(" "),
-              _c("span", { staticClass: "info-right_count" }, [_vm._v("3580")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-3 info-left" }, [
-              _c("i", { staticClass: "fas fa-users-cog cog info-left_icon" })
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "info-left_origin" }, [
-              _c("span", [
-                _c("i", { staticClass: "far fa-clock" }),
-                _vm._v(" created")
-              ]),
-              _c("span", [_vm._v(" 4 days ago")])
-            ])
-          ])
+    return _c("div", { staticClass: "col-sm-3 info-left" }, [
+      _c("i", { staticClass: "fas fa-users-cog cog info-left_icon" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-3 text-center col-sm-6" }, [
+      _c("div", { staticClass: "row info-row" }, [
+        _c("div", { staticClass: "col-sm-9 info-right" }, [
+          _c("span", { staticClass: "info-right_name" }, [_vm._v("Topics")]),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("span", { staticClass: "info-right_count" }, [_vm._v("2340")])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-3 text-center col-sm-6" }, [
-          _c("div", { staticClass: "row info-row" }, [
-            _c("div", { staticClass: "col-sm-9 info-right" }, [
-              _c("span", { staticClass: "info-right_name" }, [
-                _vm._v("Topics")
-              ]),
-              _vm._v(" "),
-              _c("br"),
-              _vm._v(" "),
-              _c("span", { staticClass: "info-right_count" }, [_vm._v("2340")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-3 info-left" }, [
-              _c("i", {
-                staticClass: "fas fa-globe-europe globe info-left_icon"
-              })
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "info-left_origin" }, [
-              _c("span", [
-                _c("i", { staticClass: "far fa-clock" }),
-                _vm._v(" created")
-              ]),
-              _c("span", [_vm._v(" 7 days ago")])
-            ])
-          ])
+        _c("div", { staticClass: "col-sm-3 info-left" }, [
+          _c("i", { staticClass: "fas fa-globe-europe globe info-left_icon" })
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-3 text-center col-sm-6" }, [
-          _c("div", { staticClass: "row info-row" }, [
-            _c("div", { staticClass: "col-sm-9 info-right" }, [
-              _c("span", { staticClass: "info-right_name" }, [
-                _vm._v("Events")
-              ]),
-              _vm._v(" "),
-              _c("br"),
-              _vm._v(" "),
-              _c("span", { staticClass: "info-right_count" }, [_vm._v("4400")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-3 info-left" }, [
-              _c("i", { staticClass: "far fa-handshake shake info-left_icon" })
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "info-left_origin" }, [
-              _c("span", [
-                _c("i", { staticClass: "far fa-clock" }),
-                _vm._v(" created")
-              ]),
-              _c("span", [_vm._v(" 3 days ago")])
-            ])
-          ])
+        _c("p", { staticClass: "info-left_origin" }, [
+          _c("span", [
+            _c("i", { staticClass: "far fa-clock" }),
+            _vm._v(" created")
+          ]),
+          _c("span", [_vm._v(" 7 days ago")])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-3 text-center col-sm-6" }, [
+      _c("div", { staticClass: "row info-row" }, [
+        _c("div", { staticClass: "col-sm-9 info-right" }, [
+          _c("span", { staticClass: "info-right_name" }, [_vm._v("Events")]),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("span", { staticClass: "info-right_count" }, [_vm._v("4400")])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-3 text-center col-sm-6" }, [
-          _c("div", { staticClass: "row info-row" }, [
-            _c("div", { staticClass: "col-sm-9 info-right" }, [
-              _c("span", { staticClass: "info-right_name" }, [
-                _vm._v("Others")
-              ]),
-              _vm._v(" "),
-              _c("br"),
-              _vm._v(" "),
-              _c("span", { staticClass: "info-right_count" }, [_vm._v("1234")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-3 info-left" }, [
-              _c("i", {
-                staticClass: "fab fa-angrycreative other info-left_icon"
-              })
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "info-left_origin" }, [
-              _c("span", [
-                _c("i", { staticClass: "far fa-clock" }),
-                _vm._v(" created")
-              ]),
-              _c("span", [_vm._v(" 5 days ago")])
-            ])
-          ])
+        _c("div", { staticClass: "col-sm-3 info-left" }, [
+          _c("i", { staticClass: "far fa-handshake shake info-left_icon" })
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "info-left_origin" }, [
+          _c("span", [
+            _c("i", { staticClass: "far fa-clock" }),
+            _vm._v(" created")
+          ]),
+          _c("span", [_vm._v(" 3 days ago")])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-3 text-center col-sm-6" }, [
+      _c("div", { staticClass: "row info-row" }, [
+        _c("div", { staticClass: "col-sm-9 info-right" }, [
+          _c("span", { staticClass: "info-right_name" }, [_vm._v("Tickets")]),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("span", { staticClass: "info-right_count" }, [_vm._v("1234")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-3 info-left" }, [
+          _c("i", { staticClass: "fab fa-angrycreative other info-left_icon" })
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "info-left_origin" }, [
+          _c("span", [
+            _c("i", { staticClass: "far fa-clock" }),
+            _vm._v(" created")
+          ]),
+          _c("span", [_vm._v(" 5 days ago")])
         ])
       ])
     ])

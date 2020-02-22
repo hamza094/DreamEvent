@@ -40,7 +40,7 @@ Route::get('/api/ticketsdelivered',"TicketController@delivered")->middleware('ad
 Route::delete('/api/ticket/{ticket}',"TicketController@destroy")->middleware('admin');
 Route::get('/api/findtickets',"TicketController@search")->middleware('admin');
 Route::post('/api/ticket/deliver/{ticket}',"TicketController@deliver")->middleware('admin');
-Route::get('/ticket/show',"TicketController@showme");
+Route::get('/api/dashboard',"DashboardController@index")->middleware('admin');
 
 //Route::post('/event-create','EventsController@store');
 
