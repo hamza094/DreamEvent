@@ -19,10 +19,7 @@ class DreamTest extends TestCase
      */
     
     
-    public function a_guest_can_visit_welcome_page()
-    {
-        $this->get('/')->assertStatus(200);
-    }
+
     
     /** @test */
     public function guest_can_see_event_calender(){
