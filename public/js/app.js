@@ -2167,12 +2167,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       userRatio: 0,
       usersCount: 0,
-      userMonth: 0
+      userMonth: 0,
+      eventsRatio: 0,
+      eventsCount: 0,
+      eventsMonth: 0,
+      topicsCount: 0,
+      subscribeCount: 0,
+      ticketsCount: 0,
+      ticketsMonth: 0,
+      ticketsRatio: 0
     };
   },
   methods: {
@@ -2200,13 +2222,83 @@ __webpack_require__.r(__webpack_exports__);
         return _this3.userMonth = data;
       });
     },
-    CountTopics: function CountTopics() {},
-    CountTicket: function CountTicket() {}
+    EventRatio: function EventRatio() {
+      var _this4 = this;
+
+      axios.get('/api/dashboard?eventRatio=true').then(function (_ref4) {
+        var data = _ref4.data;
+        return _this4.eventsRatio = data;
+      });
+    },
+    EventCount: function EventCount() {
+      var _this5 = this;
+
+      axios.get('/api/dashboard?events=true').then(function (_ref5) {
+        var data = _ref5.data;
+        return _this5.eventsCount = data;
+      });
+    },
+    EventMonth: function EventMonth() {
+      var _this6 = this;
+
+      axios.get('/api/dashboard?monthEvent=true').then(function (_ref6) {
+        var data = _ref6.data;
+        return _this6.eventsMonth = data;
+      });
+    },
+    TopicCount: function TopicCount() {
+      var _this7 = this;
+
+      axios.get('/api/dashboard?topics=true').then(function (_ref7) {
+        var data = _ref7.data;
+        return _this7.topicsCount = data;
+      });
+    },
+    SubscibeCount: function SubscibeCount() {
+      var _this8 = this;
+
+      axios.get('/api/dashboard?subscribe=true').then(function (_ref8) {
+        var data = _ref8.data;
+        return _this8.subscribeCount = data;
+      });
+    },
+    TicketCount: function TicketCount() {
+      var _this9 = this;
+
+      axios.get('/api/dashboard?tickets=true').then(function (_ref9) {
+        var data = _ref9.data;
+        return _this9.ticketsCount = data;
+      });
+    },
+    TicketMonth: function TicketMonth() {
+      var _this10 = this;
+
+      axios.get('/api/dashboard?ticketMonth=true').then(function (_ref10) {
+        var data = _ref10.data;
+        return _this10.ticketsMonth = data;
+      });
+    },
+    TicketRatio: function TicketRatio() {
+      var _this11 = this;
+
+      axios.get('/api/dashboard?ticketRatio=true').then(function (_ref11) {
+        var data = _ref11.data;
+        return _this11.ticketsRatio = data;
+      });
+    }
   },
   created: function created() {
     this.UsersRatio();
     this.UserMonth();
     this.userCount();
+    this.EventRatio();
+    this.EventMonth();
+    this.EventCount();
+    this.TopicCount();
+    this.SubscibeCount();
+    this.TicketCount();
+    this.TicketMonth();
+    this.TicketRatio();
   }
 });
 
@@ -61936,11 +62028,121 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm._m(1),
+            _c("div", { staticClass: "col-md-3 text-center col-sm-6" }, [
+              _c("div", { staticClass: "row info-row" }, [
+                _c("div", { staticClass: "col-sm-9 info-right" }, [
+                  _c("span", { staticClass: "info-right_name" }, [
+                    _vm._v("Total")
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "info-right_name" }, [
+                    _vm._v("Events")
+                  ]),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "info-right_count" }, [
+                    _vm._v(_vm._s(_vm.eventsCount))
+                  ]),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "info-right_name" }, [
+                    _vm._v("This Month")
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "float-right" }, [
+                    _c("b", [_vm._v(_vm._s(_vm.eventsMonth))]),
+                    _vm._v(" "),
+                    _vm.eventsRatio > 0
+                      ? _c("span", { staticClass: "flaot-rght ml-2 active" }, [
+                          _vm._v(_vm._s(_vm.eventsRatio) + "% "),
+                          _c("i", { staticClass: "fas fa-arrow-up" })
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.eventsRatio < 0
+                      ? _c("span", { staticClass: "flaot-rght ml-2" }, [
+                          _vm._v(_vm._s(_vm.eventsRatio) + "% ")
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._m(1)
+              ])
+            ]),
             _vm._v(" "),
-            _vm._m(2),
+            _c("div", { staticClass: "col-md-3 text-center col-sm-6" }, [
+              _c("div", { staticClass: "row info-row" }, [
+                _c("div", { staticClass: "col-sm-9 info-right" }, [
+                  _c("span", { staticClass: "info-right_name" }, [
+                    _vm._v("Topics")
+                  ]),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "info-right_count" }, [
+                    _vm._v(_vm._s(_vm.topicsCount))
+                  ]),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "info-right_name" }, [
+                    _vm._v("Subscription")
+                  ]),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("span", {}, [
+                    _c("b", [_vm._v(_vm._s(_vm.subscribeCount))])
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._m(2)
+              ])
+            ]),
             _vm._v(" "),
-            _vm._m(3)
+            _c("div", { staticClass: "col-md-3 text-center col-sm-6" }, [
+              _c("div", { staticClass: "row info-row" }, [
+                _c("div", { staticClass: "col-sm-9 info-right" }, [
+                  _c("span", { staticClass: "info-right_name" }, [
+                    _vm._v("Tickets Sold")
+                  ]),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "info-right_count" }, [
+                    _vm._v(_vm._s(_vm.ticketsCount))
+                  ]),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "info-right_name" }, [
+                    _vm._v("This Month")
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "float-right" }, [
+                    _c("b", [_vm._v(_vm._s(_vm.ticketsMonth))]),
+                    _vm._v(" "),
+                    _vm.ticketsRatio > 0
+                      ? _c("span", { staticClass: "flaot-rght ml-2 active" }, [
+                          _vm._v(_vm._s(_vm.ticketsRatio) + "% "),
+                          _c("i", { staticClass: "fas fa-arrow-up" })
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.ticketsRatio < 0
+                      ? _c("span", { staticClass: "flaot-rght ml-2" }, [
+                          _vm._v(_vm._s(_vm.ticketsRatio) + "% ")
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._m(3)
+              ])
+            ])
           ])
         ]),
         _vm._v(" "),
@@ -61973,84 +62175,24 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-3 text-center col-sm-6" }, [
-      _c("div", { staticClass: "row info-row" }, [
-        _c("div", { staticClass: "col-sm-9 info-right" }, [
-          _c("span", { staticClass: "info-right_name" }, [_vm._v("Events")]),
-          _vm._v(" "),
-          _c("br"),
-          _vm._v(" "),
-          _c("span", { staticClass: "info-right_count" }, [_vm._v("4400")])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3 info-left" }, [
-          _c("i", { staticClass: "fas fa-paste globe info-left_icon" })
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "info-left_origin" }, [
-          _c("span", [
-            _c("i", { staticClass: "far fa-clock" }),
-            _vm._v(" created")
-          ]),
-          _c("span", [_vm._v(" 3 days ago")])
-        ])
-      ])
+    return _c("div", { staticClass: "col-sm-3 info-left" }, [
+      _c("i", { staticClass: "fas fa-paste globe info-left_icon" })
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-3 text-center col-sm-6" }, [
-      _c("div", { staticClass: "row info-row" }, [
-        _c("div", { staticClass: "col-sm-9 info-right" }, [
-          _c("span", { staticClass: "info-right_name" }, [_vm._v("Topics")]),
-          _vm._v(" "),
-          _c("br"),
-          _vm._v(" "),
-          _c("span", { staticClass: "info-right_count" }, [_vm._v("2340")])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3 info-left" }, [
-          _c("i", { staticClass: "fas fa-globe-europe shake info-left_icon" })
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "info-left_origin" }, [
-          _c("span", [
-            _c("i", { staticClass: "far fa-clock" }),
-            _vm._v(" created")
-          ]),
-          _c("span", [_vm._v(" 7 days ago")])
-        ])
-      ])
+    return _c("div", { staticClass: "col-sm-3 info-left" }, [
+      _c("i", { staticClass: "fas fa-yin-yang shake info-left_icon" })
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-3 text-center col-sm-6" }, [
-      _c("div", { staticClass: "row info-row" }, [
-        _c("div", { staticClass: "col-sm-9 info-right" }, [
-          _c("span", { staticClass: "info-right_name" }, [_vm._v("Tickets")]),
-          _vm._v(" "),
-          _c("br"),
-          _vm._v(" "),
-          _c("span", { staticClass: "info-right_count" }, [_vm._v("1234")])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3 info-left" }, [
-          _c("i", { staticClass: "fab fa-angrycreative other info-left_icon" })
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "info-left_origin" }, [
-          _c("span", [
-            _c("i", { staticClass: "far fa-clock" }),
-            _vm._v(" created")
-          ]),
-          _c("span", [_vm._v(" 5 days ago")])
-        ])
-      ])
+    return _c("div", { staticClass: "col-sm-3 info-left" }, [
+      _c("i", { staticClass: "fas fa-ticket-alt other info-left_icon" })
     ])
   }
 ]

@@ -26,14 +26,20 @@
                     <div class="col-md-3 text-center col-sm-6">
                    <div class="row info-row">
                        <div class="col-sm-9 info-right">
-                           <span class="info-right_name">Events</span>
+                        <span class="info-right_name">Total</span>
+                         <span class="info-right_name">Events</span>
                            <br>
-                           <span class="info-right_count">4400</span>
+                           <span class="info-right_count">{{eventsCount}}</span>
+                              <br>
+                            <span class="info-right_name">This Month</span>
+                           <span class="float-right"><b>{{eventsMonth}}</b>
+                           <span class="flaot-rght ml-2 active" v-if="eventsRatio > 0">{{eventsRatio}}% <i class="fas fa-arrow-up"></i></span>
+                        <span class="flaot-rght ml-2" v-if="eventsRatio < 0">{{eventsRatio}}% </span>
+                          </span>
                         </div>
                      <div class="col-sm-3 info-left">
                          <i class="fas fa-paste globe info-left_icon"></i>
                      </div>
-                     <p  class="info-left_origin"><span><i class="far fa-clock"></i> created</span><span> 3 days ago</span></p>
                    </div>
                 </div>
                      <div class="col-md-3 text-center col-sm-6">
@@ -41,25 +47,33 @@
                        <div class="col-sm-9 info-right">
                            <span class="info-right_name">Topics</span>
                            <br>
-                           <span class="info-right_count">2340</span>
+                           <span class="info-right_count">{{topicsCount}}</span>
+                              <br>
+                            <span class="info-right_name">Subscription</span>
+                            <br>
+                           <span class=""><b>{{subscribeCount}}</b></span>
                         </div>
                      <div class="col-sm-3 info-left">
-                         <i class="fas fa-globe-europe shake info-left_icon"></i>
+                         <i class="fas fa-yin-yang shake info-left_icon"></i>
                      </div>
-                     <p  class="info-left_origin"><span><i class="far fa-clock"></i> created</span><span> 7 days ago</span></p>
                    </div>
                 </div>
                       <div class="col-md-3 text-center col-sm-6">
                    <div class="row info-row">
                        <div class="col-sm-9 info-right">
-                           <span class="info-right_name">Tickets</span>
+                           <span class="info-right_name">Tickets Sold</span>
                            <br>
-                           <span class="info-right_count">1234</span>
+                           <span class="info-right_count">{{ticketsCount}}</span>
+                              <br>
+                            <span class="info-right_name">This Month</span>
+                           <span class="float-right"><b>{{ticketsMonth}}</b>
+                           <span class="flaot-rght ml-2 active" v-if="ticketsRatio > 0">{{ticketsRatio}}% <i class="fas fa-arrow-up"></i></span>
+                           <span class="flaot-rght ml-2" v-if="ticketsRatio < 0">{{ticketsRatio}}% </span>
+                           </span>
                    </div>
                      <div class="col-sm-3 info-left">
-                         <i class="fab fa-angrycreative other info-left_icon"></i>
+                         <i class="fas fa-ticket-alt other info-left_icon"></i>
                      </div>
-                       <p class="info-left_origin"><span> <i class="far fa-clock"></i> created</span><span> 5 days ago</span></p>
                 </div>
                 </div>
             </div>
@@ -78,7 +92,15 @@
         return{
         userRatio:0,
         usersCount:0,
-        userMonth:0    
+        userMonth:0,
+        eventsRatio:0,
+        eventsCount:0,
+        eventsMonth:0,
+        topicsCount:0,
+        subscribeCount:0,
+        ticketsCount:0,
+        ticketsMonth:0,
+        ticketsRatio:0    
     }
     },
         methods:{
@@ -94,17 +116,52 @@
                 axios.get('/api/dashboard?monthUser=true').
             then(({data})=>(this.userMonth=data));
             },
-            CountTopics(){
-                
+            EventRatio(){
+                axios.get('/api/dashboard?eventRatio=true').
+            then(({data})=>(this.eventsRatio=data));
             },
-            CountTicket(){
-                
+            EventCount(){
+                axios.get('/api/dashboard?events=true').
+            then(({data})=>(this.eventsCount=data));
+            },
+            EventMonth(){
+                    axios.get('/api/dashboard?monthEvent=true').
+            then(({data})=>(this.eventsMonth=data));
+            },
+            TopicCount(){
+                axios.get('/api/dashboard?topics=true').
+            then(({data})=>(this.topicsCount=data));
+            },
+            SubscibeCount(){
+                axios.get('/api/dashboard?subscribe=true').
+            then(({data})=>(this.subscribeCount=data));
+            },
+            TicketCount(){
+                axios.get('/api/dashboard?tickets=true').
+            then(({data})=>(this.ticketsCount=data));
+            },
+            TicketMonth(){
+                axios.get('/api/dashboard?ticketMonth=true').
+            then(({data})=>(this.ticketsMonth=data));
+            },
+            TicketRatio(){
+                axios.get('/api/dashboard?ticketRatio=true').
+            then(({data})=>(this.ticketsRatio=data));
             }
+            
         },
         created(){
           this.UsersRatio();
           this.UserMonth();
           this.userCount();
+          this.EventRatio();
+          this.EventMonth();
+          this.EventCount();
+          this.TopicCount();
+          this.SubscibeCount();
+          this.TicketCount(); 
+          this.TicketMonth();
+          this.TicketRatio();
         },
        
     }

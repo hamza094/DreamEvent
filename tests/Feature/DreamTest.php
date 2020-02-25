@@ -18,7 +18,7 @@ class DreamTest extends TestCase
      * @return void
      */
     
-    /** @test */
+    
     public function a_guest_can_visit_welcome_page()
     {
         $this->get('/')->assertStatus(200);
@@ -37,11 +37,6 @@ class DreamTest extends TestCase
         $event=create('App\Event',['topic_id'=>$topic->id]);
         $this->withoutExceptionHandling()->get("topic/{$topic->slug}")->assertSee($event->name);
     }
-    
-     
-    public function guest_user_subscribe_newsleter(){
-       $this->post('/subscribe',['subscriber' => 'hamza_pisces@live.com'])
-           ->assertStatus(200);
-    }
+
     
 }
