@@ -8,11 +8,16 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import VueResource from 'vue-resource';
+Vue.use(VueResource);
+
 window._= require("lodash");
 
 window.Fire = new Vue();
 
-import swal from 'sweetalert2'
+import swal from 'sweetalert2';
+
+import Chart from 'chart.js';
 
 window.swal=swal;
 

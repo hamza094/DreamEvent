@@ -15,7 +15,7 @@
                             <span class="info-right_name">This Month</span>
                            <span class="float-right"><b>{{userMonth}}</b>
                            <span class="flaot-rght ml-2 active" v-if="userRatio > 0">{{userRatio}}% <i class="fas fa-arrow-up"></i></span>
-                        <span class="flaot-rght ml-2" v-if="userRatio < 0">{{userRatio}}% </span>
+                        <span class="flaot-rght ml-2 shake" v-if="userRatio < 0">{{userRatio}}% <i class="fas fa-arrow-down"></i></span>
                           </span>
                       </div>
                      <div class="col-sm-3 info-left">
@@ -34,13 +34,31 @@
                             <span class="info-right_name">This Month</span>
                            <span class="float-right"><b>{{eventsMonth}}</b>
                            <span class="flaot-rght ml-2 active" v-if="eventsRatio > 0">{{eventsRatio}}% <i class="fas fa-arrow-up"></i></span>
-                        <span class="flaot-rght ml-2" v-if="eventsRatio < 0">{{eventsRatio}}% </span>
+                        <span class="flaot-rght ml-2 shake" v-if="eventsRatio < 0">{{eventsRatio}}% <i class="fas fa-arrow-down"></i></span>
                           </span>
                         </div>
                      <div class="col-sm-3 info-left">
                          <i class="fas fa-paste globe info-left_icon"></i>
                      </div>
                    </div>
+                </div>
+                               <div class="col-md-3 text-center col-sm-6">
+                   <div class="row info-row">
+                       <div class="col-sm-9 info-right">
+                           <span class="info-right_name">Tickets Sold</span>
+                           <br>
+                           <span class="info-right_count">{{ticketsCount}}</span>
+                              <br>
+                            <span class="info-right_name">This Month</span>
+                           <span class="float-right"><b>{{ticketsMonth}}</b>
+                           <span class="flaot-rght ml-2 active" v-if="ticketsRatio > 0">{{ticketsRatio}}% <i class="fas fa-arrow-up"></i></span>
+                           <span class="flaot-rght ml-2 shake" v-if="ticketsRatio < 0">{{ticketsRatio}}% <i class="fas fa-arrow-down"></i></span>
+                           </span>
+                   </div>
+                     <div class="col-sm-3 info-left">
+                         <i class="fas fa-ticket-alt other info-left_icon"></i>
+                     </div>
+                </div>
                 </div>
                      <div class="col-md-3 text-center col-sm-6">
                    <div class="row info-row">
@@ -58,27 +76,53 @@
                      </div>
                    </div>
                 </div>
-                      <div class="col-md-3 text-center col-sm-6">
-                   <div class="row info-row">
-                       <div class="col-sm-9 info-right">
-                           <span class="info-right_name">Tickets Sold</span>
-                           <br>
-                           <span class="info-right_count">{{ticketsCount}}</span>
-                              <br>
-                            <span class="info-right_name">This Month</span>
-                           <span class="float-right"><b>{{ticketsMonth}}</b>
-                           <span class="flaot-rght ml-2 active" v-if="ticketsRatio > 0">{{ticketsRatio}}% <i class="fas fa-arrow-up"></i></span>
-                           <span class="flaot-rght ml-2" v-if="ticketsRatio < 0">{{ticketsRatio}}% </span>
-                           </span>
-                   </div>
-                     <div class="col-sm-3 info-left">
-                         <i class="fas fa-ticket-alt other info-left_icon"></i>
-                     </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-6">
+           <div v-if="ticketChart">
+            <span class="float-right">
+            <button class="btn btn-primary btn-sm" disabled>Month</button>
+            <button class="btn-primary btn btn-sm" @click="ticketChart=false">Year</button>
+            </span>
+            <div class="float-left">
+             <MonthChart/>
+               </div>
+           </div>
+                <div v-else>
+            <span class="float-right">
+            <button class="btn btn-primary btn-sm" @click="ticketChart=true">Month</button>
+            <button class="btn-primary btn btn-sm"disabled>Year</button>
+            </span>
+                <div class="float-left">
+               <YearChart/>
+                </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+            <div v-if="salesChart">
+             <span class="float-right">
+            <button class="btn btn-primary btn-sm" disabled>Month</button>
+            <button class="btn-primary btn btn-sm" @click="salesChart=false">Year</button>
+            </span>
+            <div class="float-left">
+             <MonthSaleChart/>
+            </div>
+           </div>
+                <div v-else>
+            <span class="float-right">
+            <button class="btn btn-primary btn-sm" @click="salesChart=true">Month</button>
+            <button class="btn-primary btn btn-sm"disabled>Year</button>
+            </span>
+                <div class="float-left">
+               <YearSaleChart/>
                 </div>
                 </div>
             </div>
         </div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident rem quasi, corporis, expedita hic perspiciatis quidem assumenda, soluta laudantium rerum quisquam dolor, illo ipsam. Nostrum iste possimus explicabo et porro soluta id saepe, dolore quam praesentium fuga eveniet molestias, eum odit totam facere, incidunt asperiores, maxime! Quaerat similique cum ea numquam, ullam, placeat veniam totam libero voluptates adipisci. Repudiandae, quae iure, officia voluptate suscipit inventore? Eveniet saepe eos in quibusdam ex eaque harum, aliquam dolorem optio ad tenetur ratione tempore explicabo nulla nihil. Iure enim error totam, sunt iste adipisci voluptatem molestiae provident animi possimus tempora esse quidem quibusdam porro corporis fuga minima neque explicabo culpa odio nobis reiciendis, tenetur tempore placeat sit! Eius enim doloribus aliquid sed odit, fugiat id quae quia iste, nisi atque incidunt! Molestiae facere cupiditate modi accusantium, officiis et odio explicabo autem, repellendus aut officia quas alias mollitia nobis quos nulla eum perspiciatis. Dignissimos distinctio nesciunt facere, eos aut maiores debitis omnis, dolorem dolor molestiae facilis iure fugit saepe dicta ex hic sint ducimus doloremque expedita dolorum reiciendis! Aliquid maiores cum fuga quisquam! Perferendis aspernatur sed eos aperiam provident natus quos eius neque quae repudiandae, a fugiat ipsum cum quo. Eaque quis temporibus reiciendis est. Asperiores tempora quam impedit delectus, ea molestias consequatur nemo consequuntur aut magni, sapiente numquam. Eos quidem dolorum, aperiam sit nesciunt voluptatem neque dolore saepe aspernatur laudantium ducimus dignissimos quae omnis ad ullam eius, tenetur cupiditate optio impedit excepturi praesentium, magni, eaque. Magni minima, velit molestias amet dolorum dolores. Maiores nobis labore qui quaerat eum quibusdam, natus officia aliquam velit aspernatur tempore accusantium laudantium impedit corporis error iure sint quo assumenda. Ab debitis cum, itaque commodi veritatis. Voluptatibus molestiae corporis impedit ullam quibusdam iure corrupti tempora maiores ut odit dolor, nisi fugiat, ad delectus placeat possimus sapiente? Saepe et, atque recusandae!</p>
+        <div class="row">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed minus veniam architecto voluptas facere repudiandae totam ipsum quis atque possimus, modi iste impedit error laudantium nobis. Deleniti tenetur alias amet officiis sit dolor dolorem, perspiciatis mollitia voluptatem voluptatibus ut, repudiandae laboriosam sequi praesentium saepe incidunt id quaerat ratione doloremque, eaque sapiente, nihil blanditiis numquam quos corrupti. Assumenda facilis placeat, soluta dolorem est incidunt ducimus aliquid omnis iusto ipsum necessitatibus possimus fuga ea velit facere vitae deserunt voluptas non adipisci, suscipit?</p>
+        </div>
    </div>
        <div v-else class="text-center mt-5">
        <h2 class="mt-5">Only Admin Can Access Dashboard</h2>
@@ -87,7 +131,12 @@
 </template>
 
 <script>
+    import MonthChart from './MonthChart'
+    import YearChart from './YearChart'
+    import MonthSaleChart from './MonthSaleChart'
+    import YearSaleChart from './YearSaleChart'
     export default {
+        components: {MonthChart,YearChart,MonthSaleChart,YearSaleChart},
         data(){
         return{
         userRatio:0,
@@ -100,7 +149,9 @@
         subscribeCount:0,
         ticketsCount:0,
         ticketsMonth:0,
-        ticketsRatio:0    
+        ticketsRatio:0,
+        ticketChart:false,
+        salesChart:false    
     }
     },
         methods:{
@@ -157,11 +208,13 @@
           this.EventRatio();
           this.EventMonth();
           this.EventCount();
-          this.TopicCount();
-          this.SubscibeCount();
           this.TicketCount(); 
           this.TicketMonth();
           this.TicketRatio();
+          this.TopicCount();
+          this.SubscibeCount();
+          this.ticketChart=true;
+          this.salesChart=true  
         },
        
     }

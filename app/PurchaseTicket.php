@@ -9,6 +9,7 @@ use Stripe\Stripe;
 use Stripe\Charge;
 use Auth;
 use App\User;
+use Carbon\Carbon;
 
 class PurchaseTicket extends Model
 {
@@ -24,6 +25,16 @@ class PurchaseTicket extends Model
     
     public function deliver(){
         $this->update(['delivered'=>true]);
+    }
+    
+       public function scopeThisYear($query)
+    {
+        return $query->where('created_at', '>=', Carbon::now()->firstOfYear());
+    }
+    
+    public function scopeSpanningMonths($query,$months)
+    {
+        return $query->oldest()->whereMonth('created_at','>=','Carbon::now()->subMonth($months)');
     }
     
 }

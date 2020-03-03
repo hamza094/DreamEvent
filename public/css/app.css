@@ -69,6 +69,10 @@
   color: forestgreen;
 }
 
+.chart-btn {
+  float: right;
+}
+
 .shake {
   color: crimson;
 }

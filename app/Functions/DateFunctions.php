@@ -16,7 +16,7 @@ $lastmonth=self::byLastMonth($data);
  $thismonth=self::byThisMonth($data);
             
 /** Calcaulate users avaerage ratio */            
-return self::calculateRatio($lastmonth,$thismonth);
+return substr(self::calculateRatio($lastmonth,$thismonth),0,6);
 }
     
 public static function TicketRatio(){
@@ -27,8 +27,10 @@ $lastmonth=self::TicketLastMonth();
 $thismonth=self::TicketThisMonth();
             
 /** Calcaulate users avaerage ratio */            
-return self::calculateRatio($lastmonth,$thismonth);
-}    
+return substr(self::calculateRatio($lastmonth,$thismonth),0,5);
+} 
+    
+
     
 public static function byLastMonth($data){
 $fromDate =  self::getStartMonth();

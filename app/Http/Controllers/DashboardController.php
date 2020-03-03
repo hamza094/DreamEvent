@@ -10,6 +10,7 @@ use App\Functions\DateFunctions;
 use Carbon\Carbon;
 use Newsletter;
 use App\PurchaseTicket;
+use DB;
 
 class DashboardController extends Controller
 {
@@ -54,5 +55,43 @@ return User::all()->count();
 return response()->json($counters);
 }
     
-
+public function sales(){
+$monthlySales=DB::table('purchase_tickets')
+->select(DB::raw('sum(qty) as total'),DB::raw('monthname(created_at) as months'))
+->groupBy('months')
+->orderBy('created_at')->whereYear('created_at', Carbon::now()->year)
+->get();
+return response()->json($monthlySales);
 }
+    
+public function yearlysales(){
+    $yearlySales=DB::table('purchase_tickets')
+->select(DB::raw('sum(qty) as total'),DB::raw('year(created_at) as years'))
+->groupBy('years')
+->orderBy('years','asc')
+->get();
+return response()->json($yearlySales);
+}    
+ 
+public function monthrevenue(){
+$monthlyRevenue=DB::table('purchase_tickets')
+->select(DB::raw('sum(total) as total'),DB::raw('monthname(created_at) as months'))
+->groupBy('months')
+->orderBy('created_at')->whereYear('created_at', Carbon::now()->year)
+->get();
+return response()->json($monthlyRevenue);
+}
+
+public function yearrevenue(){
+$yearlyRevenue=DB::table('purchase_tickets')
+->select(DB::raw('sum(total) as total'),DB::raw('year(created_at) as years'))
+->groupBy('years')
+->orderBy('years','asc')
+->get();
+return response()->json($yearlyRevenue);
+} 
+    
+}
+
+
+

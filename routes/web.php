@@ -41,6 +41,10 @@ Route::delete('/api/ticket/{ticket}',"TicketController@destroy")->middleware('ad
 Route::get('/api/findtickets',"TicketController@search")->middleware('admin');
 Route::post('/api/ticket/deliver/{ticket}',"TicketController@deliver")->middleware('admin');
 Route::get('/api/dashboard',"DashboardController@index")->middleware('admin');
+Route::get('/api/sales',"DashboardController@sales")->middleware("admin");
+Route::get('/api/yearsales',"DashboardController@yearlysales")->middleware("admin");
+Route::get('/api/monthrevenue',"DashboardController@monthrevenue")->middleware("admin");
+Route::get('/api/yearrevenue',"DashboardController@yearrevenue")->middleware("admin");
 
 //Route::post('/event-create','EventsController@store');
 
