@@ -25,7 +25,6 @@ use Carbon\Carbon;
 use App\Notifications\ThreadHasUpdated;
 use GuzzleHttp\Client as GuzzleClient;
 
-
 class EventsController extends Controller
 {
     
@@ -308,6 +307,8 @@ class EventsController extends Controller
     {
         $events=Event::withTrashed()->where('slug',$event)->first();
         $events->restore();
+        
+        
     }
     
 }

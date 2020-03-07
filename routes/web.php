@@ -45,6 +45,8 @@ Route::get('/api/sales',"DashboardController@sales")->middleware("admin");
 Route::get('/api/yearsales',"DashboardController@yearlysales")->middleware("admin");
 Route::get('/api/monthrevenue',"DashboardController@monthrevenue")->middleware("admin");
 Route::get('/api/yearrevenue',"DashboardController@yearrevenue")->middleware("admin");
+Route::get('/api/activities',"DashboardController@activity")->middleware("admin");
+
 
 //Route::post('/event-create','EventsController@store');
 

@@ -11,6 +11,9 @@ use Carbon\Carbon;
 use Newsletter;
 use App\PurchaseTicket;
 use DB;
+use App\Activity;
+use App\Transformers;
+use App\Http\Resources\Activity as ActivityResource;
 
 class DashboardController extends Controller
 {
@@ -90,6 +93,13 @@ $yearlyRevenue=DB::table('purchase_tickets')
 ->get();
 return response()->json($yearlyRevenue);
 } 
+    
+public function activity(){
+    $activity=ActivityResource::collection(Activity::latest()->paginate(15));
+    //$activities=Activity::orderBy('created_at','desc')->with('user','subject')->get();
+    return $activity;
+    
+}    
     
 }
 

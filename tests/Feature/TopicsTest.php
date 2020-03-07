@@ -84,8 +84,8 @@ class TopicsTest extends TestCase
         $this->signIn($admin);
         $topic=create('App\Topic');
         $Updatedname='Assemble';
-        $Updatedcreated='Cap';
-        $this->withoutExceptionHandling()->patch("/api/topics/{$topic->id}",['name'=>$Updatedname,'created_by'=>$Updatedcreated]);
+        $UpdatedUser=5;
+        $this->withoutExceptionHandling()->patch("/api/topics/{$topic->id}",['name'=>$Updatedname,'user_id'=>$UpdatedUser]);
         $this->assertDatabaseHas('topics',['id'=>$topic->id,'name'=>$Updatedname]);
     }
 }

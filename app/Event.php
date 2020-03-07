@@ -8,15 +8,18 @@ use Spatie\Searchable\SearchResult;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
 use App\Notifications\ReplyHasAdded;
-
+use App\RecordsActivity;
 
 class Event extends Model implements Searchable
 {
+    use RecordsActivity;
     use SoftDeletes;
     
     protected $dates = ['deleted_at','strtdt','enddt'];
 
     protected $guarded=[];
+    
+    protected static $recordEvents = ['created','updated'];
     
     protected $appends = ['isFollowedTo'];
     

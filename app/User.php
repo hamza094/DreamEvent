@@ -43,6 +43,33 @@ class User extends Authenticatable
         return $this->id === $user->id;
     }
     
+        /**
+     * Get the activity timeline for the user.
+     *
+     * @return mixed
+     */
+    public function activity()
+    {
+        return $this->hasMany('App\Activity');
+    }
+    
+        /**
+     * Record new activity for the user.
+     *
+     * @param  string $name
+     * @param  mixed  $related
+     * @throws \Exception
+     * @return void
+     */
+    public function recordActivity($name, $related)
+    {
+        if (! method_exists($related, 'recordActivity')) {
+            throw new \Exception('..');
+        }
+
+        return $related->recordActivity($name);
+    }
+    
     public function accounts(){
         return $this->hasMany('App\SocialAccount');
     }
@@ -54,6 +81,11 @@ class User extends Authenticatable
     }
     public function tickets(){
         return $this->hasMany(PurchaseTicket::class);
+    }
+    
+     public function topics()
+    {
+        return $this->hasMany(Topic::class);
     }
     
     public function ticket(){

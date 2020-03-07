@@ -47,7 +47,7 @@ class TopicsController extends Controller
         $topic=Topic::create([
             'name'=>request('name'),
             'image'=>request('image'),
-            'created_by'=>auth()->id()
+            'user_id'=>auth()->id()
             
         ]);
     }

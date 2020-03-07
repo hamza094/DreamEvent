@@ -10,10 +10,14 @@ use Stripe\Charge;
 use Auth;
 use App\User;
 use Carbon\Carbon;
-
+use App\RecordsActivity;
 class PurchaseTicket extends Model
 {
+    use RecordsActivity;
+    
     protected $guarded=[];
+    
+    protected static $recordEvents = ['created','updated'];
     
     public function event(){
         return $this->belongsTo(Event::class,'event_id');

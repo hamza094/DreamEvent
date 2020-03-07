@@ -120,8 +120,18 @@
                 </div>
             </div>
         </div>
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <ActivityFeed/>
+            </div>
+            <div class="col-md-6">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, aliquid, recusandae! Unde ipsa cumque ut facere. Est at, voluptates incidunt praesentium ut nisi veritatis quisquam. Ab eius repellat voluptatem veniam maiores magnam aut quas cum inventore soluta voluptatum velit suscipit rerum provident nihil tempore doloribus, quidem impedit. Vitae nostrum dignissimos, odio voluptas optio ad nam, quisquam vel, animi ratione ducimus repellendus perspiciatis amet alias, id earum aspernatur voluptate voluptates. Cum accusamus ex distinctio reiciendis obcaecati maxime quisquam, labore temporibus recusandae molestias consequatur a totam optio nostrum, quae, dolore sed. Magnam ab possimus deserunt non quisquam quaerat aliquid beatae eum animi.</p>
+            </div>
+        </div>
         <div class="row">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed minus veniam architecto voluptas facere repudiandae totam ipsum quis atque possimus, modi iste impedit error laudantium nobis. Deleniti tenetur alias amet officiis sit dolor dolorem, perspiciatis mollitia voluptatem voluptatibus ut, repudiandae laboriosam sequi praesentium saepe incidunt id quaerat ratione doloremque, eaque sapiente, nihil blanditiis numquam quos corrupti. Assumenda facilis placeat, soluta dolorem est incidunt ducimus aliquid omnis iusto ipsum necessitatibus possimus fuga ea velit facere vitae deserunt voluptas non adipisci, suscipit?</p>
+            <div class="col-md-12 mt-4">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum, nihil, nisi explicabo, in ducimus, aut porro aperiam odit omnis consequatur mollitia accusantium delectus fugit maxime quod eos voluptates numquam debitis adipisci perferendis possimus excepturi. Aspernatur inventore voluptates sit qui incidunt minima a nam ad rem quidem ullam assumenda suscipit sed possimus repellendus corporis, pariatur asperiores modi, eligendi, tenetur sunt, voluptatum dolorum. Minima aspernatur ducimus ipsum, minus deleniti earum similique officia voluptatibus modi rem. Odio dolorem laboriosam sint aut, earum. Recusandae, veritatis! Id enim earum distinctio ullam omnis. Illum ea officia est magni ducimus placeat minima laborum, ipsa repellendus nam deleniti.</p>
+            </div>
         </div>
    </div>
        <div v-else class="text-center mt-5">
@@ -135,8 +145,9 @@
     import YearChart from './YearChart'
     import MonthSaleChart from './MonthSaleChart'
     import YearSaleChart from './YearSaleChart'
+    import ActivityFeed from './ActivityFeed'
     export default {
-        components: {MonthChart,YearChart,MonthSaleChart,YearSaleChart},
+        components: {MonthChart,YearChart,MonthSaleChart,YearSaleChart,ActivityFeed},
         data(){
         return{
         userRatio:0,

@@ -30,7 +30,7 @@ class DashboardTeast extends TestCase
         $admin=create('App\User');
         config(['dream.adminstrators'=>[$admin->email]]);
         $this->signIn($admin);
-        $content=$this->withoutExceptionHandling()->get('/api/dashboard')
+        $content=$this->get('/api/dashboard')
             ->assertStatus(200)
             ->decodeResponseJson();
         $this->assertEquals(20,$qty->sum());

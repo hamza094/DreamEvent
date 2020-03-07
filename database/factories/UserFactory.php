@@ -32,7 +32,7 @@ $factory->define(App\Topic::class, function (Faker $faker) {
 
     return [
         'name' => $name,
-        'created_by'=>'admin',
+        'user_id'=>1,
         'image'=>'https://secure.meetupstatic.com/photos/event/2/e/a/7/600_450131943.jpeg'
     ];
 });
@@ -99,6 +99,6 @@ $factory->define(App\PurchaseTicket::class, function (Faker $faker) {
         },
         'total' =>90,
         'qty'=>2,
-        'receipt'=>'6576'
+        'receipt'=>'6576',
     ];
 });
