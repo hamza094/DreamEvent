@@ -16,7 +16,7 @@ class ActivityTest extends TestCase
      */
     
     /** @test */
-    public function it_records_activity_when_discussion_reply_is_added()
+    public function when_discussion_reply_is_added()
     {
     $this->signIn();
     $discussionreply=create('App\DiscussionReply');
@@ -28,6 +28,52 @@ class ActivityTest extends TestCase
         ]);
         $activity = Activity::first();
         $this->assertEquals($activity->subject->id, $discussionreply->id);
-        $this->assertEquals(3, Activity::count());
+        $this->assertEquals(2, Activity::count());
     }
+    
+     /** @test */
+    public function creating_a_event()
+    {
+        $event=create('App\Event');
+        $this->assertCount(1,$event->activity);
+       tap($event->activity->last(), function ($activity) {
+             $this->assertEquals('created_event',$activity->name);
+            $this->assertNull($activity->changes);
+        });
+    }
+    
+    /** @test*/
+     public function updating_a_project()
+    {
+        $event=create('App\Event');
+        $originalTitle = $event->name;
+         $originalSlug=$event->slug;
+        $event->update(['name'=>'changed','slug'=>$originalSlug]);
+        $this->assertCount(2,$event->activity);
+        tap($event->activity->last(), function ($activity) use ($originalTitle,$originalSlug) {
+            $this->assertEquals('updated_event',$activity->name);
+              $expected = [
+                'before' => ['name' => $originalTitle,'slug'=>$originalSlug],
+                'after' => ['name' => 'changed','slug'=>'changed']
+            ];
+            $this->assertEquals($expected, $activity->changes);
+        });
+    }
+    
+       /** @test */
+    public function buying_event_ticket()
+    {
+        $ticket=create('App\PurchaseTicket');
+        $this->assertCount(1,$ticket->activity);
+    }
+    
+        /** @test */
+    public function diliver_ticket_user()
+    {
+        $ticket=create('App\PurchaseTicket',['delivered'=>0]);
+        $ticket->deliver();
+        $this->assertEquals($ticket->delivered,1);
+        $this->assertCount(2,$ticket->activity);
+    }
+    
 }

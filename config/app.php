@@ -179,7 +179,6 @@ return [
         App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Spatie\Fractal\FractalServiceProvider::class,
 
     ],
 
@@ -236,7 +235,6 @@ return [
         'Calendar' => MaddHatter\LaravelFullcalendar\Facades\Calendar::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
 
-
-    ],
+   ],
 
 ];

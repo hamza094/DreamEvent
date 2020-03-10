@@ -41,7 +41,7 @@ class Activity extends JsonResource
     
     protected function updated_event()
 	{
-		return  "Updated an event";
+		return  "Updated event";
 	}
     
     protected function updated_event_link()
@@ -50,7 +50,7 @@ class Activity extends JsonResource
 	}
     
     protected function updated_event_title(){
-         return $this->subject->name;
+         return $this->subject->name." ".key($this->changes['after']);
     }
     
     //Ticket Activities

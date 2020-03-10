@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
 use App\Notifications\ReplyHasAdded;
 use App\RecordsActivity;
+use Illuminate\Support\Str;
 
 class Event extends Model implements Searchable
 {
@@ -19,7 +20,7 @@ class Event extends Model implements Searchable
 
     protected $guarded=[];
     
-    protected static $recordEvents = ['created','updated'];
+
     
     protected $appends = ['isFollowedTo'];
     
@@ -44,20 +45,38 @@ class Event extends Model implements Searchable
             $event->replies->each->delete();
         });
         static::created(function ($event) {
-            $event->update(['slug'=>$event->name]);
             $event->topic()->increment('events_count');
+        });
+        static::saving(function ($event) {
+            $event->slug = str_slug($event->name);
         });
     }
     
-       public function setSlugAttribute($value)
-    {
-        $slug = str_slug($value);
-        if (static::whereSlug($slug)->exists()) {
-            $slug = "{$slug}-".$this->id;
+    public function setSlugAttribute($value) {
+
+    if (static::whereSlug($slug = str_slug($value))->exists()) {
+
+        $slug = $this->incrementSlug($slug);
     }
 
-        $this->attributes['slug'] = $slug;
+    $this->attributes['slug'] = $slug;
+}
+    
+    public function incrementSlug($slug) {
+
+    $original = $slug;
+
+    $count = 2;
+
+    while (static::whereSlug($slug)->exists()) {
+
+        $slug = "{$original}-" . $count++;
     }
+
+    return $slug;
+
+}
+    
     public function user(){
         return $this->belongsTo(User::class,'user_id');
     }

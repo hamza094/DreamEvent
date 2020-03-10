@@ -40,8 +40,11 @@ $factory->define(App\Topic::class, function (Faker $faker) {
 $factory->define(App\Event::class, function (Faker $faker) {
        $startDate = \Carbon\Carbon::createFromTimeStamp($faker->dateTimeBetween('-30 days', '+30 days')->getTimestamp());
     $endDate = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $startDate)->addHour();
+    //$name=$faker->sentence;
+    //$slug=str_slug($name, '-');
 return [
       'name'=>$faker->sentence,
+    //'slug'=>$slug,
          'desc'=> 'Nunc magna metus, laoreet sed ex nec, consequat finibus risus. Aenean massa est, venenatis id dignissim id, maximus vitae sem.',
          'strtdt'=>$startDate,
           'strttm'=>'19:45',

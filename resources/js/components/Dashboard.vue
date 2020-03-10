@@ -125,7 +125,7 @@
                 <ActivityFeed/>
             </div>
             <div class="col-md-6">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, aliquid, recusandae! Unde ipsa cumque ut facere. Est at, voluptates incidunt praesentium ut nisi veritatis quisquam. Ab eius repellat voluptatem veniam maiores magnam aut quas cum inventore soluta voluptatum velit suscipit rerum provident nihil tempore doloribus, quidem impedit. Vitae nostrum dignissimos, odio voluptas optio ad nam, quisquam vel, animi ratione ducimus repellendus perspiciatis amet alias, id earum aspernatur voluptate voluptates. Cum accusamus ex distinctio reiciendis obcaecati maxime quisquam, labore temporibus recusandae molestias consequatur a totam optio nostrum, quae, dolore sed. Magnam ab possimus deserunt non quisquam quaerat aliquid beatae eum animi.</p>
+                <h3>Events With Most Tickets Sold</h3>
             </div>
         </div>
         <div class="row">
