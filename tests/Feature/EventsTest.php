@@ -6,7 +6,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Rules\Recaptcha;
-
+use App\Activity;
 class EventsTest extends TestCase
 {
     use RefreshDatabase;
@@ -40,6 +40,7 @@ class EventsTest extends TestCase
     {
         $this->signIn();
         $event=make('App\Event');
+        $originalName=$event->name;
         $topic=create('App\Topic');
         $response=$this->post('/events',['name' => 'thanos','desc'=>'deede dede ded','strtdt'=>2019-12-22,
         'strttm'=>'9:45','enddt'=>2019-12-23,'endtm'=>'9:45','location'=>'lhr','price'=>45,'g-recaptcha-response'=>'token','venue'=>'lhr',
@@ -66,7 +67,7 @@ class EventsTest extends TestCase
         $event=create('App\Event',['name'=>'Foo Title']);
         $this->assertEquals($event->fresh()->slug,'foo-title');
     $event2=create('App\Event',['name'=>'Foo Title']);
-    $this->assertEquals("foo-title-{$event2['id']}", $event2['slug']);
+    $this->assertEquals($event2->fresh()->slug,'foo-title-2');
    }
     
     

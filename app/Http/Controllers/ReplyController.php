@@ -9,6 +9,7 @@ use App\Event;
 use App\Rules\SpamFree;
 use App\Http\Forms\CreateEventForm;
 
+
 class ReplyController extends Controller
 {
     

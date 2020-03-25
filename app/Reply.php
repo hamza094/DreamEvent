@@ -5,10 +5,15 @@ namespace App;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use App\Notifications\ReplyAddedToDiscussion;
-
+use App\RecordsActivity;
 class Reply extends Model
 {
+    use RecordsActivity;
+
     protected $guarded=[];
+    
+    protected static $recordEvents = ['created','updated'];
+
     
     public function event(){
         return $this->belongsTo(Event::class,'event_id');

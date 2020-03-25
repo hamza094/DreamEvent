@@ -66,7 +66,6 @@ class UsersTest extends TestCase
     /** @test */
     public function only_members_can_add_avatars()
     {
-      $this->withExceptionHandling();
         $this->json('POST','api/profile/1/avatar')
             ->assertStatus(401);
     }

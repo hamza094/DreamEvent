@@ -1,7 +1,7 @@
 <template>
    <div v-if="authorize('isAdmin')">
        <p class="Dashboard-heading">Users</p>
-       <p class="Dashboard-heading">Total Users: {{users.data.length}}</p>
+       <p class="Dashboard-heading">Total Users:</p>
   <div class="form-group row">
     <div class="col-sm-4">
       <input type="text" class="form-control" id="user" v-model="search" placeholder="Search User" @keyup="searchIt">
