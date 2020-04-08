@@ -12,6 +12,7 @@ use Newsletter;
 use Stripe\Stripe;
 use Stripe\Charge;
 use App\PurchaseTicket;
+use Carbon\Carbon;
 use Mail;
 use Auth;
 use PDF;
@@ -52,7 +53,7 @@ class FrontEndController extends Controller
     
     public function buy(Request $request,Event $event){
         
-   Stripe::setApiKey("sk_test_T9ilml4rZL3nd3wOKEA11afC00RyjZdPUD");
+   Stripe::setApiKey(env('STRIPE_SECRET'));
         
     //Charge User    
     $charge=Charge::create(array(
@@ -101,7 +102,7 @@ class FrontEndController extends Controller
         'brand'=>$brand,
         'last4'=>$last4,
         'recipt'=>$real_num,
-        'date'=>\Carbon\Carbon::now()->toDateTimeString(),
+        'date'=>Carbon::now()->toDateTimeString(),
         );
         
         $pdf = PDF::loadView('emails.ticket', $data)->setPaper('a4'); //send pdf receipt with mail

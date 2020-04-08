@@ -32,10 +32,7 @@ export default {
           console.log('No data');
        }
       });
-                        
-       
-
-        }
+   }
     }
 }
 </script>

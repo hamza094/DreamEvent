@@ -118,9 +118,7 @@ class EventsController extends Controller
      */
     public function store(Request $request,Recaptcha $recaptcha)
     {
-       
-
-        $this->validate($request,[
+       $this->validate($request,[
            'name'=>'required',
             'desc'=>'required',
             'strtdt'=>'required',
@@ -134,7 +132,6 @@ class EventsController extends Controller
             //'image'=>'required',
             'g-recaptcha-response'=>['required', $recaptcha]
         ]);
-        
         
        $event=Event::create([
            'name'=>request('name'),
@@ -160,10 +157,8 @@ class EventsController extends Controller
         
          if (request()->wantsJson()) {
             return response($event, 201);
-        }
-        
+    }
         return redirect($event->path())->with('success', 'Event Updated Successfully!');
-        
     }
 
     /**
@@ -174,7 +169,6 @@ class EventsController extends Controller
      */
     public function show(Event $event,Trending $trending)
     {
-
         $trending->push($event);
         $events=Event::orderBy('created_at','desc')->paginate(8);
         $replies=$event->replies()->paginate(config('dream.pagination.perPage'));
@@ -193,8 +187,7 @@ class EventsController extends Controller
             $response = $googleClient->get('https://maps.googleapis.com/maps/api/geocode/json',[
         'query'=>[
             'address'=>$event->location,
-            'key'=>'AIzaSyAorsjtV7VJRlduybX8UoWYrD9SaRKWX7A'
-            
+            'key'=>'AIzaSyAorsjtV7VJRlduybX8UoWYrD9SaRKWX7A',
         ]
     ]);
         $googleBody=json_decode($response->getBody());
@@ -219,7 +212,7 @@ class EventsController extends Controller
      */
     public function edit(Event $event)
     {
-         $this->authorize('update', $event);
+        $this->authorize('update', $event);
         $events=Event::orderBy('created_at','desc')->paginate(8);
         $topics = Topic::all();
         return view('event.edit',compact('event','topics','events'));
@@ -235,43 +228,38 @@ class EventsController extends Controller
      */
     public function update(Request $request, Event $event)
     {
-    $this->validate($request,[
-    'name'=>'required',
-    'desc'=>'required',
-    'strtdt'=>'required',
-    'strttm'=>'required',
-    'endtm'=>'required',
-    'location'=>'required',
-    'price'=>'required',
-    'venue'=>'required',
-    'qty'=>'required',
-    ]);
+        $this->validate($request,[
+          'name'=>'required',
+          'desc'=>'required',
+          'strtdt'=>'required',
+          'strttm'=>'required',
+          'endtm'=>'required',
+          'location'=>'required',
+          'price'=>'required',
+          'venue'=>'required',
+          'qty'=>'required',
+        ]);
         
         
-    $this->authorize('update', $event);
-    $event->update(request(['name','desc','strtdt','enddt','strttm','endtm','location','price','qty','venue','topic_id']));
+      $this->authorize('update', $event);
+      $event->update(request(['name','desc','strtdt','enddt','strttm','endtm','location','price','qty','venue','topic_id']));
         
     if(!empty($request->image))
     {
-    $user = Auth::user();
-    $file = $request->file('image');
-    $filename=uniqid($user->id."_").".".$file->getClientOriginalExtension();  
-    Storage::disk('s3')->put($filename,File::get($file),'public');
-    $image_path=Storage::disk('s3')->url($filename);
-    $event->update(['image_path'=>$image_path]);
+      $user = Auth::user();
+      $file = $request->file('image');
+      $filename=uniqid($user->id."_").".".$file->getClientOriginalExtension();  
+      Storage::disk('s3')->put($filename,File::get($file),'public');
+      $image_path=Storage::disk('s3')->url($filename);
+      $event->update(['image_path'=>$image_path]);
     }
-        
-        //send notification on event update
-         foreach($event->followers as $follower){
+    //send notification on event update
+        foreach($event->followers as $follower){
         if ($follower->user_id != $event->user_id) {
             $follower->user->notify(new ThreadHasUpdated($event));
-        }
-        }
-        
-        return redirect($event->path())->with('success', 'Event Updated Successfully!');
-        
-        
-        
+    }
+    }
+    return redirect($event->path())->with('success', 'Event Updated Successfully!');
     }
 
     /**
@@ -291,7 +279,6 @@ class EventsController extends Controller
         $this->authorize('update', $event);
         $event->forceDelete();
         $event->topic->decrement('events_count');
-
     }
     
     //draft event delete
@@ -300,15 +287,12 @@ class EventsController extends Controller
         $events=Event::withTrashed()->where('slug',$event)->first();
         $events->forceDelete();
         $event->topic->decrement('events_count');
-
     }
 
     public function undrafted($event)
     {
         $events=Event::withTrashed()->where('slug',$event)->first();
         $events->restore();
-        
-        
     }
     
 }

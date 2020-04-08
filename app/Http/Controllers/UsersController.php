@@ -98,13 +98,16 @@ class UsersController extends Controller
     $file = $request->file('avatar');
     $filename=uniqid($user->id."_").".".$file->getClientOriginalExtension();  
     Storage::disk('s3')->put($filename,File::get($file),'public');
+    //Store Profile Image in s3    
     $user_path=Storage::disk('s3')->url($filename);
     $user->update(['avatar_path'=>$user_path]);
     
+    //Resize User Image
     $thumb=Image::make($file);
     $thumb->fit(500);
     $jpg=(string) $thumb->encode('jpg');
         
+    //Save resize image in s3    
     $thumbName=pathinfo($filename,PATHINFO_FILENAME).'-thumb.jpg';
     Storage::disk('s3')->put($thumbName,$jpg,'public');    
         

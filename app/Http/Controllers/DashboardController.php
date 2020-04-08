@@ -3,102 +3,43 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use App\Event;
-use App\Topic;
-use App\Functions\DateFunctions;
-use Carbon\Carbon;
-use Newsletter;
-use App\PurchaseTicket;
-use DB;
 use App\Activity;
-use App\Transformers;
+use App\Functions\DashBoard;
 use App\Http\Resources\Activity as ActivityResource;
 
 class DashboardController extends Controller
 {
     
+//Filter query by request    
 public function index(Request $request){
-$counters = [];
-if($request->filled('userRatio')){
-    
-return DateFunctions::averageRatio('App\User');
-    
-}elseif($request->filled('monthUser')){
-    
-return DateFunctions::byThisMonth('App\User');
-    
-}elseif($request->filled('users')){
-    
-return User::all()->count();
-    
-}elseif($request->filled('monthEvent')){
-    
-   return DateFunctions::byThisMonth('App\Event'); 
-    
-}elseif($request->filled('eventRatio')){
-    
-    return DateFunctions::averageRatio('App\Event');
-    
-}elseif($request->filled('events')){
-    return Event::all()->count();
-}elseif($request->filled('topics')){
-    return Topic::all()->count();
-}elseif($request->filled('subscribe')){
-    $subscriber=Newsletter::getMembers();
-    return $subscriber['total_items'];
-}elseif($request->filled('tickets')){
-    $qty=PurchaseTicket::pluck('qty');
-    return $qty->sum();
-}elseif($request->filled('ticketRatio')){
-    return DateFunctions::TicketRatio();
-}elseif($request->filled('ticketMonth')){
-    return DateFunctions::TicketThisMonth();
-}
-return response()->json($counters);
+  return DashBoard::QueryFilters($request);
 }
     
+//Get monthly sales chart   
 public function sales(){
-$monthlySales=DB::table('purchase_tickets')
-->select(DB::raw('sum(qty) as total'),DB::raw('monthname(created_at) as months'))
-->groupBy('months')
-->orderBy('created_at')->whereYear('created_at', Carbon::now()->year)
-->get();
-return response()->json($monthlySales);
+return DashBoard::monthlySalesChart();
 }
     
+//Get yearly sales chart        
 public function yearlysales(){
-    $yearlySales=DB::table('purchase_tickets')
-->select(DB::raw('sum(qty) as total'),DB::raw('year(created_at) as years'))
-->groupBy('years')
-->orderBy('years','asc')
-->get();
-return response()->json($yearlySales);
-}    
- 
-public function monthrevenue(){
-$monthlyRevenue=DB::table('purchase_tickets')
-->select(DB::raw('sum(total) as total'),DB::raw('monthname(created_at) as months'))
-->groupBy('months')
-->orderBy('created_at')->whereYear('created_at', Carbon::now()->year)
-->get();
-return response()->json($monthlyRevenue);
-}
-
-public function yearrevenue(){
-$yearlyRevenue=DB::table('purchase_tickets')
-->select(DB::raw('sum(total) as total'),DB::raw('year(created_at) as years'))
-->groupBy('years')
-->orderBy('years','asc')
-->get();
-return response()->json($yearlyRevenue);
-} 
+return DashBoard::yearlySalesChart();
+}   
     
+//Get monthly revenue chart    
+public function monthrevenue(){
+return DashBoard::monthlyRevenueChart();
+}
+    
+//Get monthly revenue chart    
+public function yearrevenue(){
+return DashBoard::yearlyRevenueChart();
+} 
+
+//Get DreamEvent Recent Activities    
 public function activity(){
     $activity=ActivityResource::collection(Activity::latest()->paginate(15));
     //$activities=Activity::orderBy('created_at','desc')->with('user','subject')->get();
     return $activity;
-    
 }    
     
 }

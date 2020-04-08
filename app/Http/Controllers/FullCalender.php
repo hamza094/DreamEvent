@@ -29,8 +29,5 @@ class FullCalender extends Controller
         $calender_details=\Calendar::addEvents($event_list);
         return view('event.calender',compact('events','calender_details'));
     }
-    
-   public function index(){
-    
-    }
+
 }
