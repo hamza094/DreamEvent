@@ -107,7 +107,7 @@ class EventsController extends Controller
     {
         $events=Event::orderBy('created_at','desc')->paginate(8);
          $topics = Topic::all();
-        return view('event.create',compact('topics','events'))->with('status', 'Profile updated!');
+        return view('event.create',compact('topics','events'));
     }
 
     /**

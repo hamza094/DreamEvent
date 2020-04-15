@@ -3,18 +3,16 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Dream</title>
-
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-        <link rel="shortcut icon" type="image/png" >
+        <link rel="shortcut icon" type="image/png" href="{{asset('img/Dream.png')}}">
+
 
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>DreamEvent || Event Application</title>
     <!-- Scripts -->
           
         <script type="text/javascript" src="https://addevent.com/libs/atc/1.6.1/atc.min.js" async defer></script>
@@ -109,7 +107,7 @@
          text-align: center;
          transform: rotate(30deg);
          background-color:#2D395D ;
-         color:#fff;
+         color:#ffffff;
          
          
      }
@@ -121,15 +119,19 @@
        <div id="">
           
            <div class="main-navbar" id="nav">
+           <div class="main-logo">
+               <a href="/"><img src="{{asset('img/logo.png')}}"></a>
+           </div>
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <dropdown class="float-right">
+                        <dropdown class="float-right" v-cloak>
                       <template v-slot:trigger>
                                <a class="vue-dropdown-menu"><img src="{{Auth::user()->profile}}" alt="{{Auth::user()->name}}'s avatar" class="dropdown-img">
                                
                                 <span class="vue-dropdown-menu_name" href="#" role="button"  aria-haspopup="true" aria-expanded="false">
-                                    {{ Auth::user()->name }}
+                                    <!--{{ Auth::user()->name }}-->
+                                    {!!substr(strip_tags(Auth::user()->name ), 0, 10)!!}
                                    </span></a>
                               </template>
                             <div class="vue-dropdown_up">

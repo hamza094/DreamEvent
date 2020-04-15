@@ -62,14 +62,14 @@ class UsersController extends Controller
         $user=User::findOrFail($user);
         $this->authorize($user);
         $user->update($this->validateRequest());
-        $user->name = Request::input('name');
-        $user->email = Request::input('email');
-        $user->prof = Request::input('prof');
-        $user->backimg = Request::input('backimg');
-        $user->about = Request::input('about');
-        if ( ! Request::input('password') == '')
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->prof = $request->input('prof');
+        $user->backimg = $request->input('backimg');
+        $user->about = $request->input('about');
+        if ( ! $request->input('password') == '')
     {
-        $user->password = Hash::make(Request::input('password'));
+        $user->password = Hash::make($request->input('password'));
     }
         
    $user->save();

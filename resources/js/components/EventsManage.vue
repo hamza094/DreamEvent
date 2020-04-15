@@ -3,6 +3,10 @@
        <p class="Dashboard-heading">Events</p>
        <p class="Dashboard-heading">Total Events :{{counts.length}}</p>
         <p class="Dashboard-heading">Event Status:{{this.status}}</p>
+              <div class="form-group">
+       <div class="col-sm-4">
+      <input type="text" class="form-control" id="event" v-model="search" placeholder="Search Event" @keyup="searchIt">
+    </div>
       <div class="dropdown float-right">
   <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Select Event Option 
@@ -21,11 +25,8 @@
     <span v-else>Drafted Events</span></a>
   </div>
 </div>
-      <div class="form-group">
-       <div class="col-sm-4">
-      <input type="text" class="form-control" id="event" v-model="search" placeholder="Search Event" @keyup="searchIt">
-    </div>
        </div>
+       <div class="table-responsive">
        <table class="table table-hover">
   <thead>
     <tr>
@@ -64,6 +65,7 @@
     </tr>
    </tbody>
 </table>
+    </div>
     <pagination :data="events" @pagination-change-page="getResults"></pagination>
 </div>
    <div v-else class="text-center mt-5">

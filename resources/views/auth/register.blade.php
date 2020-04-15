@@ -66,6 +66,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
+                                <a href="/login" class="btn btn-xs btn-link">Already have an account login</a>
                             </div>
                         </div>
                     </form>
@@ -73,14 +74,12 @@
                 <div class="card-footer">
                   <div class="text-center">
                     <a href="{{ url('login/facebook') }}" class="btn btn-primary">
-                      <i class="fa fa-facebook"></i>
-                      Sign Up with Facebook
+                      <i class="fab fa-facebook-f"></i>
+                        Sign Up with Facebook
                     </a>
-                  </div>
-                   <div class="text-center">
                     <a href="{{ url('login/google') }}" class="btn">
-                      <i class="fa fa-google"></i>
-                      Login with Google
+                     <i class="fab fa-google"></i>
+                        Sign Up with Google
                     </a>
                   </div>
                 </div>

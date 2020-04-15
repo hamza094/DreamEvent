@@ -13,6 +13,7 @@
             @elseif(request()->has('drafted'))
         <p class="event-heading mt-5"><b>Your Drafted Events</b></p>
         @endif
+        <div class="event-wrap">
         <div class="row">
           @if($events->count() == 0)
           <div class="event-null">
@@ -21,7 +22,7 @@
           </div>
           @endif
            @foreach($events as $event)
-            <div class="col-md-3 text-center">
+            <div class="col-lg-3 col-md-4 col-sm-6 text-center">
              <div class="event-panel">
               <div class="event">
                <a href="{{$event->path()}}">
@@ -46,6 +47,7 @@
             </div>
             @endforeach
          </div>
+        </div>
     </div>
 </div>
 @include('footer')

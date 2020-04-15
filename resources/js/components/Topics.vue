@@ -1,6 +1,7 @@
 <template>
    <div v-if="authorize('isAdmin')">
        <p  class="Dashboard-heading">Topics<button class="btn btn-light ml-2 btn-sm" @click="newModal"> +</button></p>
+       <div class="table-responsive">
        <table class="table table-hover">
   <thead>
     <tr>
@@ -27,6 +28,7 @@
     </tr>
    </tbody>
 </table>
+</div>
   <div class="modal fade" id="AddTopics" tabindex="-1" role="dialog" aria-labelledby="AddTopicLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

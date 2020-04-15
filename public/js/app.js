@@ -2730,6 +2730,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['event'],
   data: function data() {
@@ -2863,6 +2864,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2918,6 +2921,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -3662,6 +3667,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3818,6 +3826,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -4117,6 +4128,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4227,6 +4240,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -88545,8 +88559,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "user-profile_img" }, [
+  return _c("div", { staticClass: "user-profile_img img-responsive" }, [
     _c("img", {
+      staticClass: "img-responsive",
       attrs: { src: _vm.avatar, alt: "" },
       on: { click: _vm.image }
     }),
@@ -88962,7 +88977,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row mt-5" }, [
-          _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "col-md-12 col-lg-6" }, [
             _vm.ticketChart
               ? _c("div", [
                   _c("span", { staticClass: "float-right" }, [
@@ -89025,7 +89040,7 @@ var render = function() {
                 ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "col-md-12 col-lg-6" }, [
             _vm.salesChart
               ? _c("div", [
                   _c("span", { staticClass: "float-right" }, [
@@ -89361,7 +89376,14 @@ var render = function() {
     [
       _c(
         "modal",
-        { attrs: { name: "EditProfile", height: "auto", scrollable: true } },
+        {
+          attrs: {
+            name: "EditProfile",
+            height: "auto",
+            scrollable: true,
+            adaptive: true
+          }
+        },
         [
           _c("div", { staticClass: "container mt-4" }, [
             _c("h4", { staticClass: "text-center" }, [
@@ -89924,46 +89946,65 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "row" },
-        _vm._l(_vm.events.data, function(event) {
-          return _c("div", { key: event.id, staticClass: "col-md-3" }, [
-            _c("div", { staticClass: "event-panel" }, [
-              _c("div", { staticClass: "event" }, [
-                _c("a", { attrs: { href: "/events/" + event.slug } }, [
-                  _c("div", { staticClass: "event-img" }, [
-                    _c("img", { attrs: { src: event.image_path } })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "event-text" }, [
-                    _c("div", { staticClass: "event-time" }, [
-                      _c("p", [
-                        _c("i", { staticClass: "far fa-clock" }),
-                        _c("span", [
-                          _vm._v(
-                            " " + _vm._s(_vm._f("timeDate")(event.strtdt)) + ","
-                          )
+      _c("div", { staticClass: "event-wrap" }, [
+        _c(
+          "div",
+          { staticClass: "row" },
+          [
+            _vm.event == null
+              ? _c("h3", { staticClass: "text-center mt-5 mb-5 ml-5" }, [
+                  _c("i", [_vm._v("Sorry! No events found to show")])
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm._l(_vm.events.data, function(event) {
+              return _c(
+                "div",
+                {
+                  key: event.id,
+                  staticClass: "col-lg-3 col-md-4 col-sm-6 text-center"
+                },
+                [
+                  _c("div", { staticClass: "event-panel" }, [
+                    _c("div", { staticClass: "event" }, [
+                      _c("a", { attrs: { href: "/events/" + event.slug } }, [
+                        _c("div", { staticClass: "event-img" }, [
+                          _c("img", { attrs: { src: event.image_path } })
                         ]),
-                        _c("span", [_vm._v(" " + _vm._s(event.strttm))])
+                        _vm._v(" "),
+                        _c("div", { staticClass: "event-text" }, [
+                          _c("div", { staticClass: "event-time" }, [
+                            _c("p", [
+                              _c("i", { staticClass: "far fa-clock" }),
+                              _c("span", [
+                                _vm._v(
+                                  " " +
+                                    _vm._s(_vm._f("timeDate")(event.strtdt)) +
+                                    ","
+                                )
+                              ]),
+                              _c("span", [_vm._v(" " + _vm._s(event.strttm))])
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "event-name" }, [
+                            _vm._v(_vm._s(event.name))
+                          ]),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "event-location" }, [
+                            _vm._v(_vm._s(event.location))
+                          ])
+                        ])
                       ])
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "event-name" }, [
-                      _vm._v(_vm._s(event.name))
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "event-location" }, [
-                      _vm._v(_vm._s(event.location))
                     ])
                   ])
-                ])
-              ])
-            ])
-          ])
-        }),
-        0
-      ),
+                ]
+              )
+            })
+          ],
+          2
+        )
+      ]),
       _vm._v(" "),
       _c("pagination", {
         attrs: { data: _vm.events },
@@ -90009,86 +90050,6 @@ var render = function() {
             _vm._v("Event Status:" + _vm._s(this.status))
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "dropdown float-right" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary dropdown-toggle",
-                attrs: {
-                  type: "button",
-                  id: "dropdownMenuButton",
-                  "data-toggle": "dropdown",
-                  "aria-haspopup": "true",
-                  "aria-expanded": "false"
-                }
-              },
-              [_vm._v("\n    Select Event Option \n  ")]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "dropdown-menu",
-                attrs: { "aria-labelledby": "dropdownMenuButton" }
-              },
-              [
-                _c(
-                  "a",
-                  {
-                    staticClass: "dropdown-item",
-                    attrs: { href: "#" },
-                    on: { click: _vm.all }
-                  },
-                  [
-                    _vm.active
-                      ? _c("span", { staticClass: "text-primary" }, [
-                          _c("i", { staticClass: "far fa-check-circle" }),
-                          _vm._v(" "),
-                          _c("b", [_vm._v("All Events")])
-                        ])
-                      : _c("span", [_vm._v("All Events")])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "dropdown-item",
-                    attrs: { href: "#" },
-                    on: { click: _vm.live }
-                  },
-                  [
-                    _vm.liveactive
-                      ? _c("span", { staticClass: "text-primary" }, [
-                          _c("i", { staticClass: "far fa-check-circle" }),
-                          _vm._v(" "),
-                          _c("b", [_vm._v("Live Events")])
-                        ])
-                      : _c("span", [_vm._v("Live Events")])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "dropdown-item",
-                    attrs: { href: "#" },
-                    on: { click: _vm.drafted }
-                  },
-                  [
-                    _vm.draftedactive
-                      ? _c("span", { staticClass: "text-primary" }, [
-                          _c("i", { staticClass: "far fa-check-circle" }),
-                          _vm._v(" "),
-                          _c("b", [_vm._v("Drafted Events")])
-                        ])
-                      : _c("span", [_vm._v("Drafted Events")])
-                  ]
-                )
-              ]
-            )
-          ]),
-          _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
             _c("div", { staticClass: "col-sm-4" }, [
               _c("input", {
@@ -90117,122 +90078,206 @@ var render = function() {
                   }
                 }
               })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "dropdown float-right" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary dropdown-toggle",
+                  attrs: {
+                    type: "button",
+                    id: "dropdownMenuButton",
+                    "data-toggle": "dropdown",
+                    "aria-haspopup": "true",
+                    "aria-expanded": "false"
+                  }
+                },
+                [_vm._v("\n    Select Event Option \n  ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "dropdown-menu",
+                  attrs: { "aria-labelledby": "dropdownMenuButton" }
+                },
+                [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "dropdown-item",
+                      attrs: { href: "#" },
+                      on: { click: _vm.all }
+                    },
+                    [
+                      _vm.active
+                        ? _c("span", { staticClass: "text-primary" }, [
+                            _c("i", { staticClass: "far fa-check-circle" }),
+                            _vm._v(" "),
+                            _c("b", [_vm._v("All Events")])
+                          ])
+                        : _c("span", [_vm._v("All Events")])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "dropdown-item",
+                      attrs: { href: "#" },
+                      on: { click: _vm.live }
+                    },
+                    [
+                      _vm.liveactive
+                        ? _c("span", { staticClass: "text-primary" }, [
+                            _c("i", { staticClass: "far fa-check-circle" }),
+                            _vm._v(" "),
+                            _c("b", [_vm._v("Live Events")])
+                          ])
+                        : _c("span", [_vm._v("Live Events")])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "dropdown-item",
+                      attrs: { href: "#" },
+                      on: { click: _vm.drafted }
+                    },
+                    [
+                      _vm.draftedactive
+                        ? _c("span", { staticClass: "text-primary" }, [
+                            _c("i", { staticClass: "far fa-check-circle" }),
+                            _vm._v(" "),
+                            _c("b", [_vm._v("Drafted Events")])
+                          ])
+                        : _c("span", [_vm._v("Drafted Events")])
+                    ]
+                  )
+                ]
+              )
             ])
           ]),
           _vm._v(" "),
-          _c("table", { staticClass: "table table-hover" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c(
-              "tbody",
-              _vm._l(_vm.events.data, function(event) {
-                return _c("tr", { key: event.id }, [
-                  _c("td", [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "text-user",
-                        attrs: {
-                          href: "events/" + event.slug,
-                          target: "_blank"
-                        }
-                      },
-                      [_vm._v(_vm._s(event.name))]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm._f("timeDate")(event.strtdt)))]),
-                  _vm._v(" "),
-                  _vm.todaydate > event.enddt
-                    ? _c("td", [_vm._m(1, true)])
-                    : _c("td", [_vm._m(2, true)]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(event.price))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(event.sold))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(event.qty))]),
-                  _vm._v(" "),
-                  event.deleted_at == null
-                    ? _c("td", [_vm._m(3, true)])
-                    : _c("td", [_vm._m(4, true)]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "text-user",
-                        attrs: {
-                          href: "profile/" + event.user_id,
-                          target: "_blank"
-                        }
-                      },
-                      [_vm._v(_vm._s(event.user.name))]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  event.deleted_at == null
-                    ? _c("td", [
-                        _c("p", [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-sm btn-primary",
-                              on: {
-                                click: function($event) {
-                                  return _vm.draft(event.slug)
+          _c("div", { staticClass: "table-responsive" }, [
+            _c("table", { staticClass: "table table-hover" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.events.data, function(event) {
+                  return _c("tr", { key: event.id }, [
+                    _c("td", [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "text-user",
+                          attrs: {
+                            href: "events/" + event.slug,
+                            target: "_blank"
+                          }
+                        },
+                        [_vm._v(_vm._s(event.name))]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm._f("timeDate")(event.strtdt)))
+                    ]),
+                    _vm._v(" "),
+                    _vm.todaydate > event.enddt
+                      ? _c("td", [_vm._m(1, true)])
+                      : _c("td", [_vm._m(2, true)]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(event.price))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(event.sold))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(event.qty))]),
+                    _vm._v(" "),
+                    event.deleted_at == null
+                      ? _c("td", [_vm._m(3, true)])
+                      : _c("td", [_vm._m(4, true)]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "text-user",
+                          attrs: {
+                            href: "profile/" + event.user_id,
+                            target: "_blank"
+                          }
+                        },
+                        [_vm._v(_vm._s(event.user.name))]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    event.deleted_at == null
+                      ? _c("td", [
+                          _c("p", [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-primary",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.draft(event.slug)
+                                  }
                                 }
-                              }
-                            },
-                            [_vm._v("Draft")]
-                          ),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-sm btn-danger",
-                              on: {
-                                click: function($event) {
-                                  return _vm.destroy(event.slug)
+                              },
+                              [_vm._v("Draft")]
+                            ),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-danger",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.destroy(event.slug)
+                                  }
                                 }
-                              }
-                            },
-                            [_vm._v("Delete")]
-                          )
+                              },
+                              [_vm._v("Delete")]
+                            )
+                          ])
                         ])
-                      ])
-                    : _c("td", [
-                        _c("p", [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-success btn-sm",
-                              on: {
-                                click: function($event) {
-                                  return _vm.UnDraft(event.slug)
+                      : _c("td", [
+                          _c("p", [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-success btn-sm",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.UnDraft(event.slug)
+                                  }
                                 }
-                              }
-                            },
-                            [_vm._v("Live")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-danger btn-sm",
-                              on: {
-                                click: function($event) {
-                                  return _vm.draftdelete(event.slug)
+                              },
+                              [_vm._v("Live")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-danger btn-sm",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.draftdelete(event.slug)
+                                  }
                                 }
-                              }
-                            },
-                            [_vm._v("Delete")]
-                          )
+                              },
+                              [_vm._v("Delete")]
+                            )
+                          ])
                         ])
-                      ])
-                ])
-              }),
-              0
-            )
+                  ])
+                }),
+                0
+              )
+            ])
           ]),
           _vm._v(" "),
           _c("pagination", {
@@ -90411,9 +90456,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "badge badge-success" }, [
-      _c("i", { staticClass: "far fa-bell" })
-    ])
+    return _c("span", {}, [_c("i", { staticClass: "far fa-bell" })])
   }
 ]
 render._withStripped = true
@@ -90732,54 +90775,60 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("form", { attrs: { action: "" } }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-sm-6" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.subscriber,
-                  expression: "form.subscriber"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: {
-                type: "email",
-                placeholder: "Enter your email address",
-                name: "subscriber",
-                required: ""
-              },
-              domProps: { value: _vm.form.subscriber },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+  return _c("div", { staticClass: "subscribe" }, [
+    _c("div", { staticClass: "subscribe-form" }, [
+      _c("p", { staticClass: "subscribe-form_para" }, [
+        _vm._v("Subscribe Our NewsLetter!")
+      ]),
+      _vm._v(" "),
+      _c("form", { attrs: { action: "" } }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.subscriber,
+                    expression: "form.subscriber"
                   }
-                  _vm.$set(_vm.form, "subscriber", $event.target.value)
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "email",
+                  placeholder: "Enter your email address",
+                  name: "subscriber",
+                  required: ""
+                },
+                domProps: { value: _vm.form.subscriber },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "subscriber", $event.target.value)
+                  }
                 }
-              }
-            })
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-12" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn event-btn mb-5",
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.subscribe($event)
+                  }
+                }
+              },
+              [_vm._v("Subscribe")]
+            )
           ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-6" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn event-btn mb-5",
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  return _vm.subscribe($event)
-                }
-              }
-            },
-            [_vm._v("Subscribe")]
-          )
         ])
       ])
     ])
@@ -91180,6 +91229,37 @@ var render = function() {
               _vm._v("Status:" + _vm._s(_vm.status))
             ]),
             _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("div", { staticClass: "col-sm-4" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.search,
+                      expression: "search"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    id: "ticket",
+                    placeholder: "Search Ticket By Receipt"
+                  },
+                  domProps: { value: _vm.search },
+                  on: {
+                    keyup: _vm.searchIt,
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.search = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
             _c("div", { staticClass: "dropdown float-right" }, [
               _c(
                 "button",
@@ -91260,132 +91340,105 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("div", { staticClass: "col-sm-4" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.search,
-                      expression: "search"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "text",
-                    id: "ticket",
-                    placeholder: "Search Ticket By Receipt"
-                  },
-                  domProps: { value: _vm.search },
-                  on: {
-                    keyup: _vm.searchIt,
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.search = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("table", { staticClass: "table table-hover" }, [
-              _vm._m(0),
-              _vm._v(" "),
-              _c(
-                "tbody",
-                _vm._l(_vm.tickets.data, function(ticket) {
-                  return _c("tr", [
-                    _c("td", {
-                      domProps: { textContent: _vm._s(ticket.receipt) }
-                    }),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "text-user",
-                          attrs: {
-                            href: "profile/" + ticket.user.id,
-                            target: "_blank"
-                          }
-                        },
-                        [_vm._v(_vm._s(ticket.user.name))]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("td", {
-                      domProps: { textContent: _vm._s(ticket.user.email) }
-                    }),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "text-user",
-                          attrs: {
-                            href: "events/" + ticket.event.slug,
-                            target: "_blank"
-                          }
-                        },
-                        [_vm._v(_vm._s(ticket.event.name))]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("td", {
-                      staticClass: "text-center",
-                      domProps: { textContent: _vm._s(ticket.qty) }
-                    }),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("$" + _vm._s(ticket.total))]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(_vm._s(_vm._f("timeExactDate")(ticket.created_at)))
-                    ]),
-                    _vm._v(" "),
-                    ticket.delivered == 0
-                      ? _c("td", [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-primary btn-sm",
-                              on: {
-                                click: function($event) {
-                                  return _vm.deliverTicket(ticket.id)
-                                }
-                              }
-                            },
-                            [_vm._v("Send")]
-                          )
-                        ])
-                      : _c("td", [
-                          _c(
-                            "span",
-                            { staticClass: "btn btn-success btn-sm" },
-                            [_vm._v("Delivered")]
-                          )
-                        ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-danger btn-sm",
-                          on: {
-                            click: function($event) {
-                              return _vm.deleteTicket(ticket.id)
+            _c("div", { staticClass: "table-responsive" }, [
+              _c("table", { staticClass: "table table-hover" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.tickets.data, function(ticket) {
+                    return _c("tr", [
+                      _c("td", {
+                        domProps: { textContent: _vm._s(ticket.receipt) }
+                      }),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "text-user",
+                            attrs: {
+                              href: "profile/" + ticket.user.id,
+                              target: "_blank"
                             }
-                          }
-                        },
-                        [_vm._v("Delete")]
-                      )
+                          },
+                          [_vm._v(_vm._s(ticket.user.name))]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", {
+                        domProps: { textContent: _vm._s(ticket.user.email) }
+                      }),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "text-user",
+                            attrs: {
+                              href: "events/" + ticket.event.slug,
+                              target: "_blank"
+                            }
+                          },
+                          [_vm._v(_vm._s(ticket.event.name))]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", {
+                        staticClass: "text-center",
+                        domProps: { textContent: _vm._s(ticket.qty) }
+                      }),
+                      _vm._v(" "),
+                      _c("td", [_vm._v("$" + _vm._s(ticket.total))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(
+                          _vm._s(_vm._f("timeExactDate")(ticket.created_at))
+                        )
+                      ]),
+                      _vm._v(" "),
+                      ticket.delivered == 0
+                        ? _c("td", [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-primary btn-sm",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.deliverTicket(ticket.id)
+                                  }
+                                }
+                              },
+                              [_vm._v("Send")]
+                            )
+                          ])
+                        : _c("td", [
+                            _c(
+                              "span",
+                              { staticClass: "btn btn-success btn-sm" },
+                              [_vm._v("Delivered")]
+                            )
+                          ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-danger btn-sm",
+                            on: {
+                              click: function($event) {
+                                return _vm.deleteTicket(ticket.id)
+                              }
+                            }
+                          },
+                          [_vm._v("Delete")]
+                        )
+                      ])
                     ])
-                  ])
-                }),
-                0
-              )
+                  }),
+                  0
+                )
+              ])
             ]),
             _vm._v(" "),
             _c("pagination", {
@@ -91471,65 +91524,67 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("table", { staticClass: "table table-hover" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "tbody",
-            _vm._l(_vm.topics, function(topic) {
-              return _c("tr", { key: topic.id }, [
-                _c("td", [_c("b", [_vm._v(_vm._s(topic.id))])]),
-                _vm._v(" "),
-                _c("td", [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "text-user",
-                      attrs: { href: "topic/" + topic.slug, target: "_blank" }
-                    },
-                    [_vm._v(_vm._s(topic.name))]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(topic.created_by))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(topic.events_count))]),
-                _vm._v(" "),
-                _c("td", [
-                  _vm._v(_vm._s(_vm._f("timeExactDate")(topic.created_at)))
-                ]),
-                _vm._v(" "),
-                _c("td", [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-sm btn-primary",
-                      on: {
-                        click: function($event) {
-                          return _vm.editModal(topic)
-                        }
-                      }
-                    },
-                    [_vm._v("Edit")]
-                  ),
+        _c("div", { staticClass: "table-responsive" }, [
+          _c("table", { staticClass: "table table-hover" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.topics, function(topic) {
+                return _c("tr", { key: topic.id }, [
+                  _c("td", [_c("b", [_vm._v(_vm._s(topic.id))])]),
                   _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-sm btn-danger",
-                      on: {
-                        click: function($event) {
-                          return _vm.destroy(topic.id)
+                  _c("td", [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "text-user",
+                        attrs: { href: "topic/" + topic.slug, target: "_blank" }
+                      },
+                      [_vm._v(_vm._s(topic.name))]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(topic.created_by))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(topic.events_count))]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm._f("timeExactDate")(topic.created_at)))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-sm btn-primary",
+                        on: {
+                          click: function($event) {
+                            return _vm.editModal(topic)
+                          }
                         }
-                      }
-                    },
-                    [_vm._v("Delete")]
-                  )
+                      },
+                      [_vm._v("Edit")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-sm btn-danger",
+                        on: {
+                          click: function($event) {
+                            return _vm.destroy(topic.id)
+                          }
+                        }
+                      },
+                      [_vm._v("Delete")]
+                    )
+                  ])
                 ])
-              ])
-            }),
-            0
-          )
+              }),
+              0
+            )
+          ])
         ]),
         _vm._v(" "),
         _c(
@@ -91848,63 +91903,70 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("table", { staticClass: "table table-hover" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c(
-              "tbody",
-              _vm._l(_vm.users.data, function(user) {
-                return _c("tr", { key: user.id }, [
-                  _c("td", [_c("b", [_vm._v(_vm._s(user.id))])]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "text-user",
-                        attrs: { href: "profile/" + user.id, target: "_blank" }
-                      },
-                      [
-                        _vm._v(
-                          "\n        " + _vm._s(user.name) + " \n        "
-                        ),
-                        user.isAdmin
-                          ? _c("span", { staticClass: "badge badge-primary" }, [
-                              _vm._v("Admin")
-                            ])
-                          : _vm._e()
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(user.email))]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "text-center" }, [
-                    _vm._v(_vm._s(user.events.length))
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _vm._v(_vm._s(_vm._f("timeExactDate")(user.created_at)))
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-sm btn-danger",
-                        on: {
-                          click: function($event) {
-                            return _vm.deleteUser(user.id)
+          _c("div", { staticClass: "table-responsive" }, [
+            _c("table", { staticClass: "table table-hover" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.users.data, function(user) {
+                  return _c("tr", { key: user.id }, [
+                    _c("td", [_c("b", [_vm._v(_vm._s(user.id))])]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "text-user",
+                          attrs: {
+                            href: "profile/" + user.id,
+                            target: "_blank"
                           }
-                        }
-                      },
-                      [_vm._v("Delete")]
-                    )
+                        },
+                        [
+                          _vm._v(
+                            "\n        " + _vm._s(user.name) + " \n        "
+                          ),
+                          user.isAdmin
+                            ? _c(
+                                "span",
+                                { staticClass: "badge badge-primary" },
+                                [_vm._v("Admin")]
+                              )
+                            : _vm._e()
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(user.email))]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "text-center" }, [
+                      _vm._v(_vm._s(user.events.length))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm._f("timeExactDate")(user.created_at)))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-sm btn-danger",
+                          on: {
+                            click: function($event) {
+                              return _vm.deleteUser(user.id)
+                            }
+                          }
+                        },
+                        [_vm._v("Delete")]
+                      )
+                    ])
                   ])
-                ])
-              }),
-              0
-            )
+                }),
+                0
+              )
+            ])
           ]),
           _vm._v(" "),
           _c("pagination", {

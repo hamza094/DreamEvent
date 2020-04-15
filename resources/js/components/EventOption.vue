@@ -4,7 +4,8 @@
     <span v-if="event.deleted_at!=null"><a href="" class="btn btn-link" @click.prevent="UnDraft(event.slug)">Undraft</a></span>
     <span v-else><a href="" class="btn btn-link" @click.prevent="Draft(event.slug)">Draft</a></span>
     <span v-if="event.deleted_at!=null"><a class="btn btn-link" @click.prevent="DraftDelete(event.slug)">Delete</a></span> 
-    <span v-else><a class="btn btn-link" @click.prevent="Delete(event.slug)">Delete</a></span> </div>
+    <span v-else><a class="btn btn-link" @click.prevent="Delete(event.slug)">Delete</a></span>
+    </div>
 </template>
 <script>
 export default{

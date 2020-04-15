@@ -6,9 +6,10 @@
     </div>
   </div>
        
-       
+<div class="event-wrap">       
 <div class="row">
-    <div class="col-md-3" v-for="event in events.data" :key="event.id">
+    <h3 v-if="event==null" class="text-center mt-5 mb-5 ml-5"><i>Sorry! No events found to show</i></h3>
+    <div class="col-lg-3 col-md-4 col-sm-6 text-center" v-for="event in events.data" :key="event.id">
         <div class="event-panel">
             <div class="event">
                 <a :href="('/events/'+event.slug)">
@@ -26,6 +27,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
   <pagination :data="events" @pagination-change-page="getResults"></pagination>
    </div>

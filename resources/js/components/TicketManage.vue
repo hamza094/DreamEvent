@@ -5,7 +5,13 @@
        <p class="Dashboard-heading">Tickets Solds:{{count}}</p>
         <p class="Dashboard-heading float-right">Ticket Delivered:{{delivered}}</p>
         <p class="Dashboard-heading">Status:{{status}}</p>
+                   <div class="form-group">
+       <div class="col-sm-4">
+     <input type="text" class="form-control" id="ticket" v-model="search" placeholder="Search Ticket By Receipt" @keyup="searchIt">
+  </div>
+       </div>
               <div class="dropdown float-right">
+              
   <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Select Ticket Option 
   </button>
@@ -23,11 +29,7 @@
     <span v-else>Undeliver Tickets</span></a>
   </div>
 </div>
-      <div class="form-group">
-       <div class="col-sm-4">
-     <input type="text" class="form-control" id="ticket" v-model="search" placeholder="Search Ticket By Receipt" @keyup="searchIt">
-  </div>
-       </div>
+       <div class="table-responsive">
        <table class="table table-hover">
   <thead>
     <tr>
@@ -58,6 +60,7 @@
     </tr>
    </tbody>
 </table>
+</div>
     <pagination :data="tickets" @pagination-change-page="getResults"></pagination>
 </div>
    <div v-else class="text-center mt-5">

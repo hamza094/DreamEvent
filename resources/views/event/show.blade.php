@@ -159,6 +159,9 @@
         <!-- Related Events-->
         <h3 class="text-cente mb-5">Related Events</h3>
         <div class="row">
+           @if($related_events->count() == 0)
+           <h3 class="text-center">No Related Event Exist</h3>
+           @endif
             @foreach($related_events as $event)
             <div class="col-md-3 text-center">
                 <div class="event-panel">

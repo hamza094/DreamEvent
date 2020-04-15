@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>DreamEvent || Event Application</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -30,7 +30,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     
-    <link rel="shortcut icon" type="image/png" href="https://cdn1.medicalnewstoday.com/content/images/hero/284/284378/284378_1100.jpg">
+    <link rel="shortcut icon" type="image/png" href="{{asset('img/Dream.png')}}">
 
     
 </head>
@@ -43,8 +43,7 @@
            <div class="row">
            <div class="col-md-3 text-center">
                <div class="panel">
-                    <p class="panel-heading">
-                        <i class="fab fa-the-red-yeti"></i> DreamEvent</p> 
+                   <a href="/"><img src="{{asset('img/Dream.png')}}"alt=""></a>
                 <ul class="panel-list">
                   @if(Auth::user() && Auth::user()->isAdmin())
                    <router-link to="/dream-dashboard" class="panel-list_item">
@@ -68,12 +67,13 @@
               </div>
            <div class="col-md-9 main-bg">
            @if(Auth::user())
-           <dropdown class="float-right">
+           <dropdown class="float-right" v-cloak>
                       <template v-slot:trigger>
                                <a class="vue-dropdown-menu"><img src="{{Auth::user()->profile}}" alt="{{Auth::user()->name}}'s avatar" class="dropdown-img">
                                
                                 <span class="vue-dropdown-menu_name" href="#" role="button"  aria-haspopup="true" aria-expanded="false">
-                                    {{ Auth::user()->name }}
+                                {!!substr(strip_tags(Auth::user()->name ), 0, 14)!!}
+
                                    </span></a>
                               </template>
                             <div class="vue-dropdown_up">
@@ -81,9 +81,6 @@
                             <a class="vue-dropdown_item_list" href="/dream-dashboard"><i class="fab fa-dashcube"></i> Dashboard</a>
                             @endif
                             <a class="vue-dropdown_item_list" href="profile/{{ Auth::user()->id }}"><i class="fas fa-user"></i> My Profile</a>
-                            @if(Auth::user()->isAdmin())
-                            <a class="vue-dropdown_item_list"><i class="fas fa-cogs"></i> Settings</a>
-                             @endif
                             <a href="/myevents" class="vue-dropdown_item_list"><i class="fas fa-cogs"></i>My Events</a>
                              <a class="vue-dropdown_item_list" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

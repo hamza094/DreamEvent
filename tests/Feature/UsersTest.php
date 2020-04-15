@@ -110,11 +110,13 @@ class UsersTest extends TestCase
     
     /** @test */
     public function authenticated_user_can_see_events_his_participated_events(){
-        $this->signIn();
         $user=create('App\User');
-        $ticket=create('App\PurchaseTicket',['user_id'=>$user->id]);
-        $this->get("/profile/{$user->id}")
-            ->assertSee($ticket->event->name);
+        $event=create('App\Event');
+        $this->signIn($user);
+        $ticket=create('App\PurchaseTicket',['user_id'=>$user->id,'event_id'=>$event->id]);
+        $this->withExceptionHandling()->get("/profile/{$user->id}")->
+            assertSee($ticket->event->StartDate)
+            ->assertSee($ticket->total);
     }
     
     

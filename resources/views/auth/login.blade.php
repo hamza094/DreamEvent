@@ -56,30 +56,31 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
-
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
+                                <br><br>
+                                <a href="/register" class="btn-xs btn-link text-center">Not Registered Register Here!</a>
+                           </div>
                             </div>
-                        </div>
                     </form>
                 </div>
                   <div class="card-footer">
                   <div class="text-center">
                     <a href="{{ url('login/facebook') }}" class="btn btn-primary">
-                      <i class="fa fa-facebook"></i>
-                      Login with Facebook
+                      <i class="fab fa-facebook-f"></i>
+                       Login with Facebook
                     </a>
-                  </div>
-                </div> 
-                 <div class="text-center">
+                  
+                 
                     <a href="{{ url('login/google') }}" class="btn">
-                      <i class="fa fa-google"></i>
+                      <i class="fab fa-google"></i>
                       Login with Google
                     </a>
-                  </div>
+                      </div>
+                </div>
             </div>
         </div>
     </div>

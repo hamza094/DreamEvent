@@ -1,6 +1,6 @@
 <template>
     <div>
-<modal name="EditProfile" height="auto" :scrollable="true">
+<modal name="EditProfile" height="auto" :scrollable="true" :adaptive="true">
       <div class="container mt-4">
           <h4 class="text-center">Edit Your Profile</h4>
            <form action="" @submit.prevent="Update">

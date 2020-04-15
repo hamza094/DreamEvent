@@ -7,7 +7,7 @@
       <input type="text" class="form-control" id="user" v-model="search" placeholder="Search User" @keyup="searchIt">
     </div>
   </div>
-       
+       <div class="table-responsive">
        <table class="table table-hover">
   <thead>
     <tr>
@@ -34,6 +34,7 @@
     </tr>
    </tbody>
 </table>
+</div>
   <pagination :data="users" @pagination-change-page="getResults"></pagination>
    </div>
    <div v-else class="text-center mt-5">

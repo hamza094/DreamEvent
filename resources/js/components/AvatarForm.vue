@@ -1,6 +1,6 @@
 <template>
-      <div class="user-profile_img">
-                   <img :src="avatar" alt="" @click="image">
+      <div class="user-profile_img img-responsive">
+                   <img :src="avatar" alt="" @click="image" class="img-responsive">
                    <form v-if="canUpdate" method="POST" enctype="multipart/form-data" >
                      <div class="fileUpload btn btn-avatar file">
                      <label class="upload" >

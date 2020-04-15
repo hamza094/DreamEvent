@@ -79,7 +79,7 @@
             </div>
         </div>
         <div class="row mt-5">
-            <div class="col-md-6">
+            <div class="col-md-12 col-lg-6">
            <div v-if="ticketChart">
             <span class="float-right">
             <button class="btn btn-primary btn-sm" disabled>Month</button>
@@ -99,7 +99,7 @@
                 </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-12 col-lg-6">
             <div v-if="salesChart">
              <span class="float-right">
             <button class="btn btn-primary btn-sm" disabled>Month</button>

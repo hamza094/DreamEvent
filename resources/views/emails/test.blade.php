@@ -4,7 +4,7 @@
 .cardWrap {
   width: 27em;
   margin: 3em auto;
-  color: #fff;
+  color: $color-white;
   font-family: sans-serif;
 }
 
@@ -25,7 +25,7 @@
 
 .cardRight {
   width: 6.5em;
-  border-left: .18em dashed #fff;
+  border-left: .18em dashed $color-white;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
 }
@@ -36,7 +36,7 @@
     display: block;
     width: .9em;
     height: .9em;
-    background: #fff;
+    background: $color-white;
     border-radius: 50%;
     left: -.5em;
   }
@@ -89,7 +89,7 @@ h1  span {
   position: relative;
   width: 2em;
   height: 1.5em;
-  background: #fff;
+  background: $color-white;
   margin: 0 auto;
   border-radius: 1em/0.6em;
   z-index: 1;
@@ -111,7 +111,7 @@ h1  span {
   .eye::after {
   width: .5em;
   height: .5em;
-  background: #fff;
+  background: $color-white;
   z-index: 3;
   left: 12px;
   top: 8px;

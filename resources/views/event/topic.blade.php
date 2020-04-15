@@ -17,34 +17,19 @@
     </header>
 <div class="container mt-5">
                   <p class="event-heading"><b>Events</b></p>
-        <div class="row">
+                  <div class="event-wrap">
+            <div class="row">
           @if($topic->events->count() == 0)
           <div class="text-center">
           <h3>Sorry! No Event Found Of Related Topic</h3>
             </div>
           @else
            @foreach($topic->events as $event)
-            <div class="col-md-3">
-             <div class="event-panel">
-              <div class="event">
-               <a href="{{$event->path()}}">
-                <div class="event-img">
-                        <img src="{{$event->image_path}}" alt="">
-                    </div>
-                    <div class="event-text">
-                    <div class="event-time">
-                        <p><i class="far fa-clock"></i><span> {{$event->startdate}},</span><span> {{$event->strttm}}</span></p>
-                    </div>
-                    <p class="event-name">{{$event->name}}</p>
-                    <p class="event-location">{{$event->location}}</p>
-                    </div>
-                </a>
-                </div>
-                </div>
-            </div>
+           @include('event.list') <!--import event list -->
             @endforeach
             @endif
          </div>
+    </div>
 </div>
 
     

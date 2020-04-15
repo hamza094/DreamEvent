@@ -16,13 +16,15 @@
         </div>
           
     </header>
+    <div id="show"></div>
     <div class="container mt-5" id="app">
        <!-- Tranding-->                     
         <p class="event-heading"><b>Trending Events</b></p>
-        <div class="row">
+        <div class="event-wrap">
+         <div class="row">
            @foreach($trending as $event)
-            <div class="col-md-3 text-center">
-             <div class="tranding-event">
+            <div class="col-lg-3 col-md-4 col-sm-6 text-center">
+             <div class="event-panel">
               <div class="event">
                <a href="{{$event->path}}">
                 <div class="event-img">
@@ -41,42 +43,28 @@
             </div>
              @endforeach
          </div>
-                 
+        </div>         
                  <!-- All Events-->
                   <p class="event-heading mt-5"><b>Events</b></p>
-        <div class="row">
+                  <div class="event-wrap">
+            <div class="row">
            @foreach($events as $event)
-            <div class="col-md-3 text-center">
-             <div class="event-panel">
-              <div class="event">
-               <a href="{{$event->path()}}">
-                <div class="event-img">
-                        <img src="{{$event->image_path}}" alt="">
-                    </div>
-                    <div class="event-text">
-                    <div class="event-time">
-                        <p><i class="far fa-clock"></i><span> {{$event->startdate}},</span><span> {{$event->strttm}}</span></p>
-                    </div>
-                    <p class="event-name">{{$event->name}}</p>
-                    <p class="event-location">{{$event->location}}</p>
-                    </div>
-                </a>
-                </div>
-                </div>
-            </div>
+           @include('event.list') <!--import event list -->
             @endforeach
          </div>
+        </div>
     <div class="text-center">
         <a href="/events" class="btn event-btn">Show All Events >></a>
     </div>
                    <!-- All Topics-->
         <p class="event-heading"><b>Topics</b></p>
-        <p class="">Browse groups by topics you're interested in.</p>
+        <p><b>Browse groups by topics you're interested in.</b></p>
+        <div class="event-wrap">
         <div class="row">
         @foreach($topics as $topic)
-      <div class="col-md-3 text-center">
+      <div class="col-lg-3 col-md-4 col-sm-6 text-center">
               <div class="mb-5">
-               <a href="topic/{{$topic->id}}">
+               <a href="topic/{{$topic->slug}}">
                 <div class="topic" style= "background-image: url('{{$topic->image}}'); background-position: center center;">
                    </div>
                    <div class="topic-name">{{$topic->name}}</div>
@@ -85,8 +73,7 @@
             </div>
             @endforeach
         </div>
+        </div>
             <subscribe></subscribe>
-
-    </div>
-
+            </div>
 @include('footer')

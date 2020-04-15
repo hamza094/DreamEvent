@@ -1,20 +1,23 @@
 <template>
-  <div>
+  <div class="subscribe">
+  <div class="subscribe-form">
+  <p class="subscribe-form_para">Subscribe Our NewsLetter!</p>
    <form action="">
          <div class="row">
-             <div class="col-sm-6">
+             <div class="col-md-12">
                  <div class="form-group">
               <input type="email" class="form-control" placeholder="Enter your email address" v-model="form.subscriber" name="subscriber" required>
           </div>
              </div>
-             <div class="col-sm-6">
-                            <button class="btn event-btn mb-5" @click.prevent="subscribe">Subscribe</button>
+             <div class="col-md-12">
+                <button class="btn event-btn mb-5" @click.prevent="subscribe">Subscribe</button>
 
              </div>
          </div>
-          
+        
 
    </form>
+      </div>
     </div>
 </template>
 <script>

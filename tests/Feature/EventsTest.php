@@ -83,7 +83,7 @@ class EventsTest extends TestCase
     public function guest_can_visit_single_events_page(){
         $topic=create('App\Topic');
         $event=create('App\Event',['topic_id'=>$topic->id]);
-        $response=$this->withoutExceptionHandling()->get($event->path())
+        $response=$this->get($event->path())
         ->assertSee($event->name);
     }
     

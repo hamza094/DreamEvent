@@ -19,7 +19,7 @@ class Trending
             'path'=>$event->path(),
             'img'=>$event->image_path,
             'loc'=>$event->location,
-            'strtdt'=>$event->strtdt,
+            'strtdt'=>$event->startdate,
             'strttm'=>$event->strttm
         ]));
     }

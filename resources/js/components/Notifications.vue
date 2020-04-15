@@ -2,7 +2,7 @@
 <div>
     <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" 
     aria-expanded="false">
-          <span class="badge badge-success"><i class="far fa-bell"></i></span>
+          <span class=""><i class="far fa-bell"></i></span>
           <span class="notification-alert" v-if="notifications.length"></span>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
