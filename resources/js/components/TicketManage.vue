@@ -2,8 +2,8 @@
 <div>
       <div v-if="authorize('isAdmin')">
        <p class="Dashboard-heading">Purchased Ticket</p>
-       <p class="Dashboard-heading">Tickets Solds:{{count}}</p>
-        <p class="Dashboard-heading float-right">Ticket Delivered:{{delivered}}</p>
+       <p class="Dashboard-heading">Total Receipt:{{count}}</p>
+        <p class="Dashboard-heading float-right">Receipt Delivered:{{delivered}}</p>
         <p class="Dashboard-heading">Status:{{status}}</p>
                    <div class="form-group">
        <div class="col-sm-4">
@@ -55,7 +55,7 @@
     <td>${{ticket.total}}</td>
     <td>{{ticket.created_at | timeExactDate}}</td>
     <td v-if="ticket.delivered==0"><button class="btn btn-primary btn-sm" @click="deliverTicket(ticket.id)">Send</button></td>
-    <td v-else><span class="btn btn-success btn-sm">Delivered</span></td>
+    <td v-else><span class="btn btn-success btn-sm" disabled>Delivered</span></td>
     <td><button class="btn btn-danger btn-sm" @click="deleteTicket(ticket.id)">Delete</button></td>
     </tr>
    </tbody>

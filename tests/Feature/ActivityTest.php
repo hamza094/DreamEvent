@@ -28,17 +28,17 @@ class ActivityTest extends TestCase
         ]);
         $activity = Activity::first();
         $this->assertEquals($activity->subject->id, $discussionreply->id);
-        $this->assertEquals(2, Activity::count());
+        $this->assertEquals(3, Activity::count());
     }
     
      /** @test */
     public function creating_a_event()
     {
         $event=create('App\Event');
-        $this->assertCount(1,$event->activity);
+        $this->assertCount(2,$event->activity);
        tap($event->activity->last(), function ($activity) {
-             $this->assertEquals('created_event',$activity->name);
-            $this->assertNull($activity->changes);
+             $this->assertEquals('updated_event',$activity->name);
+            //$this->assertNull($activity->changes);
         });
     }
     
@@ -48,8 +48,8 @@ class ActivityTest extends TestCase
         $event=create('App\Event');
         $originalTitle = $event->name;
          $originalSlug=$event->slug;
-        $event->update(['name'=>'changed','slug'=>$originalSlug]);
-        $this->assertCount(2,$event->activity);
+        $event->update(['name'=>'changed','slug'=>'changed']);
+        $this->assertCount(3,$event->activity);
         tap($event->activity->last(), function ($activity) use ($originalTitle,$originalSlug) {
             $this->assertEquals('updated_event',$activity->name);
               $expected = [

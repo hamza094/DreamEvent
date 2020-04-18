@@ -38,7 +38,6 @@ return DashBoard::yearlyRevenueChart();
 //Get DreamEvent Recent Activities    
 public function activity(){
     $activity=ActivityResource::collection(Activity::latest()->paginate(15));
-    //$activities=Activity::orderBy('created_at','desc')->with('user','subject')->get();
     return $activity;
 }    
     

@@ -2,7 +2,7 @@
    <div>
                    <p><button  class="btn event-btn float-right"  @click="$modal.show('ticketModal')">Attend Event</button></p>
 
-    <modal  name="ticketModal" height="auto" width="60%" :click-to-close=false transition="ease">
+    <modal  name="ticketModal" height="auto" width="60%" :click-to-close=false transition="ease" :adaptive="true">
     <div class="row" v-if="!event.qty==0">
         <div class="col-md-7">
             <form class="reply-form">
@@ -33,6 +33,7 @@
             <button class="btn btn-sm btn-success" @click.prevent="buy" v-show="!selectedqty==0"><b>Purchase</b></button>
             </form>
             <p>*Policy: Purchased ticket can not be refunded</p>
+            <h3 class="text-success"  v-show="process==true">Hang on you payment is in process</h3>
 
         </div>
 
@@ -63,6 +64,7 @@ export default{
             selectedprice:0,
             stripeEmail:'',
             stripeToken:'',
+            process:false,
         }
     },
         created(){
@@ -73,15 +75,27 @@ export default{
           token:(token)=>{
               this.stripeToken=token.id;
               this.stripeEmail=token.email;
-                axios.post('/buy/'+this.event.slug,this.$data)
+             this.process=true;
+             axios.post('/buy/'+this.event.slug,this.$data)
                          .then(response=>{
-        swal.fire("Success!","Your Sucessfully purchased ticket","success");
+        swal.fire("Success!","You Sucessfully purchased event ticket","success");
                     this.$modal.hide('ticketModal');
+                    this.process=false;
                     this.selectedqty=0;
                     this.selectedprice=0;
         }) .catch(errors=>{
-                        swal.fire(errors.response.data.errors);
-                    console.log(errors.response.data);
+                   swal.fire({
+                     icon: 'error',
+                     title: 'Payment Failed',
+                     text: 'Something went wrong!',
+                     footer: '<a href="mailto:hamza_pisces@live.com">Contact Us</a>'
+                     })
+                    this.$modal.hide('ticketModal');
+                    this.process=false;
+                    this.selectedqty=0;
+                    this.selectedprice=0;
+                    this.qty=this.event.qty;
+
 
     });   
           }

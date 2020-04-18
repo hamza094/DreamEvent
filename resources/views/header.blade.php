@@ -14,6 +14,9 @@
 
     <title>DreamEvent || Event Application</title>
     <!-- Scripts -->
+         
+    <meta name="description" content="Event Website development with laravel,scss,vuejs & tdd">
+    <meta name="keyword" content="DreamEvent,Event,Meetup,Backend,Laravel,VueJs,Tdd">     
           
         <script type="text/javascript" src="https://addevent.com/libs/atc/1.6.1/atc.min.js" async defer></script>
        <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5e0238b188092b001215bb24&product=inline-share-buttons" async="async"></script>

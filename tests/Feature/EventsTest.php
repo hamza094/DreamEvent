@@ -133,7 +133,7 @@ class EventsTest extends TestCase
         $price=45;
         $qty=2;
         $this->withoutExceptionHandling()->patch($event->path(),['name'=>$name,'desc'=>$desc,'strtdt'=>$strtdt,
-        'strttm'=>$strttm,'enddt'=>$enddt,'endtm'=>$endtm,'location'=>$loc,'venue'=>$ven,'price'=>$price,'qty'=>$qty]);
+    'strttm'=>$strttm,'enddt'=>$enddt,'endtm'=>$endtm,'location'=>$loc,'venue'=>$ven,'price'=>$price,'qty'=>$qty]);
         $this->assertDatabaseHas('events',['id'=>$event->id,'desc'=>$desc]);
 
     }

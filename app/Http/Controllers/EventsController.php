@@ -22,6 +22,7 @@ use Image;
 use App\PurchaseTicket;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 use App\Notifications\ThreadHasUpdated;
 use GuzzleHttp\Client as GuzzleClient;
 
@@ -88,15 +89,6 @@ class EventsController extends Controller
         }
         return $events;
     }
-    
-      public function search(Request $request)
-    {
-       /* $results = (new Search())
-    ->registerModel(Event::class, ['name'])
-    ->search($request->input('query'));
-    
-    return response()->json($results);*/
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -134,18 +126,18 @@ class EventsController extends Controller
         ]);
         
        $event=Event::create([
-           'name'=>request('name'),
+           'name'=>$request->name,
            'user_id'=>auth()->id(),
-           'desc'=>request('desc'),
-           'strtdt'=>request('strtdt'),
-           'enddt'=>request('enddt'),
-           'strttm'=>request('strttm'),
-           'endtm'=>request('endtm'),
-           'location'=>request('location'),
-           'price'=>request('price'),
-           'qty'=>request('qty'),
-           'venue'=>request('venue'),
-           'topic_id'=>request('topic_id')
+           'desc'=>$request->desc,
+           'strtdt'=>$request->strtdt,
+           'enddt'=>$request->enddt,
+           'strttm'=>$request->strttm,
+           'endtm'=>$request->endtm,
+           'location'=>$request->location,
+           'price'=>$request->price,
+           'qty'=>$request->qty,
+           'venue'=>$request->venue,
+           'topic_id'=>$request->topic_id
            ]);
         $user = Auth::user();
         
@@ -187,7 +179,7 @@ class EventsController extends Controller
             $response = $googleClient->get('https://maps.googleapis.com/maps/api/geocode/json',[
         'query'=>[
             'address'=>$event->location,
-            'key'=>'AIzaSyAorsjtV7VJRlduybX8UoWYrD9SaRKWX7A',
+            'key'=>env('MAP_KEY'),
         ]
     ]);
         $googleBody=json_decode($response->getBody());

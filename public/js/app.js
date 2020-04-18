@@ -3754,6 +3754,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['event'],
   data: function data() {
@@ -3763,7 +3764,8 @@ __webpack_require__.r(__webpack_exports__);
       selectedqty: 0,
       selectedprice: 0,
       stripeEmail: '',
-      stripeToken: ''
+      stripeToken: '',
+      process: false
     };
   },
   created: function created() {
@@ -3776,16 +3778,29 @@ __webpack_require__.r(__webpack_exports__);
       token: function token(_token) {
         _this.stripeToken = _token.id;
         _this.stripeEmail = _token.email;
+        _this.process = true;
         axios.post('/buy/' + _this.event.slug, _this.$data).then(function (response) {
-          swal.fire("Success!", "Your Sucessfully purchased ticket", "success");
+          swal.fire("Success!", "You Sucessfully purchased event ticket", "success");
 
           _this.$modal.hide('ticketModal');
 
+          _this.process = false;
           _this.selectedqty = 0;
           _this.selectedprice = 0;
         })["catch"](function (errors) {
-          swal.fire(errors.response.data.errors);
-          console.log(errors.response.data);
+          swal.fire({
+            icon: 'error',
+            title: 'Payment Failed',
+            text: 'Something went wrong!',
+            footer: '<a href="mailto:hamza_pisces@live.com">Contact Us</a>'
+          });
+
+          _this.$modal.hide('ticketModal');
+
+          _this.process = false;
+          _this.selectedqty = 0;
+          _this.selectedprice = 0;
+          _this.qty = _this.event.qty;
         });
       }
     });
@@ -89110,12 +89125,10 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row mt-5" }, [
-          _c("div", { staticClass: "col-md-6" }, [_c("ActivityFeed")], 1),
-          _vm._v(" "),
-          _vm._m(4)
+          _c("div", { staticClass: "col-md-12" }, [_c("ActivityFeed")], 1)
         ]),
         _vm._v(" "),
-        _vm._m(5)
+        _vm._m(4)
       ])
     : _c("div", { staticClass: "text-center mt-5" }, [
         _c("h2", { staticClass: "mt-5" }, [
@@ -89164,20 +89177,34 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6" }, [
-      _c("h3", [_vm._v("Events With Most Tickets Sold")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md-12 mt-4" }, [
-        _c("p", [
+        _c("p", { staticClass: "dashboard-para" }, [
           _vm._v(
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum, nihil, nisi explicabo, in ducimus, aut porro aperiam odit omnis consequatur mollitia accusantium delectus fugit maxime quod eos voluptates numquam debitis adipisci perferendis possimus excepturi. Aspernatur inventore voluptates sit qui incidunt minima a nam ad rem quidem ullam assumenda suscipit sed possimus repellendus corporis, pariatur asperiores modi, eligendi, tenetur sunt, voluptatum dolorum. Minima aspernatur ducimus ipsum, minus deleniti earum similique officia voluptatibus modi rem. Odio dolorem laboriosam sint aut, earum. Recusandae, veritatis! Id enim earum distinctio ullam omnis. Illum ea officia est magni ducimus placeat minima laborum, ipsa repellendus nam deleniti."
-          )
+            '\n                "DreamEvent is a Laravel Vue.js based Event Application built for portfolio purpose you can find its source code on '
+          ),
+          _c(
+            "a",
+            {
+              attrs: {
+                href: "https://github.com/hamza094/Dream",
+                target: "_blank"
+              }
+            },
+            [_vm._v("GitHub")]
+          ),
+          _vm._v(" repository built by "),
+          _c(
+            "a",
+            {
+              attrs: {
+                href: "https://hikportfolio.herokuapp.com/",
+                target: "_blank"
+              }
+            },
+            [_vm._v("Hamza Ikram")]
+          ),
+          _vm._v(' © 2020 All Right Reserved!"\n            ')
         ])
       ])
     ])
@@ -90882,7 +90909,8 @@ var render = function() {
             height: "auto",
             width: "60%",
             "click-to-close": false,
-            transition: "ease"
+            transition: "ease",
+            adaptive: true
           }
         },
         [
@@ -91148,7 +91176,23 @@ var render = function() {
                   _vm._v(" "),
                   _c("p", [
                     _vm._v("*Policy: Purchased ticket can not be refunded")
-                  ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "h3",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.process == true,
+                          expression: "process==true"
+                        }
+                      ],
+                      staticClass: "text-success"
+                    },
+                    [_vm._v("Hang on you payment is in process")]
+                  )
                 ])
               ])
             : _c("div", { staticClass: "mt-5 mb-5 ml-5" }, [
@@ -91218,11 +91262,11 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("p", { staticClass: "Dashboard-heading" }, [
-              _vm._v("Tickets Solds:" + _vm._s(_vm.count))
+              _vm._v("Total Receipt:" + _vm._s(_vm.count))
             ]),
             _vm._v(" "),
             _c("p", { staticClass: "Dashboard-heading float-right" }, [
-              _vm._v("Ticket Delivered:" + _vm._s(_vm.delivered))
+              _vm._v("Receipt Delivered:" + _vm._s(_vm.delivered))
             ]),
             _vm._v(" "),
             _c("p", { staticClass: "Dashboard-heading" }, [
@@ -91415,7 +91459,10 @@ var render = function() {
                         : _c("td", [
                             _c(
                               "span",
-                              { staticClass: "btn btn-success btn-sm" },
+                              {
+                                staticClass: "btn btn-success btn-sm",
+                                attrs: { disabled: "" }
+                              },
                               [_vm._v("Delivered")]
                             )
                           ]),

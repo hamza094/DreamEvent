@@ -54,7 +54,7 @@ trait RecordsActivity
             'user_id' =>auth()->id()
         ]);
 
-        //event(new ActivityLogged($activity));
+        event(new ActivityLogged($activity));
     }
 
     /**

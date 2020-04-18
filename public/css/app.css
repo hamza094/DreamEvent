@@ -932,6 +932,14 @@ StripeElement {
   font-weight: bold;
 }
 
+.dashboard-para {
+  color: #2D395D;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+}
+
 .footer {
   background-color: #2D395D;
   text-align: center;

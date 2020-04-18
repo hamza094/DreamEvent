@@ -45,11 +45,12 @@ class Event extends Model implements Searchable
             $event->replies->each->delete();
         });
         static::created(function ($event) {
-            $event->topic()->increment('events_count');
+        $event->update(['slug'=>$event->name]);
+        $event->topic()->increment('events_count');
+            
         });
-        static::saving(function ($event) {
-            $event->slug = str_slug($event->name);
-        });
+        
+
     }
     
     public function setSlugAttribute($value) {

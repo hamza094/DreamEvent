@@ -876,6 +876,14 @@ StripeElement {
     }
 }
 
+.dashboard-para{
+     color:$color-main;
+                font-size:1rem;
+                font-weight: bold;
+                text-transform: uppercase;
+                letter-spacing: .2rem;
+}
+
 .footer{
     background-color: $color-main;
     text-align: center;

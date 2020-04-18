@@ -121,16 +121,16 @@
             </div>
         </div>
         <div class="row mt-5">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <ActivityFeed/>
             </div>
-            <div class="col-md-6">
-                <h3>Events With Most Tickets Sold</h3>
-            </div>
+
         </div>
         <div class="row">
             <div class="col-md-12 mt-4">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum, nihil, nisi explicabo, in ducimus, aut porro aperiam odit omnis consequatur mollitia accusantium delectus fugit maxime quod eos voluptates numquam debitis adipisci perferendis possimus excepturi. Aspernatur inventore voluptates sit qui incidunt minima a nam ad rem quidem ullam assumenda suscipit sed possimus repellendus corporis, pariatur asperiores modi, eligendi, tenetur sunt, voluptatum dolorum. Minima aspernatur ducimus ipsum, minus deleniti earum similique officia voluptatibus modi rem. Odio dolorem laboriosam sint aut, earum. Recusandae, veritatis! Id enim earum distinctio ullam omnis. Illum ea officia est magni ducimus placeat minima laborum, ipsa repellendus nam deleniti.</p>
+                <p class="dashboard-para">
+                   "DreamEvent is a Laravel Vue.js based Event Application built for portfolio purpose you can find its source code on <a href="https://github.com/hamza094/Dream" target="_blank">GitHub</a> repository built by <a href="https://hikportfolio.herokuapp.com/" target="_blank">Hamza Ikram</a> &copy; 2020 All Right Reserved!"
+               </p>
             </div>
         </div>
    </div>
