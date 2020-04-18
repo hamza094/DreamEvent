@@ -2,8 +2,8 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 use App\User;
-use Illuminate\Support\Str;
 use Faker\Generator as Faker;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,33 +38,32 @@ $factory->define(App\Topic::class, function (Faker $faker) {
 });
 
 $factory->define(App\Event::class, function (Faker $faker) {
-       $startDate = \Carbon\Carbon::createFromTimeStamp($faker->dateTimeBetween('-30 days', '+30 days')->getTimestamp());
+    $startDate = \Carbon\Carbon::createFromTimeStamp($faker->dateTimeBetween('-30 days', '+30 days')->getTimestamp());
     $endDate = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $startDate)->addHour();
     //$name=$faker->sentence;
     //$slug=str_slug($name, '-');
-return [
-      'name'=>$faker->sentence,
-    //'slug'=>$slug,
-         'desc'=> 'Nunc magna metus, laoreet sed ex nec, consequat finibus risus. Aenean massa est, venenatis id dignissim id, maximus vitae sem.',
-         'strtdt'=>$startDate,
-          'strttm'=>'19:45',
-    'enddt'=>$endDate,
-          'endtm'=>'19:55',
-    'price'=>45,
-    'location'=>'lahore,Pakistan',
-     'user_id'=>function () {
+    return [
+        'name'=>$faker->sentence,
+        //'slug'=>$slug,
+        'desc'=> 'Nunc magna metus, laoreet sed ex nec, consequat finibus risus. Aenean massa est, venenatis id dignissim id, maximus vitae sem.',
+        'strtdt'=>$startDate,
+        'strttm'=>'19:45',
+        'enddt'=>$endDate,
+        'endtm'=>'19:55',
+        'price'=>45,
+        'location'=>'lahore,Pakistan',
+        'user_id'=>function () {
             return factory('App\User')->create()->id;
         },
-    'venue'=>'Lahore',
-     'topic_id'=>function () {
+        'venue'=>'Lahore',
+        'topic_id'=>function () {
             return factory('App\Topic')->create()->id;
-    },
-    'qty'=>2,
-    'image_path'=>'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTHZInbmRX8Mtrdptido88vfG9e8tmTPNcYMuYdOTPFjwRE0bAG'
-    
+        },
+        'qty'=>2,
+        'image_path'=>'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTHZInbmRX8Mtrdptido88vfG9e8tmTPNcYMuYdOTPFjwRE0bAG'
+
     ];
 });
-
 
 $factory->define(App\Reply::class, function (Faker $faker) {
     return [
@@ -89,8 +88,6 @@ $factory->define(App\DiscussionReply::class, function (Faker $faker) {
         'replybody' => 'abra ka dabra',
     ];
 });
-
-
 
 $factory->define(App\PurchaseTicket::class, function (Faker $faker) {
     return [

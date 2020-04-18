@@ -12,5 +12,5 @@
 */
 
 Broadcast::channel('activity', function () {
-     return true; //Always return true or false
+    return true; //Always return true or false
 });

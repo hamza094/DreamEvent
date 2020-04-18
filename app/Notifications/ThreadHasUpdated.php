@@ -4,14 +4,13 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class ThreadHasUpdated extends Notification
 {
     use Queueable;
 
     protected $event;
-    
+
     /**
      * Create a new notification instance.
      *
@@ -19,7 +18,7 @@ class ThreadHasUpdated extends Notification
      */
     public function __construct($event)
     {
-        $this->event=$event;
+        $this->event = $event;
     }
 
     /**
@@ -33,7 +32,6 @@ class ThreadHasUpdated extends Notification
         return ['database'];
     }
 
- 
     /**
      * Get the array representation of the notification.
      *

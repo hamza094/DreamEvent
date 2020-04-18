@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\User;
 use App\Event;
+use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class EventPolicy
@@ -19,10 +19,11 @@ class EventPolicy
     {
         //
     }
-    
+
     public function update(User $user, Event $event)
     {
-         $user= $event->user_id == $user->id || $user->isAdmin();
+        $user = $event->user_id == $user->id || $user->isAdmin();
+
         return $user;
     }
 }

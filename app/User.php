@@ -2,9 +2,8 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -16,10 +15,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','avatar_path'
+        'name', 'email', 'password', 'avatar_path'
     ];
-    
-    protected $appends = ['isAdmin','profile'];
+
+    protected $appends = ['isAdmin', 'profile'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -38,12 +37,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
-    public function me($user){
+
+    public function me($user)
+    {
         return $this->id === $user->id;
     }
-    
-        /**
+
+    /**
      * Get the activity timeline for the user.
      *
      * @return mixed
@@ -52,8 +52,8 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Activity');
     }
-    
-        /**
+
+    /**
      * Record new activity for the user.
      *
      * @param  string $name
@@ -69,72 +69,81 @@ class User extends Authenticatable
 
         return $related->recordActivity($name);
     }
-    
-    public function accounts(){
+
+    public function accounts()
+    {
         return $this->hasMany('App\SocialAccount');
     }
-    public function events(){
+
+    public function events()
+    {
         return $this->hasMany(Event::class);
     }
-    public function replies(){
+
+    public function replies()
+    {
         return $this->hasMany(Reply::class);
     }
-    public function tickets(){
+
+    public function tickets()
+    {
         return $this->hasMany(PurchaseTicket::class);
     }
-    
-     public function topics()
+
+    public function topics()
     {
         return $this->hasMany(Topic::class);
     }
-    
-    public function ticket(){
-    return $this->belongsTo(PurchaseTicket::class);
+
+    public function ticket()
+    {
+        return $this->belongsTo(PurchaseTicket::class);
     }
 
-    public function discussionreplies(){
+    public function discussionreplies()
+    {
         return $this->hasMany(DiscussionReply::class);
     }
-     public function followers(){
+
+    public function followers()
+    {
         return $this->hasMany(Follow::class);
     }
-    
-    
-     public function lastReply()
+
+    public function lastReply()
     {
         return $this->hasOne(Reply::class)->latest();
     }
-    
-      public static function boot()
+
+    public static function boot()
     {
         parent::boot();
         static::deleting(function ($user) {
             $user->events->each->forceDelete();
         });
     }
-    
+
     //User avatar path
-   public function getProfileAttribute()
-   {
-       if($this->avatar_path!=null){
-        $path=pathinfo($this->avatar_path);
-        return $path['dirname'].'/'.$path['filename']."-thumb.jpg";    
-       }else{
-           $path="https://i.pinimg.com/originals/53/54/f7/5354f750a2816333f42efbeeacb4e244.jpg";
-           return $path;
-       }
-         
-   }
-    
-      public function isAdmin()
+    public function getProfileAttribute()
     {
-        return in_array($this->email, config('dream.adminstrators'));
-          
-    }
-    
-    public function getisAdminAttribute(){
-        return $this->isAdmin();
+        if ($this->avatar_path != null) {
+            $path = pathinfo($this->avatar_path);
+
+            return $path['dirname'].'/'.$path['filename'].'-thumb.jpg';
+        } else {
+            $path = 'https://i.pinimg.com/originals/53/54/f7/5354f750a2816333f42efbeeacb4e244.jpg';
+
+            return $path;
+        }
     }
 
-    
+    public function isAdmin()
+    {
+        return in_array($this->email, config('dream.adminstrators'));
+    }
+
+    public function getisAdminAttribute()
+    {
+        return $this->isAdmin();
+    }
 }

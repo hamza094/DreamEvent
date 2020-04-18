@@ -4,13 +4,12 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class ReplyAddedToDiscussion extends Notification
 {
     use Queueable;
-    
-     protected $reply;
+
+    protected $reply;
     protected $replydiscussion;
 
     /**
@@ -18,13 +17,13 @@ class ReplyAddedToDiscussion extends Notification
      *
      * @return void
      */
-    public function __construct($reply,$replydiscussion)
+    public function __construct($reply, $replydiscussion)
     {
-        $this->reply=$reply;
-        $this->replydiscussion=$replydiscussion;
+        $this->reply = $reply;
+        $this->replydiscussion = $replydiscussion;
     }
 
-     /**
+    /**
      * Get the notification's delivery channels.
      *
      * @param  mixed  $notifiable
@@ -34,8 +33,7 @@ class ReplyAddedToDiscussion extends Notification
     {
         return ['database'];
     }
-  
- 
+
     /**
      * Get the array representation of the notification.
      *
@@ -45,7 +43,7 @@ class ReplyAddedToDiscussion extends Notification
     public function toArray($notifiable)
     {
         return [
-             'message'=>' New discussion added by '.$this->replydiscussion->user->name,
+            'message'=>' New discussion added by '.$this->replydiscussion->user->name,
             'notifier'=>$this->replydiscussion->user,
             'link'=>$this->reply->path()
         ];

@@ -4,7 +4,6 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class ReplyHasAdded extends Notification
 {
@@ -12,15 +11,16 @@ class ReplyHasAdded extends Notification
 
     protected $event;
     protected $reply;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($event,$reply)
+    public function __construct($event, $reply)
     {
-        $this->event=$event;
-        $this->reply=$reply;
+        $this->event = $event;
+        $this->reply = $reply;
     }
 
     /**
@@ -33,7 +33,6 @@ class ReplyHasAdded extends Notification
     {
         return ['database'];
     }
-
 
     /**
      * Get the array representation of the notification.
