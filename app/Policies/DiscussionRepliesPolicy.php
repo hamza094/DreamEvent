@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\User;
 use App\DiscussionReply;
+use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class DiscussionRepliesPolicy
@@ -19,10 +19,9 @@ class DiscussionRepliesPolicy
     {
         //
     }
-    
-     public function permission(User $user, DiscussionReply $discussionreply)
+
+    public function permission(User $user, DiscussionReply $discussionreply)
     {
         return $discussionreply->user_id == $user->id;
     }
-    
 }

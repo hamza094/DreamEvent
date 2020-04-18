@@ -2,18 +2,17 @@
 
 namespace App\Mail;
 
+use App\PurchaseTicket;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use App\PurchaseTicket;
-use PDF;
 
 class TicketPurchase extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $ticket;
+
     /**
      * Create a new message instance.
      *

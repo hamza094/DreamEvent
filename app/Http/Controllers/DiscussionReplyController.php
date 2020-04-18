@@ -2,37 +2,35 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\DiscussionReply;
 use App\Reply;
 use Auth;
-use App\Event;
-use App\Rules\SpamFree;
-use App\Http\Forms\CreateEventForm;
-use App\DiscussionReply;
+use Illuminate\Http\Request;
 
 class DiscussionReplyController extends Controller
 {
-    public function store(Reply $reply,Request $request){
-           $this->validate($request,[
-           'replybody'=>'required',
-           ]);
+    public function store(Reply $reply, Request $request)
+    {
+        $this->validate($request, [
+            'replybody'=>'required',
+        ]);
         $reply->addDiscussionReply([
             'replybody'=>request('replybody'),
             'user_id'=>auth()->id()
         ]);
     }
-    
-     public function update(DiscussionReply $discussionreply,Request $request)
+
+    public function update(DiscussionReply $discussionreply, Request $request)
     {
-        $this->validate($request,[
-           'replybody'=>'required',
-           ]);
-         $this->authorize('permission', $discussionreply);
+        $this->validate($request, [
+            'replybody'=>'required',
+        ]);
+        $this->authorize('permission', $discussionreply);
         $discussionreply->update(request(['replybody']));
-        
     }
-    
-      public function destroy(DiscussionReply $discussionreply){
+
+    public function destroy(DiscussionReply $discussionreply)
+    {
         $this->authorize('permission', $discussionreply);
         $discussionreply->delete();
         if (request()->wantsJson()) {

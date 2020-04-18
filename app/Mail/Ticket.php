@@ -5,13 +5,13 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class Ticket extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $ticket;
+
     /**
      * Create a new message instance.
      *
@@ -19,7 +19,7 @@ class Ticket extends Mailable
      */
     public function __construct($ticket)
     {
-        $this->ticket=$ticket;
+        $this->ticket = $ticket;
     }
 
     /**
@@ -29,7 +29,7 @@ class Ticket extends Mailable
      */
     public function build()
     {
-         return $this->from('dreamevent@gmail.com', 'Dream Event')
+        return $this->from('dreamevent@gmail.com', 'Dream Event')
         ->subject('Event Ticket!')
         ->view('emails.deliver');
     }

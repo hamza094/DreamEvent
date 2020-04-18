@@ -2,16 +2,15 @@
 
 namespace App\Mail;
 
+use Auth;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Auth;
 
 class Contact extends Mailable
 {
     use Queueable, SerializesModels;
-    
+
     public $data;
 
     /**
@@ -21,7 +20,7 @@ class Contact extends Mailable
      */
     public function __construct($data)
     {
-        $this->data=$data;
+        $this->data = $data;
     }
 
     /**

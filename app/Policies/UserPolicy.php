@@ -3,13 +3,12 @@
 namespace App\Policies;
 
 use App\User;
-use Auth;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class UserPolicy
 {
     use HandlesAuthorization;
-    
+
     /**
      * Determine whether the user can view any models.
      *
@@ -55,12 +54,12 @@ class UserPolicy
     {
         return $user->me($signedInUser);
     }
-    
-     public function admin(User $user)
+
+    public function admin(User $user)
     {
         return $user->isAdmin();
     }
-   
+
     /**
      * Determine whether the user can delete the model.
      *

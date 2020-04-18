@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateFollowsTable extends Migration
 {
@@ -18,7 +18,6 @@ class CreateFollowsTable extends Migration
             $table->integer('user_id');
             $table->integer('event_id');
             $table->timestamps();
- 
         });
     }
 

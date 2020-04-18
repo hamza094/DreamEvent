@@ -1,6 +1,6 @@
 <?php
 
-# RecordsActivity.php
+// RecordsActivity.php
 
 namespace App;
 
@@ -14,7 +14,6 @@ trait RecordsActivity
      *
      * @return void
      */
-    
     public $oldAttributes = [];
 
     protected static function bootRecordsActivity()
@@ -23,13 +22,13 @@ trait RecordsActivity
             static::$event(function ($model) use ($event) {
                 $model->recordActivity($event);
             });
-            
+
             if ($event === 'updated') {
                 static::updating(function ($model) {
                     $model->oldAttributes = $model->getOriginal();
                 });
             }
-            
+
             static::deleting(function ($model) {
                 $model->activity()->delete();
             });
@@ -44,7 +43,7 @@ trait RecordsActivity
      */
     public function recordActivity($event)
     {
-        $activity=Activity::create([
+        $activity = Activity::create([
             'subject_id' => $this->id,
             'subject_type' => get_class($this),
             'name' => $this->getActivityName($this, $event),
@@ -70,15 +69,15 @@ trait RecordsActivity
 
         return "{$action}_{$name}";
     }
-    
-      protected function getActivityLink($model, $action)
+
+    protected function getActivityLink($model, $action)
     {
         $name = strtolower((new ReflectionClass($model))->getShortName());
 
         return "{$action}_{$name}_link";
     }
-    
-       protected function getActivityTitle($model, $action)
+
+    protected function getActivityTitle($model, $action)
     {
         $name = strtolower((new ReflectionClass($model))->getShortName());
 
@@ -97,17 +96,16 @@ trait RecordsActivity
         }
 
         return [
-            'created','updated'
+            'created', 'updated'
         ];
     }
-    
-     public function activity()
-    {
 
+    public function activity()
+    {
         return $this->morphMany('App\Activity', 'subject')->latest();
     }
-    
-        /**
+
+    /**
      * Fetch the changes to the model.
      *
      * @return array|null

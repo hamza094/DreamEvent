@@ -166,7 +166,6 @@ return [
         MaddHatter\LaravelFullcalendar\ServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
 
-        
         /*
          * Package Service Providers...
          */
@@ -235,6 +234,6 @@ return [
         'Calendar' => MaddHatter\LaravelFullcalendar\Facades\Calendar::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
 
-   ],
+    ],
 
 ];

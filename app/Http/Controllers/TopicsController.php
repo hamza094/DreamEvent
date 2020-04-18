@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Event;
 use App\Topic;
 use Auth;
-use App\Event;
+use Illuminate\Http\Request;
+
 class TopicsController extends Controller
 {
-    
-    
     /**
      * Display a listing of the resource.
      *
@@ -17,10 +16,9 @@ class TopicsController extends Controller
      */
     public function index()
     {
-         return Topic::all(); 
-        
+        return Topic::all();
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -39,16 +37,16 @@ class TopicsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'name'=>'required|string|max:255',
             'image'=>'required'
-            ]);
-        
-        $topic=Topic::create([
+        ]);
+
+        $topic = Topic::create([
             'name'=>request('name'),
             'image'=>request('image'),
             'user_id'=>auth()->id()
-            
+
         ]);
     }
 
@@ -62,11 +60,12 @@ class TopicsController extends Controller
     {
         //
     }
-    
+
     public function topic(Topic $topic)
     {
-        $events=Event::orderBy('created_at','desc')->paginate(8);
-        return view('event.topic',compact('topic','events'));
+        $events = Event::orderBy('created_at', 'desc')->paginate(8);
+
+        return view('event.topic', compact('topic', 'events'));
     }
 
     /**
@@ -89,9 +88,8 @@ class TopicsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $topic=Topic::findOrFail($id);
-         $topic->update(request(['name']));
-        
+        $topic = Topic::findOrFail($id);
+        $topic->update(request(['name']));
     }
 
     /**
