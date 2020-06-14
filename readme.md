@@ -1,6 +1,24 @@
-# DreamEvent [![Build Status](https://travis-ci.org/hamza094/Dream.svg?branch=master)](https://travis-ci.org/hamza094/Dream)
+# DreamEvent [![Build Status](https://travis-ci.org/hamza094/DreamEvent.svg?branch=master)](https://travis-ci.org/hamza094/DreamEvent)
 
 Create And Organize Events Linke Meetup and EventBrite 
+
+# Features
+- Event and topic Crud draft.
+- Subscription.
+- Trending Events.
+- Discussion ad discussion reply.
+- Event follow and notifications.
+- Event location and google place API.
+- Event Calendar and add to calendar.
+- Purchase Event Tickets. 
+- Event receipt and ticket.
+- User Profile.
+- View event guests and contact event organizer.
+- Event Open and close.
+- Vue Spa Backend Dashboard.
+- Graph and revenue information.
+- Real-Time Activity Feed.
+- AWS Image upload.
 
 # Installation
 ## Step 1.
@@ -29,6 +47,5 @@ Third Party Api's User:
 
 ## Step 4.
 - For Admin Access Edit config/dream.php, and add any email address that should be marked as an administrator.
-- 
 
-For live view visit site 
+For live view visit site https://dreamevent.herokuapp.com/
