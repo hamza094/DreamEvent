@@ -1,6 +1,6 @@
 # DreamEvent [![Build Status](https://travis-ci.org/hamza094/DreamEvent.svg?branch=master)](https://travis-ci.org/hamza094/DreamEvent)
 
-Create And Organize Events Linke Meetup and EventBrite 
+Create And Organize Events Similar to Meetup and Eventbrite 
 
 # Features
 - Event and topic Crud draft.
@@ -9,7 +9,7 @@ Create And Organize Events Linke Meetup and EventBrite
 - Discussion ad discussion reply.
 - Event follow and notifications.
 - Event location and google place API.
-- Event Calendar and add to calendar.
+- Event Calendar and add to the calendar.
 - Purchase Event Tickets. 
 - Event receipt and ticket.
 - User Profile.
@@ -31,14 +31,14 @@ Begin by cloning this repository to your machine, and installing all Composer de
 - php artisan key:generate
 - mv .env.example .env
 
-If you want use Redis as your cache driver you need to install the Redis Server. You can either use homebrew on a Mac or compile from source (https://redis.io/topics/quickstart).
+If you want to use Redis as your cache driver you need to install the Redis Server. You can either use homebrew on a Mac or compile from source (https://redis.io/topics/quickstart).
 
 Next, create a new database and reference its name and username/password within the project's .env file.
 
 ## Step 2. 
-You'll see Third Party important keys that should be referenced in your .env file.
+You'll see Third-Party important keys that should be referenced in your .env file.
 
-Third Party Api's User:
+Third-Party Api's User:
 - Aws S3
 - Facebook Google Social Login
 - Google Map
